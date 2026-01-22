@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Menu, X, Terminal } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const navItems = [
-  { label: "HOME", href: "#home" },
-  { label: "ABOUT", href: "#about" },
-  { label: "TIMELINE", href: "#timeline" },
-  { label: "PRIZES", href: "#prizes" },
-  { label: "FAQ", href: "#faq" },
-  { label: "TEAM", href: "#team" },
+  { label: "HOME", href: "/#home" },
+  { label: "ABOUT", href: "/#about" },
+  { label: "TIMELINE", href: "/timeline", isPage: true },
+  { label: "PRIZES", href: "/#prizes" },
+  { label: "FAQ", href: "/#faq" },
+  { label: "TEAM", href: "/#team" },
 ];
 
 const Navbar = () => {
@@ -35,14 +36,25 @@ const Navbar = () => {
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="text-sm font-mono text-muted-foreground hover:text-primary transition-colors relative group"
-              >
-                {item.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
-              </a>
+              item.isPage ? (
+                <Link
+                  key={item.label}
+                  to={item.href}
+                  className="text-sm font-mono text-muted-foreground hover:text-primary transition-colors relative group"
+                >
+                  {item.label}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
+                </Link>
+              ) : (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="text-sm font-mono text-muted-foreground hover:text-primary transition-colors relative group"
+                >
+                  {item.label}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
+                </a>
+              )
             ))}
           </div>
 
@@ -71,14 +83,25 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
           >
             {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="block py-3 text-sm font-mono text-muted-foreground hover:text-primary transition-colors"
-                onClick={() => setIsOpen(false)}
-              >
-                {">"} {item.label}
-              </a>
+              item.isPage ? (
+                <Link
+                  key={item.label}
+                  to={item.href}
+                  className="block py-3 text-sm font-mono text-muted-foreground hover:text-primary transition-colors"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {">"} {item.label}
+                </Link>
+              ) : (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="block py-3 text-sm font-mono text-muted-foreground hover:text-primary transition-colors"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {">"} {item.label}
+                </a>
+              )
             ))}
             <a
               href="#register"
