@@ -47,11 +47,11 @@ const Team = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="team" className="py-24 relative" ref={ref}>
+    <section id="team" className="py-16 md:py-24 relative" ref={ref}>
       <div className="container mx-auto px-4">
         {/* Section header */}
         <motion.div
-          className="mb-16 text-center"
+          className="mb-10 md:mb-16 text-center"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
@@ -59,52 +59,52 @@ const Team = () => {
           <p className="text-xs font-mono text-primary mb-2">
             {"///"} SYSTEM_OPERATORS
           </p>
-          <h2 className="text-4xl md:text-6xl font-display font-bold">
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-display font-bold">
             THE <span className="text-primary text-glow">TEAM</span>
           </h2>
         </motion.div>
 
         {/* Team grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-6">
           {teamMembers.map((member, index) => (
             <motion.div
               key={member.name}
-              className="group p-4 border border-border bg-card/50 backdrop-blur-sm text-center hover:border-primary transition-all"
+              className="group p-3 md:p-4 border border-border bg-card/50 backdrop-blur-sm text-center hover:border-primary transition-all"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               {/* Avatar */}
-              <div className="w-16 h-16 mx-auto mb-4 border-2 border-primary bg-secondary flex items-center justify-center text-primary font-display font-bold text-xl group-hover:animate-pulse-glow">
+              <div className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-3 md:mb-4 border-2 border-primary bg-secondary flex items-center justify-center text-primary font-display font-bold text-base md:text-xl group-hover:animate-pulse-glow">
                 {member.avatar}
               </div>
 
-              <h3 className="text-sm font-display font-bold text-foreground mb-1">
+              <h3 className="text-xs md:text-sm font-display font-bold text-foreground mb-1 truncate">
                 {member.name}
               </h3>
-              <p className="text-xs font-mono text-primary mb-3">
+              <p className="text-[10px] md:text-xs font-mono text-primary mb-2 md:mb-3 truncate">
                 {member.role}
               </p>
 
               {/* Social links */}
-              <div className="flex justify-center gap-2">
+              <div className="flex justify-center gap-1 md:gap-2">
                 <a
                   href={member.socials.github}
-                  className="w-6 h-6 flex items-center justify-center text-muted-foreground hover:text-primary transition-colors"
+                  className="w-5 h-5 md:w-6 md:h-6 flex items-center justify-center text-muted-foreground hover:text-primary transition-colors"
                 >
-                  <Github className="w-4 h-4" />
+                  <Github className="w-3 h-3 md:w-4 md:h-4" />
                 </a>
                 <a
                   href={member.socials.linkedin}
-                  className="w-6 h-6 flex items-center justify-center text-muted-foreground hover:text-primary transition-colors"
+                  className="w-5 h-5 md:w-6 md:h-6 flex items-center justify-center text-muted-foreground hover:text-primary transition-colors"
                 >
-                  <Linkedin className="w-4 h-4" />
+                  <Linkedin className="w-3 h-3 md:w-4 md:h-4" />
                 </a>
                 <a
                   href={member.socials.twitter}
-                  className="w-6 h-6 flex items-center justify-center text-muted-foreground hover:text-primary transition-colors"
+                  className="w-5 h-5 md:w-6 md:h-6 flex items-center justify-center text-muted-foreground hover:text-primary transition-colors"
                 >
-                  <Twitter className="w-4 h-4" />
+                  <Twitter className="w-3 h-3 md:w-4 md:h-4" />
                 </a>
               </div>
             </motion.div>
