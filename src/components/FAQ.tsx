@@ -42,11 +42,11 @@ const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="py-24 relative" ref={ref}>
+    <section id="faq" className="py-16 md:py-24 relative" ref={ref}>
       <div className="container mx-auto px-4">
         {/* Section header */}
         <motion.div
-          className="mb-16 text-center"
+          className="mb-10 md:mb-16 text-center"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
@@ -54,13 +54,13 @@ const FAQ = () => {
           <p className="text-xs font-mono text-primary mb-2">
             {"///"} QUERY_DATABASE
           </p>
-          <h2 className="text-4xl md:text-6xl font-display font-bold">
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-display font-bold">
             FREQUENT <span className="text-primary text-glow">QUERIES</span>
           </h2>
         </motion.div>
 
         {/* FAQ items */}
-        <div className="max-w-3xl mx-auto space-y-4">
+        <div className="max-w-3xl mx-auto space-y-3 md:space-y-4">
           {faqs.map((faq, index) => (
             <motion.div
               key={index}
@@ -70,19 +70,19 @@ const FAQ = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <button
-                className="w-full p-4 flex items-center justify-between text-left hover:bg-secondary/50 transition-colors"
+                className="w-full p-3 md:p-4 flex items-center justify-between text-left hover:bg-secondary/50 transition-colors"
                 onClick={() =>
                   setOpenIndex(openIndex === index ? null : index)
                 }
               >
-                <div className="flex items-center gap-3">
-                  <Terminal className="w-4 h-4 text-primary" />
-                  <span className="font-mono text-sm text-foreground">
+                <div className="flex items-center gap-2 md:gap-3">
+                  <Terminal className="w-3 h-3 md:w-4 md:h-4 text-primary flex-shrink-0" />
+                  <span className="font-mono text-xs md:text-sm text-foreground">
                     {faq.question}
                   </span>
                 </div>
                 <ChevronDown
-                  className={`w-4 h-4 text-primary transition-transform ${
+                  className={`w-4 h-4 text-primary transition-transform flex-shrink-0 ${
                     openIndex === index ? "rotate-180" : ""
                   }`}
                 />
@@ -96,7 +96,7 @@ const FAQ = () => {
                 transition={{ duration: 0.3 }}
                 className="overflow-hidden"
               >
-                <p className="px-4 pb-4 text-sm text-muted-foreground font-mono leading-relaxed">
+                <p className="px-3 md:px-4 pb-3 md:pb-4 text-xs md:text-sm text-muted-foreground font-mono leading-relaxed">
                   {">"} {faq.answer}
                 </p>
               </motion.div>
