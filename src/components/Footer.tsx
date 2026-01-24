@@ -1,4 +1,5 @@
-import { Terminal, Github, Twitter, Linkedin, Instagram, Mail } from "lucide-react";
+import { Github, Twitter, Linkedin, Instagram, Mail } from "lucide-react";
+import originLogo from "@/assets/origin-logo.png";
 
 const Footer = () => {
   return (
@@ -7,12 +8,12 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8 mb-12">
           {/* Logo & description */}
           <div className="md:col-span-2">
-            <a href="#home" className="flex items-center gap-2 mb-4">
-              <Terminal className="w-6 h-6 text-primary" />
-              <span className="font-display font-bold text-xl">
-                <span className="text-foreground">ORI</span>
-                <span className="text-primary">GIN</span>
-              </span>
+            <a href="#home" className="flex items-center mb-4">
+              <img 
+                src={originLogo} 
+                alt="ORIGIN - Place to Start" 
+                className="h-12 w-auto"
+              />
             </a>
             <p className="text-sm text-muted-foreground font-mono mb-4 max-w-md">
               The ultimate 48-hour hackathon experience. Build, innovate, and
