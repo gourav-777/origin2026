@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { ChevronRight, Eye } from "lucide-react";
 import Countdown from "./Countdown";
 const Hero = () => {
-  return <section id="home" className="relative min-h-screen flex flex-col items-center justify-center pt-16 overflow-hidden">
+  return <section id="home" className="relative min-h-screen flex flex-col items-center justify-center pt-4 md:pt-16 overflow-hidden">
       {/* Decorative elements */}
       <div className="absolute top-1/4 left-10 w-32 h-32 border border-primary/20 rotate-45 animate-float" />
       <div className="absolute bottom-1/4 right-10 w-24 h-24 border border-primary/20 rotate-12 animate-float" style={{
@@ -119,11 +119,11 @@ const Hero = () => {
       </div>
 
       {/* Corner decorations */}
-      <div className="absolute top-20 left-4 text-xs font-mono text-muted-foreground">
+      <div className="absolute top-2 md:top-20 left-4 text-xs font-mono text-muted-foreground">
         <p>{">"} LOCATION: TBD</p>
         <p>{">"} STATUS: ACTIVE</p>
       </div>
-      <div className="absolute top-20 right-4 text-xs font-mono text-muted-foreground text-right">
+      <div className="absolute top-2 md:top-20 right-14 md:right-4 text-xs font-mono text-muted-foreground text-right">
         <p>LAT: 28.6139° N</p>
         <p>LONG: 77.2090° E</p>
       </div>
