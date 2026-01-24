@@ -39,7 +39,7 @@ const Navbar = () => {
               <img 
                 src={originLogo} 
                 alt="ORIGIN - Place to Start" 
-                className="h-12 md:h-16 w-auto"
+                className="h-16 md:h-16 w-auto"
               />
             </a>
 
