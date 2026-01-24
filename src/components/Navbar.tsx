@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Menu, X, Terminal } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
+import originLogo from "@/assets/origin-logo.jpg";
 
 const navItems = [
   { label: "HOME", href: "/#home" },
@@ -25,12 +26,12 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <a href="#home" className="flex items-center gap-2">
-            <Terminal className="w-6 h-6 text-primary" />
-            <span className="font-display font-bold text-xl">
-              <span className="text-foreground">ORI</span>
-              <span className="text-primary">GIN</span>
-            </span>
+          <a href="/#home" className="flex items-center">
+            <img 
+              src={originLogo} 
+              alt="ORIGIN - Place to Start" 
+              className="h-10 w-auto"
+            />
           </a>
 
           {/* Desktop nav */}
