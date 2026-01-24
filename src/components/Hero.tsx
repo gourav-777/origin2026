@@ -70,7 +70,7 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7 }}
         >
-          <Countdown targetDate={new Date("2026-03-15T09:00:00")} />
+          <Countdown targetDate={new Date("2026-03-30T09:00:00")} />
         </motion.div>
 
         {/* CTA buttons */}
