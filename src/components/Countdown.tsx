@@ -58,8 +58,8 @@ const Countdown = ({ targetDate }: CountdownProps) => {
           transition={{ delay: index * 0.1 }}
         >
           <div className="relative">
-            <div className="w-20 h-24 md:w-28 md:h-32 border border-primary/50 bg-secondary/50 backdrop-blur-sm flex items-center justify-center box-glow">
-              <span className="text-4xl md:text-6xl font-display font-bold text-primary text-glow">
+            <div className="w-20 h-24 md:w-28 md:h-32 border border-foreground/50 bg-secondary/50 backdrop-blur-sm flex items-center justify-center box-glow">
+              <span className="text-4xl md:text-6xl font-display font-bold text-foreground">
                 {String(unit.value).padStart(2, "0")}
               </span>
             </div>
