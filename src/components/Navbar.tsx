@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
-import originLogo from "@/assets/origin-logo.jpg";
+import originLogo from "@/assets/origin-logo.png";
 
 const navItems = [
   { label: "HOME", href: "/#home" },
