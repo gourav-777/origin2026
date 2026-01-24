@@ -17,78 +17,85 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <motion.nav
-      className="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-md border-b border-border"
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <a href="/#home" className="flex items-center">
-            <img 
-              src={originLogo} 
-              alt="ORIGIN - Place to Start" 
-              className="h-16 w-auto"
-            />
-          </a>
+    <>
+      {/* Mobile sticky menu button */}
+      <button
+        className="md:hidden fixed top-4 right-4 z-50 p-3 bg-background/90 backdrop-blur-md border border-border rounded-lg text-foreground"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        {isOpen ? <X size={24} /> : <Menu size={24} />}
+      </button>
 
-          {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
-              item.isPage ? (
-                <Link
-                  key={item.label}
-                  to={item.href}
-                  className="text-sm font-mono text-muted-foreground hover:text-primary transition-colors relative group"
-                >
-                  {item.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
-                </Link>
-              ) : (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className="text-sm font-mono text-muted-foreground hover:text-primary transition-colors relative group"
-                >
-                  {item.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
-                </a>
-              )
-            ))}
+      <motion.nav
+        className="relative md:fixed md:top-0 md:left-0 md:right-0 z-40 bg-background/80 backdrop-blur-md border-b border-border"
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between h-20">
+            {/* Logo */}
+            <a href="/#home" className="flex items-center">
+              <img 
+                src={originLogo} 
+                alt="ORIGIN - Place to Start" 
+                className="h-12 md:h-16 w-auto"
+              />
+            </a>
+
+            {/* Desktop nav */}
+            <div className="hidden md:flex items-center gap-8">
+              {navItems.map((item) => (
+                item.isPage ? (
+                  <Link
+                    key={item.label}
+                    to={item.href}
+                    className="text-sm font-mono text-muted-foreground hover:text-primary transition-colors relative group"
+                  >
+                    {item.label}
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
+                  </Link>
+                ) : (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    className="text-sm font-mono text-muted-foreground hover:text-primary transition-colors relative group"
+                  >
+                    {item.label}
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
+                  </a>
+                )
+              ))}
+            </div>
+
+            {/* Register button */}
+            <a
+              href="#register"
+              className="hidden md:block px-4 py-2 bg-primary text-primary-foreground font-mono text-sm hover:bg-primary/90 transition-colors animate-pulse-glow"
+            >
+              REGISTER_NOW
+            </a>
+
+            {/* Hidden on mobile - menu button is now separate and sticky */}
+            <div className="md:hidden w-10" />
           </div>
-
-          {/* Register button */}
-          <a
-            href="#register"
-            className="hidden md:block px-4 py-2 bg-primary text-primary-foreground font-mono text-sm hover:bg-primary/90 transition-colors animate-pulse-glow"
-          >
-            REGISTER_NOW
-          </a>
-
-          {/* Mobile menu button */}
-          <button
-            className="md:hidden text-foreground"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            {isOpen ? <X /> : <Menu />}
-          </button>
         </div>
+      </motion.nav>
 
-        {/* Mobile menu */}
-        {isOpen && (
-          <motion.div
-            className="md:hidden py-4 border-t border-border"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
+      {/* Mobile menu overlay */}
+      {isOpen && (
+        <motion.div
+          className="md:hidden fixed inset-0 z-40 bg-background/95 backdrop-blur-md pt-20"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+        >
+          <div className="container mx-auto px-4 py-4">
             {navItems.map((item) => (
               item.isPage ? (
                 <Link
                   key={item.label}
                   to={item.href}
-                  className="block py-3 text-sm font-mono text-muted-foreground hover:text-primary transition-colors"
+                  className="block py-4 text-lg font-mono text-muted-foreground hover:text-primary transition-colors border-b border-border"
                   onClick={() => setIsOpen(false)}
                 >
                   {">"} {item.label}
@@ -97,7 +104,7 @@ const Navbar = () => {
                 <a
                   key={item.label}
                   href={item.href}
-                  className="block py-3 text-sm font-mono text-muted-foreground hover:text-primary transition-colors"
+                  className="block py-4 text-lg font-mono text-muted-foreground hover:text-primary transition-colors border-b border-border"
                   onClick={() => setIsOpen(false)}
                 >
                   {">"} {item.label}
@@ -106,15 +113,15 @@ const Navbar = () => {
             ))}
             <a
               href="#register"
-              className="block mt-4 px-4 py-2 bg-primary text-primary-foreground font-mono text-sm text-center"
+              className="block mt-6 px-4 py-3 bg-primary text-primary-foreground font-mono text-center text-lg"
               onClick={() => setIsOpen(false)}
             >
               REGISTER_NOW
             </a>
-          </motion.div>
-        )}
-      </div>
-    </motion.nav>
+          </div>
+        </motion.div>
+      )}
+    </>
   );
 };
 
