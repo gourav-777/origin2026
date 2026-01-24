@@ -24,13 +24,13 @@ const Navbar = () => {
       transition={{ duration: 0.5 }}
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <a href="/#home" className="flex items-center">
             <img 
               src={originLogo} 
               alt="ORIGIN - Place to Start" 
-              className="h-10 w-auto"
+              className="h-16 w-auto"
             />
           </a>
 
