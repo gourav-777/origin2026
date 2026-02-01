@@ -41,7 +41,7 @@ const DynamicNavbar = () => {
               className="flex items-center"
               whileHover={{ scale: 1.02 }}
             >
-              <img src={originLogo} alt="ORIGIN" className="h-8 md:h-10" />
+              <img src={originLogo} alt="ORIGIN" className="h-12 md:h-16" />
             </motion.a>
 
             {/* Desktop Navigation */}
