@@ -40,11 +40,6 @@ const DynamicHero = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, [mouseX, mouseY]);
 
-  const stats = [
-    { icon: Users, value: "500+", label: "PARTICIPANTS" },
-    { icon: Trophy, value: "₹2L+", label: "PRIZE POOL" },
-    { icon: Zap, value: "24H", label: "NON-STOP" },
-  ];
 
   return (
     <section 
@@ -107,33 +102,6 @@ const DynamicHero = () => {
           and ideas launch into the future
         </motion.p>
 
-        {/* Stats */}
-        <motion.div
-          className="flex flex-wrap justify-center gap-4 md:gap-8 mb-10"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1 }}
-        >
-          {stats.map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              className="flex items-center gap-3 px-5 py-3 rounded-lg border border-foreground/10 bg-background/80 backdrop-blur-md"
-              whileHover={{ 
-                scale: 1.02,
-                borderColor: 'hsl(var(--foreground) / 0.2)',
-              }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1 + index * 0.1 }}
-            >
-              <stat.icon className="w-5 h-5 text-foreground/70" />
-              <div className="text-left">
-                <p className="text-lg md:text-xl font-display font-bold text-foreground">{stat.value}</p>
-                <p className="text-[10px] font-sans tracking-wider text-foreground/50">{stat.label}</p>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
 
         {/* Countdown */}
         <motion.div
