@@ -1,8 +1,7 @@
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
 import { useRef, useEffect } from "react";
-import { Rocket, ArrowDown, Users, Trophy, Zap } from "lucide-react";
+import { Rocket, ArrowDown } from "lucide-react";
 import Countdown from "./Countdown";
-import originLogo from "@/assets/origin-logo.png";
 import rocketHero from "@/assets/rocket-launch-hero.jpg";
 
 const DynamicHero = () => {
@@ -39,12 +38,6 @@ const DynamicHero = () => {
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, [mouseX, mouseY]);
-
-  const stats = [
-    { icon: Users, value: "500+", label: "PARTICIPANTS" },
-    { icon: Trophy, value: "₹2L+", label: "PRIZE POOL" },
-    { icon: Zap, value: "24H", label: "NON-STOP" },
-  ];
 
   return (
     <section 
@@ -107,40 +100,12 @@ const DynamicHero = () => {
           and ideas launch into the future
         </motion.p>
 
-        {/* Stats */}
-        <motion.div
-          className="flex flex-wrap justify-center gap-3 md:gap-6 mb-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1 }}
-        >
-          {stats.map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              className="flex items-center gap-2 px-3 py-2 rounded-lg border border-foreground/10 bg-background/80 backdrop-blur-md"
-              whileHover={{ 
-                scale: 1.02,
-                borderColor: 'hsl(var(--foreground) / 0.2)',
-              }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1 + index * 0.1 }}
-            >
-              <stat.icon className="w-4 h-4 text-foreground/70" />
-              <div className="text-left">
-                <p className="text-base md:text-lg font-display font-bold text-foreground">{stat.value}</p>
-                <p className="text-[9px] font-sans tracking-wider text-foreground/50">{stat.label}</p>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-
         {/* Countdown */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.1 }}
-          className="mb-4"
+          transition={{ delay: 1 }}
+          className="mb-6"
         >
           <Countdown targetDate={new Date("2026-03-30T09:00:00")} />
         </motion.div>
