@@ -47,15 +47,18 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        terminal: {
-          red: "hsl(var(--terminal-red))",
-          green: "hsl(var(--terminal-green))",
-          glow: "hsl(var(--terminal-glow))",
+        cosmic: {
+          blue: "hsl(var(--cosmic-blue))",
+          purple: "hsl(var(--cosmic-purple))",
+          pink: "hsl(var(--nebula-pink))",
+          cyan: "hsl(var(--electric-cyan))",
+          violet: "hsl(var(--electric-violet))",
+          space: "hsl(var(--deep-space))",
         },
       },
       fontFamily: {
-        mono: ['JetBrains Mono', 'monospace'],
-        display: ['Space Grotesk', 'sans-serif'],
+        sans: ['Exo 2', 'sans-serif'],
+        display: ['Orbitron', 'sans-serif'],
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -73,18 +76,41 @@ export default {
         },
         "float": {
           "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-10px)" },
+          "50%": { transform: "translateY(-20px)" },
         },
         "pulse-border": {
           "0%, 100%": { borderColor: "hsl(var(--primary) / 0.5)" },
           "50%": { borderColor: "hsl(var(--primary))" },
         },
+        "shimmer": {
+          "0%": { backgroundPosition: "-200% 0" },
+          "100%": { backgroundPosition: "200% 0" },
+        },
+        "glow-pulse": {
+          "0%, 100%": { 
+            boxShadow: "0 0 20px hsl(var(--primary) / 0.3), 0 0 40px hsl(var(--primary) / 0.1)" 
+          },
+          "50%": { 
+            boxShadow: "0 0 40px hsl(var(--primary) / 0.5), 0 0 80px hsl(var(--primary) / 0.3)" 
+          },
+        },
+        "rotate-slow": {
+          from: { transform: "rotate(0deg)" },
+          to: { transform: "rotate(360deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "float": "float 3s ease-in-out infinite",
+        "float": "float 6s ease-in-out infinite",
         "pulse-border": "pulse-border 2s ease-in-out infinite",
+        "shimmer": "shimmer 3s ease-in-out infinite",
+        "glow-pulse": "glow-pulse 3s ease-in-out infinite",
+        "rotate-slow": "rotate-slow 30s linear infinite",
+      },
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-cosmic": "linear-gradient(135deg, hsl(var(--cosmic-blue)), hsl(var(--cosmic-purple)), hsl(var(--deep-space)))",
       },
     },
   },
