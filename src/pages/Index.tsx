@@ -1,17 +1,17 @@
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import CosmicLoader from "@/components/CosmicLoader";
-import CosmicBackground from "@/components/CosmicBackground";
-import CosmicNavbar from "@/components/CosmicNavbar";
-import CosmicHero from "@/components/CosmicHero";
-import CosmicMarquee from "@/components/CosmicMarquee";
-import CosmicAbout from "@/components/CosmicAbout";
-import CosmicJourney from "@/components/CosmicJourney";
-import CosmicPrizes from "@/components/CosmicPrizes";
-import CosmicFAQ from "@/components/CosmicFAQ";
-import CosmicTeam from "@/components/CosmicTeam";
-import CosmicRegister from "@/components/CosmicRegister";
-import CosmicFooter from "@/components/CosmicFooter";
+import DynamicLoader from "@/components/DynamicLoader";
+import DynamicNavbar from "@/components/DynamicNavbar";
+import DynamicHero from "@/components/DynamicHero";
+import DynamicMarquee from "@/components/DynamicMarquee";
+import DynamicAbout from "@/components/DynamicAbout";
+import DynamicJourney from "@/components/DynamicJourney";
+import DynamicPrizes from "@/components/DynamicPrizes";
+import DynamicFAQ from "@/components/DynamicFAQ";
+import DynamicTeam from "@/components/DynamicTeam";
+import DynamicRegister from "@/components/DynamicRegister";
+import DynamicFooter from "@/components/DynamicFooter";
+import MouseParticles from "@/components/MouseParticles";
 
 const Index = () => {
   const [loading, setLoading] = useState(true);
@@ -19,24 +19,28 @@ const Index = () => {
   return (
     <>
       <AnimatePresence mode="wait">
-        {loading && <CosmicLoader onComplete={() => setLoading(false)} />}
+        {loading && <DynamicLoader onComplete={() => setLoading(false)} />}
       </AnimatePresence>
 
       {!loading && (
         <div className="relative min-h-screen bg-background overflow-x-hidden">
-          <CosmicBackground />
+          {/* Mouse-reactive particles */}
+          <MouseParticles />
           
-          <CosmicNavbar />
-          <CosmicHero />
-          <CosmicMarquee />
-          <CosmicAbout />
-          <CosmicMarquee />
-          <CosmicJourney />
-          <CosmicPrizes />
-          <CosmicFAQ />
-          <CosmicTeam />
-          <CosmicRegister />
-          <CosmicFooter />
+          {/* Navigation */}
+          <DynamicNavbar />
+          
+          {/* Main sections */}
+          <DynamicHero />
+          <DynamicMarquee />
+          <DynamicAbout />
+          <DynamicMarquee />
+          <DynamicJourney />
+          <DynamicPrizes />
+          <DynamicFAQ />
+          <DynamicTeam />
+          <DynamicRegister />
+          <DynamicFooter />
         </div>
       )}
     </>
