@@ -33,9 +33,7 @@ const DynamicFAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="relative py-32 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-card/10 to-background" />
-
+    <section id="faq" className="relative py-32 overflow-hidden bg-card/30">
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <motion.div
@@ -46,14 +44,14 @@ const DynamicFAQ = () => {
           transition={{ duration: 0.8 }}
         >
           <motion.div 
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/10 mb-6"
-            whileHover={{ scale: 1.05 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-foreground/10 bg-foreground/5 mb-6"
+            whileHover={{ scale: 1.02 }}
           >
-            <span className="text-xs font-sans text-primary tracking-[0.2em]">GOT QUESTIONS?</span>
+            <span className="text-xs font-sans text-foreground/60 tracking-[0.2em]">GOT QUESTIONS?</span>
           </motion.div>
           
-          <h2 className="text-4xl md:text-6xl font-display font-bold mb-6">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">FAQ</span>
+          <h2 className="text-4xl md:text-6xl font-display font-bold text-foreground">
+            FAQ
           </h2>
         </motion.div>
 
@@ -62,7 +60,7 @@ const DynamicFAQ = () => {
           {faqs.map((faq, index) => (
             <motion.div
               key={index}
-              className="border border-border/50 rounded-xl overflow-hidden bg-card/30 backdrop-blur-md"
+              className="border border-border rounded-xl overflow-hidden bg-background"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -71,14 +69,14 @@ const DynamicFAQ = () => {
               <motion.button
                 className="w-full px-6 py-5 flex items-center justify-between text-left"
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                whileHover={{ backgroundColor: 'hsl(var(--primary) / 0.05)' }}
+                whileHover={{ backgroundColor: 'hsl(var(--foreground) / 0.02)' }}
               >
                 <span className="font-sans font-medium text-foreground pr-4">{faq.question}</span>
                 <motion.div
                   animate={{ rotate: openIndex === index ? 180 : 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <ChevronDown className="w-5 h-5 text-primary flex-shrink-0" />
+                  <ChevronDown className="w-5 h-5 text-foreground/40 flex-shrink-0" />
                 </motion.div>
               </motion.button>
               
@@ -91,7 +89,7 @@ const DynamicFAQ = () => {
                 transition={{ duration: 0.3 }}
                 className="overflow-hidden"
               >
-                <div className="px-6 pb-5 text-sm text-muted-foreground leading-relaxed">
+                <div className="px-6 pb-5 text-sm text-foreground/50 leading-relaxed">
                   {faq.answer}
                 </div>
               </motion.div>
