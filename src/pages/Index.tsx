@@ -1,16 +1,17 @@
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import Loader from "@/components/Loader";
-import BinaryBackground from "@/components/BinaryBackground";
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import Marquee from "@/components/Marquee";
-import About from "@/components/About";
-import Prizes from "@/components/Prizes";
-import FAQ from "@/components/FAQ";
-import Team from "@/components/Team";
-import Register from "@/components/Register";
-import Footer from "@/components/Footer";
+import CosmicLoader from "@/components/CosmicLoader";
+import CosmicBackground from "@/components/CosmicBackground";
+import CosmicNavbar from "@/components/CosmicNavbar";
+import CosmicHero from "@/components/CosmicHero";
+import CosmicMarquee from "@/components/CosmicMarquee";
+import CosmicAbout from "@/components/CosmicAbout";
+import CosmicJourney from "@/components/CosmicJourney";
+import CosmicPrizes from "@/components/CosmicPrizes";
+import CosmicFAQ from "@/components/CosmicFAQ";
+import CosmicTeam from "@/components/CosmicTeam";
+import CosmicRegister from "@/components/CosmicRegister";
+import CosmicFooter from "@/components/CosmicFooter";
 
 const Index = () => {
   const [loading, setLoading] = useState(true);
@@ -18,24 +19,24 @@ const Index = () => {
   return (
     <>
       <AnimatePresence mode="wait">
-        {loading && <Loader onComplete={() => setLoading(false)} />}
+        {loading && <CosmicLoader onComplete={() => setLoading(false)} />}
       </AnimatePresence>
 
       {!loading && (
         <div className="relative min-h-screen bg-background overflow-x-hidden">
-          <BinaryBackground />
-          <div className="scanlines" />
+          <CosmicBackground />
           
-          <Navbar />
-          <Hero />
-          <Marquee />
-          <About />
-          <Marquee />
-          <Prizes />
-          <FAQ />
-          <Team />
-          <Register />
-          <Footer />
+          <CosmicNavbar />
+          <CosmicHero />
+          <CosmicMarquee />
+          <CosmicAbout />
+          <CosmicMarquee />
+          <CosmicJourney />
+          <CosmicPrizes />
+          <CosmicFAQ />
+          <CosmicTeam />
+          <CosmicRegister />
+          <CosmicFooter />
         </div>
       )}
     </>
