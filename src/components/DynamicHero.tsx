@@ -76,23 +76,6 @@ const DynamicHero = () => {
         className="relative z-10 container mx-auto px-4 text-center"
         style={{ y: contentY, opacity: contentOpacity }}
       >
-        {/* Logo */}
-
-        {/* Logo */}
-        <motion.div
-          className="relative mb-6"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-          style={{ x: mouseXSpring, y: mouseYSpring }}
-        >
-          <motion.img 
-            src={originLogo}
-            alt="ORIGIN"
-            className="h-20 md:h-28 mx-auto"
-          />
-        </motion.div>
-
         {/* Main Title */}
         <motion.div
           className="mb-6"
