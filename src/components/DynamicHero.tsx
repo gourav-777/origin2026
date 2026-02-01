@@ -76,22 +76,7 @@ const DynamicHero = () => {
         className="relative z-10 container mx-auto px-4 text-center"
         style={{ y: contentY, opacity: contentOpacity }}
       >
-        {/* Presenter badge */}
-        <motion.div
-          className="mb-8"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.8 }}
-        >
-          <motion.div 
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-foreground/10 bg-background/80 backdrop-blur-md"
-            whileHover={{ scale: 1.02 }}
-          >
-            <span className="text-xs font-sans text-foreground/70 tracking-[0.2em] uppercase">
-              Hackathon Club of SIMATS Engineering
-            </span>
-          </motion.div>
-        </motion.div>
+        {/* Logo */}
 
         {/* Logo */}
         <motion.div
