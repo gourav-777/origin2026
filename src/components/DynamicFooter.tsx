@@ -4,9 +4,7 @@ import originLogo from "@/assets/origin-logo.png";
 
 const DynamicFooter = () => {
   return (
-    <footer className="relative py-16 overflow-hidden border-t border-border/30">
-      <div className="absolute inset-0 bg-gradient-to-t from-card/50 to-background" />
-
+    <footer className="relative py-16 overflow-hidden border-t border-border bg-background">
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           {/* Logo section */}
@@ -17,7 +15,7 @@ const DynamicFooter = () => {
             viewport={{ once: true }}
           >
             <img src={originLogo} alt="ORIGIN" className="h-12 mb-4" />
-            <p className="text-sm text-muted-foreground max-w-sm leading-relaxed">
+            <p className="text-sm text-foreground/50 max-w-sm leading-relaxed">
               A 24-hour National AI Hackathon where innovation ignites and ideas launch into the future.
               Presented by the Hackathon Club of SIMATS Engineering.
             </p>
@@ -32,8 +30,8 @@ const DynamicFooter = () => {
                 <motion.a
                   key={index}
                   href={social.href}
-                  className="w-10 h-10 rounded-full border border-border/50 bg-card/30 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-colors"
-                  whileHover={{ scale: 1.1 }}
+                  className="w-10 h-10 rounded-full border border-border bg-card/50 flex items-center justify-center text-foreground/40 hover:text-foreground hover:border-foreground/20 transition-colors"
+                  whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   <social.icon className="w-4 h-4" />
@@ -55,7 +53,7 @@ const DynamicFooter = () => {
                 <li key={link}>
                   <a 
                     href={`#${link.toLowerCase()}`}
-                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                    className="text-sm text-foreground/50 hover:text-foreground transition-colors"
                   >
                     {link}
                   </a>
@@ -73,13 +71,13 @@ const DynamicFooter = () => {
           >
             <h4 className="font-display font-bold text-foreground mb-4">CONTACT</h4>
             <ul className="space-y-3">
-              <li className="flex items-start gap-3 text-sm text-muted-foreground">
-                <MapPin className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
+              <li className="flex items-start gap-3 text-sm text-foreground/50">
+                <MapPin className="w-4 h-4 mt-1 flex-shrink-0" />
                 <span>SIMATS Engineering,<br />Chennai, Tamil Nadu</span>
               </li>
-              <li className="flex items-center gap-3 text-sm text-muted-foreground">
-                <Mail className="w-4 h-4 text-primary flex-shrink-0" />
-                <a href="mailto:hackathon@simats.edu.in" className="hover:text-primary transition-colors">
+              <li className="flex items-center gap-3 text-sm text-foreground/50">
+                <Mail className="w-4 h-4 flex-shrink-0" />
+                <a href="mailto:hackathon@simats.edu.in" className="hover:text-foreground transition-colors">
                   hackathon@simats.edu.in
                 </a>
               </li>
@@ -88,8 +86,8 @@ const DynamicFooter = () => {
         </div>
 
         {/* Bottom */}
-        <div className="pt-8 border-t border-border/30 text-center">
-          <p className="text-sm text-muted-foreground">
+        <div className="pt-8 border-t border-border text-center">
+          <p className="text-sm text-foreground/40">
             © 2026 ORIGIN. Crafted with 🚀 by the Hackathon Club of SIMATS Engineering
           </p>
         </div>

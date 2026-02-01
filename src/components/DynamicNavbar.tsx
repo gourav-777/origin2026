@@ -26,7 +26,7 @@ const DynamicNavbar = () => {
       <motion.nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled 
-            ? 'bg-background/90 backdrop-blur-xl border-b border-border/50' 
+            ? 'bg-background/95 backdrop-blur-xl border-b border-border' 
             : 'bg-transparent'
         }`}
         initial={{ y: -100 }}
@@ -39,7 +39,7 @@ const DynamicNavbar = () => {
             <motion.a 
               href="#home"
               className="flex items-center"
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.02 }}
             >
               <img src={originLogo} alt="ORIGIN" className="h-8 md:h-10" />
             </motion.a>
@@ -50,8 +50,8 @@ const DynamicNavbar = () => {
                 <motion.a
                   key={link.href}
                   href={link.href}
-                  className="text-xs font-sans tracking-[0.2em] text-muted-foreground hover:text-primary transition-colors"
-                  whileHover={{ y: -2 }}
+                  className="text-xs font-sans tracking-[0.15em] text-foreground/60 hover:text-foreground transition-colors"
+                  whileHover={{ y: -1 }}
                 >
                   {link.label}
                 </motion.a>
@@ -61,14 +61,11 @@ const DynamicNavbar = () => {
             {/* Register Button */}
             <motion.a
               href="#register"
-              className="hidden md:flex items-center gap-2 px-5 py-2 rounded-lg font-sans text-xs font-semibold"
-              style={{
-                background: 'linear-gradient(135deg, hsl(190 100% 50%), hsl(30 100% 50%))'
-              }}
-              whileHover={{ scale: 1.05 }}
+              className="hidden md:flex items-center gap-2 px-6 py-2.5 rounded-lg font-sans text-xs font-semibold bg-foreground text-background"
+              whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <span className="text-background">REGISTER</span>
+              REGISTER
             </motion.a>
 
             {/* Mobile Menu Button */}
@@ -85,7 +82,7 @@ const DynamicNavbar = () => {
 
       {/* Mobile Menu */}
       <motion.div
-        className={`fixed inset-0 z-40 bg-background/98 backdrop-blur-xl md:hidden ${
+        className={`fixed inset-0 z-40 bg-background md:hidden ${
           isMobileMenuOpen ? 'pointer-events-auto' : 'pointer-events-none'
         }`}
         initial={{ opacity: 0 }}
@@ -111,10 +108,7 @@ const DynamicNavbar = () => {
           ))}
           <motion.a
             href="#register"
-            className="mt-4 px-8 py-3 rounded-lg font-sans font-semibold"
-            style={{
-              background: 'linear-gradient(135deg, hsl(190 100% 50%), hsl(30 100% 50%))'
-            }}
+            className="mt-4 px-8 py-3 rounded-lg font-sans font-semibold bg-foreground text-background"
             initial={{ opacity: 0, y: 20 }}
             animate={{ 
               opacity: isMobileMenuOpen ? 1 : 0, 
@@ -123,7 +117,7 @@ const DynamicNavbar = () => {
             transition={{ delay: 0.6 }}
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            <span className="text-background">REGISTER NOW</span>
+            REGISTER NOW
           </motion.a>
         </div>
       </motion.div>

@@ -6,12 +6,11 @@ interface Particle {
   x: number;
   y: number;
   size: number;
-  color: string;
+  opacity: number;
   life: number;
 }
 
 const MouseParticles = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
   const particlesRef = useRef<Particle[]>([]);
   const animationRef = useRef<number>();
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -36,32 +35,26 @@ const MouseParticles = () => {
     window.addEventListener('resize', resizeCanvas);
 
     let particleId = 0;
-    const colors = [
-      'rgba(14, 165, 233, 0.8)', // cyan
-      'rgba(139, 92, 246, 0.8)', // violet
-      'rgba(236, 72, 153, 0.6)', // pink
-      'rgba(255, 255, 255, 0.6)', // white
-    ];
 
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
       
-      // Create particles on mouse move
-      for (let i = 0; i < 3; i++) {
+      // Create subtle particles on mouse move
+      for (let i = 0; i < 2; i++) {
         particlesRef.current.push({
           id: particleId++,
-          x: e.clientX + (Math.random() - 0.5) * 20,
-          y: e.clientY + (Math.random() - 0.5) * 20,
-          size: Math.random() * 4 + 1,
-          color: colors[Math.floor(Math.random() * colors.length)],
+          x: e.clientX + (Math.random() - 0.5) * 15,
+          y: e.clientY + (Math.random() - 0.5) * 15,
+          size: Math.random() * 3 + 1,
+          opacity: Math.random() * 0.3 + 0.1,
           life: 1,
         });
       }
       
       // Limit particles
-      if (particlesRef.current.length > 100) {
-        particlesRef.current = particlesRef.current.slice(-100);
+      if (particlesRef.current.length > 80) {
+        particlesRef.current = particlesRef.current.slice(-80);
       }
     };
 
@@ -69,15 +62,15 @@ const MouseParticles = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
       particlesRef.current = particlesRef.current.filter(particle => {
-        particle.life -= 0.02;
-        particle.y -= 1;
-        particle.x += (Math.random() - 0.5) * 2;
+        particle.life -= 0.025;
+        particle.y -= 0.8;
+        particle.x += (Math.random() - 0.5) * 1.5;
         
         if (particle.life <= 0) return false;
         
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size * particle.life, 0, Math.PI * 2);
-        ctx.fillStyle = particle.color.replace(/[\d.]+\)$/, `${particle.life * 0.8})`);
+        ctx.fillStyle = `rgba(0, 0, 0, ${particle.opacity * particle.life})`;
         ctx.fill();
         
         return true;
@@ -103,9 +96,8 @@ const MouseParticles = () => {
       <canvas
         ref={canvasRef}
         className="fixed inset-0 pointer-events-none z-50"
-        style={{ mixBlendMode: 'screen' }}
       />
-      {/* Glowing cursor follower */}
+      {/* Subtle cursor follower */}
       <motion.div
         className="fixed pointer-events-none z-40"
         style={{
@@ -116,10 +108,10 @@ const MouseParticles = () => {
         }}
       >
         <div 
-          className="w-8 h-8 rounded-full"
+          className="w-6 h-6 rounded-full"
           style={{
-            background: 'radial-gradient(circle, rgba(14, 165, 233, 0.4) 0%, transparent 70%)',
-            filter: 'blur(8px)',
+            background: 'radial-gradient(circle, rgba(0, 0, 0, 0.15) 0%, transparent 70%)',
+            filter: 'blur(6px)',
           }}
         />
       </motion.div>
