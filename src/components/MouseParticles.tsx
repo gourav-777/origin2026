@@ -70,7 +70,7 @@ const MouseParticles = () => {
         
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size * particle.life, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0, 0, 0, ${particle.opacity * particle.life})`;
+        ctx.fillStyle = `rgba(255, 255, 255, ${particle.opacity * particle.life})`;
         ctx.fill();
         
         return true;
@@ -110,7 +110,7 @@ const MouseParticles = () => {
         <div 
           className="w-6 h-6 rounded-full"
           style={{
-            background: 'radial-gradient(circle, rgba(0, 0, 0, 0.15) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%)',
             filter: 'blur(6px)',
           }}
         />
