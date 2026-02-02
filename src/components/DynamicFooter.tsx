@@ -14,7 +14,7 @@ const DynamicFooter = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <img src={originLogo} alt="ORIGIN" className="h-12 mb-4" />
+            <img src={originLogo} alt="ORIGIN" className="h-16 md:h-20 mb-4" />
             <p className="text-sm text-foreground/50 max-w-sm leading-relaxed">
               A 24-hour National AI Hackathon where innovation ignites and ideas launch into the future.
               Presented by the Hackathon Club of SIMATS Engineering.
