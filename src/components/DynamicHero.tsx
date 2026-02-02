@@ -1,13 +1,12 @@
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
 import { useRef, useEffect } from "react";
-import { Rocket, ArrowDown } from "lucide-react";
+import { Rocket, ArrowDown, Users, Trophy, Zap } from "lucide-react";
 import Countdown from "./Countdown";
-import heroVideo from "@/assets/hero-video.mp4";
-import { useIsMobile } from "@/hooks/use-mobile";
+import originLogo from "@/assets/origin-logo.png";
+import rocketHero from "@/assets/rocket-launch-hero.jpg";
 
 const DynamicHero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const isMobile = useIsMobile();
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -48,24 +47,21 @@ const DynamicHero = () => {
       id="home" 
       className="relative min-h-[120vh] flex flex-col items-center justify-center overflow-hidden"
     >
-      {/* Background Video with Parallax */}
+      {/* Background Image with Parallax */}
       <motion.div 
-        className="absolute inset-0 z-0 flex items-center justify-center"
+        className="absolute inset-0 z-0"
         style={{ 
           y: rocketY, 
           scale: rocketScale,
           x: mouseXSpring,
         }}
       >
-        <video 
-          src={heroVideo}
-          autoPlay
-          muted
-          loop
-          playsInline
-          className={`w-full h-full object-cover ${!isMobile ? 'rotate-90 scale-[1.8]' : ''}`}
+        <img 
+          src={rocketHero}
+          alt="Rocket Launch"
+          className="w-full h-full object-cover object-center"
         />
-        {/* Clean gradient overlays */}
+        {/* Clean white gradient overlays */}
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/30" />
         <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-transparent to-background" />
       </motion.div>
