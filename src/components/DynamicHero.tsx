@@ -63,7 +63,8 @@ const DynamicHero = () => {
           muted
           loop
           playsInline
-          className={`w-full h-full object-cover ${!isMobile ? 'rotate-90 scale-[1.8]' : ''}`}
+          className={`min-w-full min-h-full object-cover ${!isMobile ? 'rotate-90 scale-[2.2]' : ''}`}
+          style={{ objectPosition: 'center center' }}
         />
         {/* Clean gradient overlays */}
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/30" />
