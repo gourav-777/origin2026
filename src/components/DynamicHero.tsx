@@ -3,7 +3,7 @@ import { useRef, useEffect } from "react";
 import { Rocket, ArrowDown, Users, Trophy, Zap } from "lucide-react";
 import Countdown from "./Countdown";
 import originLogo from "@/assets/origin-logo.png";
-import rocketHero from "@/assets/rocket-launch-hero.jpg";
+import heroBgVideo from "@/assets/hero-bg.mp4";
 
 const DynamicHero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -48,20 +48,23 @@ const DynamicHero = () => {
       className="relative min-h-[120vh] flex flex-col items-center justify-center overflow-hidden"
     >
       {/* Background Image with Parallax */}
+      {/* Video Background with Parallax */}
       <motion.div 
         className="absolute inset-0 z-0"
         style={{ 
           y: rocketY, 
           scale: rocketScale,
-          x: mouseXSpring,
         }}
       >
-        <img 
-          src={rocketHero}
-          alt="Rocket Launch"
+        <video 
+          src={heroBgVideo}
+          autoPlay
+          muted
+          loop
+          playsInline
           className="w-full h-full object-cover object-center"
         />
-        {/* Clean white gradient overlays */}
+        {/* Clean gradient overlays */}
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/30" />
         <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-transparent to-background" />
       </motion.div>
