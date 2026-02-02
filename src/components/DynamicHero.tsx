@@ -3,8 +3,11 @@ import { useRef, useEffect } from "react";
 import { Rocket, ArrowDown } from "lucide-react";
 import Countdown from "./Countdown";
 import heroVideo from "@/assets/hero-video.mp4";
+import { useIsMobile } from "@/hooks/use-mobile";
+
 const DynamicHero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -12,8 +15,8 @@ const DynamicHero = () => {
   });
 
   // Parallax transforms
-  const videoY = useTransform(scrollYProgress, [0, 1], ["0%", "-10%"]);
-  const videoScale = useTransform(scrollYProgress, [0, 0.5], [1, 1.05]);
+  const rocketY = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
+  const rocketScale = useTransform(scrollYProgress, [0, 0.5], [1, 1.1]);
   const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const contentOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
 
@@ -30,8 +33,8 @@ const DynamicHero = () => {
       const { innerWidth, innerHeight } = window;
       const x = (clientX - innerWidth / 2) / innerWidth;
       const y = (clientY - innerHeight / 2) / innerHeight;
-      mouseX.set(x * 10);
-      mouseY.set(y * 10);
+      mouseX.set(x * 20);
+      mouseY.set(y * 20);
     };
 
     window.addEventListener('mousemove', handleMouseMove);
@@ -45,12 +48,12 @@ const DynamicHero = () => {
       id="home" 
       className="relative min-h-[120vh] flex flex-col items-center justify-center overflow-hidden"
     >
-      {/* Background Video - centered on both views */}
+      {/* Background Video with Parallax */}
       <motion.div 
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-0 flex items-center justify-center"
         style={{ 
-          y: videoY, 
-          scale: videoScale,
+          y: rocketY, 
+          scale: rocketScale,
           x: mouseXSpring,
         }}
       >
@@ -60,11 +63,11 @@ const DynamicHero = () => {
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover object-center"
+          className={`w-full h-full object-cover ${!isMobile ? 'rotate-90 scale-[1.8]' : ''}`}
         />
-        {/* Gradient overlays for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/20" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-transparent to-background" />
+        {/* Clean gradient overlays */}
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/30" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-transparent to-background" />
       </motion.div>
 
       {/* Main Content */}
