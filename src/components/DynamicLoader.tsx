@@ -48,7 +48,7 @@ const DynamicLoader = ({ onComplete }: DynamicLoaderProps) => {
         animate={{ y: [0, -8, 0] }}
         transition={{ duration: 1.5, repeat: Infinity }}
       >
-        <img src={originIcon} alt="ORIGIN" className="w-52 h-52" />
+        <img src={originIcon} alt="ORIGIN" className="w-20 h-20 md:w-24 md:h-24" />
       </motion.div>
 
       {/* Title */}
