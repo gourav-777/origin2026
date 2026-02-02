@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
-import { Rocket } from "lucide-react";
+import originIcon from "@/assets/origin-icon.png";
 
 interface DynamicLoaderProps {
   onComplete: () => void;
@@ -48,9 +48,7 @@ const DynamicLoader = ({ onComplete }: DynamicLoaderProps) => {
         animate={{ y: [0, -8, 0] }}
         transition={{ duration: 1.5, repeat: Infinity }}
       >
-        <motion.div className="p-6 rounded-full bg-foreground">
-          <Rocket className="w-10 h-10 text-background" />
-        </motion.div>
+        <img src={originIcon} alt="ORIGIN" className="w-20 h-20 md:w-24 md:h-24" />
       </motion.div>
 
       {/* Title */}
