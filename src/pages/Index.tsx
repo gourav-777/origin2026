@@ -37,8 +37,8 @@ const Index = () => {
           <DynamicMarquee />
           <DynamicJourney />
           <DynamicPrizes />
-          <DynamicFAQ />
           <DynamicTeam />
+          <DynamicFAQ />
           <DynamicRegister />
           <DynamicFooter />
         </div>
