@@ -93,7 +93,7 @@ const DynamicJourney = () => {
           </motion.div>
           
           <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 text-foreground">
-            THE JOURNEY
+            THE TIMELINE
           </h2>
           
           <p className="text-lg text-foreground/50 max-w-2xl mx-auto">
