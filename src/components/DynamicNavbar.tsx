@@ -6,7 +6,7 @@ import originLogo from "@/assets/origin-logo.png";
 const navLinks = [
   { href: "#home", label: "HOME" },
   { href: "#about", label: "ABOUT" },
-  { href: "#journey", label: "JOURNEY" },
+  { href: "#journey", label: "TIMELINE" },
   { href: "#prizes", label: "PRIZES" },
   { href: "#faq", label: "FAQ" },
   { href: "#team", label: "TEAM" },
