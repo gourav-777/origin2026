@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Linkedin, Github, Mail, Instagram } from "lucide-react";
+import { Linkedin, Mail, Instagram } from "lucide-react";
 
 const teamLeads = [
   {
