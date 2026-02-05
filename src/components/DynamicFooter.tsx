@@ -23,7 +23,7 @@ const DynamicFooter = () => {
             {/* Social links */}
             <div className="flex gap-4 mt-6">
               {[
-                { icon: Instagram, href: "#" },
+                { icon: Instagram, href: "https://www.instagram.com/origin_simats/" },
                 { icon: Linkedin, href: "#" },
                 { icon: Twitter, href: "#" }
               ].map((social, index) => (
