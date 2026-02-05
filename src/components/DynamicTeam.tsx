@@ -106,7 +106,7 @@ const DynamicTeam = () => {
                       className="text-foreground/40 hover:text-foreground transition-colors"
                       whileHover={{ scale: 1.1 }}
                     >
-                      <Github className="w-4 h-4" />
+                      <Instagram className="w-4 h-4" />
                     </motion.a>
                     <motion.a 
                       href="#" 
