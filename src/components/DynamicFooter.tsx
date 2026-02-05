@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, MapPin, Instagram, Linkedin, Twitter } from "lucide-react";
+import { Mail, MapPin, Instagram, Linkedin } from "lucide-react";
 import originLogo from "@/assets/origin-logo.png";
 
 const DynamicFooter = () => {
@@ -24,8 +24,7 @@ const DynamicFooter = () => {
             <div className="flex gap-4 mt-6">
               {[
                 { icon: Instagram, href: "https://www.instagram.com/origin_simats/" },
-                { icon: Linkedin, href: "https://www.linkedin.com/company/simats-engineering-hackathon-club" },
-                { icon: Twitter, href: "#" }
+                { icon: Linkedin, href: "https://www.linkedin.com/company/simats-engineering-hackathon-club" }
               ].map((social, index) => (
                 <motion.a
                   key={index}
