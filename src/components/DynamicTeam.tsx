@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Linkedin, Github, Mail } from "lucide-react";
+import { Linkedin, Github, Mail, Instagram } from "lucide-react";
 
 const teamLeads = [
   {
@@ -25,14 +25,14 @@ const teamLeads = [
 ];
 
 const supportingCrew = [
-  { name: "Alex", role: "Volunteer", initials: "AX" },
-  { name: "Priya", role: "Coordinator", initials: "PR" },
-  { name: "Ryan", role: "Operations", initials: "RY" },
-  { name: "Maya", role: "Content", initials: "MA" },
-  { name: "Arjun", role: "Social Media", initials: "AR" },
-  { name: "Sara", role: "Logistics", initials: "SA" },
-  { name: "Kiran", role: "Support", initials: "KI" },
-  { name: "Dev", role: "Assistant", initials: "DV" },
+  { name: "Alex", role: "Volunteer", initials: "AX", linkedin: "#", email: "alex@example.com", instagram: "#" },
+  { name: "Priya", role: "Coordinator", initials: "PR", linkedin: "#", email: "priya@example.com", instagram: "#" },
+  { name: "Ryan", role: "Operations", initials: "RY", linkedin: "#", email: "ryan@example.com", instagram: "#" },
+  { name: "Maya", role: "Content", initials: "MA", linkedin: "#", email: "maya@example.com", instagram: "#" },
+  { name: "Arjun", role: "Social Media", initials: "AR", linkedin: "#", email: "arjun@example.com", instagram: "#" },
+  { name: "Sara", role: "Logistics", initials: "SA", linkedin: "#", email: "sara@example.com", instagram: "#" },
+  { name: "Kiran", role: "Support", initials: "KI", linkedin: "#", email: "kiran@example.com", instagram: "#" },
+  { name: "Dev", role: "Assistant", initials: "DV", linkedin: "#", email: "dev@example.com", instagram: "#" },
 ];
 
 const DynamicTeam = () => {
@@ -151,6 +151,35 @@ const DynamicTeam = () => {
                   </div>
                   <p className="text-[10px] font-medium text-foreground/70 truncate">{member.name}</p>
                   <p className="text-[8px] text-foreground/40 truncate">{member.role}</p>
+                  
+                  {/* Social Links */}
+                  <div className="flex justify-center gap-2 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <motion.a 
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-foreground/40 hover:text-foreground transition-colors"
+                      whileHover={{ scale: 1.2 }}
+                    >
+                      <Linkedin className="w-3 h-3" />
+                    </motion.a>
+                    <motion.a 
+                      href={`mailto:${member.email}`}
+                      className="text-foreground/40 hover:text-foreground transition-colors"
+                      whileHover={{ scale: 1.2 }}
+                    >
+                      <Mail className="w-3 h-3" />
+                    </motion.a>
+                    <motion.a 
+                      href={member.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-foreground/40 hover:text-foreground transition-colors"
+                      whileHover={{ scale: 1.2 }}
+                    >
+                      <Instagram className="w-3 h-3" />
+                    </motion.a>
+                  </div>
                 </motion.div>
               </motion.div>
             ))}
