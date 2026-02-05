@@ -54,7 +54,7 @@ const DynamicRegister = () => {
 
           {/* CTA Button */}
           <motion.a
-            href="https://forms.google.com"
+            href="https://unstop.com/o/rQSeLnc?lb=q2EvrVJC&utm_medium=Share&utm_source=simatclu32597&utm_campaign=Online_coding_challenge"
             target="_blank"
             rel="noopener noreferrer"
             className="group relative inline-flex items-center justify-center gap-3 px-12 py-5 font-sans text-lg font-bold overflow-hidden rounded-xl bg-foreground text-background"
