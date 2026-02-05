@@ -24,7 +24,7 @@ const DynamicFooter = () => {
             <div className="flex gap-4 mt-6">
               {[
                 { icon: Instagram, href: "https://www.instagram.com/origin_simats/" },
-                { icon: Linkedin, href: "#" },
+                { icon: Linkedin, href: "https://www.linkedin.com/company/simats-engineering-hackathon-club" },
                 { icon: Twitter, href: "#" }
               ].map((social, index) => (
                 <motion.a
