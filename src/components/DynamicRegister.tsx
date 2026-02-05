@@ -33,7 +33,7 @@ const DynamicRegister = () => {
           {/* Benefits */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
             {[
-              { icon: Users, text: "Form teams of 2-4 members" },
+              { icon: Users, text: "Form teams of 3-4 members" },
               { icon: Calendar, text: "March 30-31, 2026" },
               { icon: CheckCircle, text: "Free food & swag included" }
             ].map((item, index) => (
