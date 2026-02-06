@@ -3,24 +3,36 @@ import { Linkedin, Mail, Instagram } from "lucide-react";
 
 const teamLeads = [
   {
-    name: "Team Lead",
-    role: "Organizer",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop"
+    name: "Harsh Limkar N",
+    role: "Lead Organiser",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop",
+    linkedin: "https://www.linkedin.com/in/harsh-limkar",
+    email: "harshlimkar23@gmail.com",
+    instagram: "https://www.instagram.com/hxrsh.lmkr?igsh=ZG5mNnZlczhmOHVs"
   },
   {
     name: "Tech Lead",
     role: "Technical Head",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop"
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop",
+    linkedin: "#",
+    email: "#",
+    instagram: "#"
   },
   {
     name: "Design Lead",
     role: "Creative Director",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop"
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop",
+    linkedin: "#",
+    email: "#",
+    instagram: "#"
   },
   {
     name: "Marketing Lead",
     role: "Outreach Head",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop"
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop",
+    linkedin: "#",
+    email: "#",
+    instagram: "#"
   }
 ];
 
@@ -95,21 +107,25 @@ const DynamicTeam = () => {
                   
                   <div className="flex justify-center gap-4 mt-5">
                     <motion.a 
-                      href="#" 
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="text-foreground/40 hover:text-foreground transition-colors"
                       whileHover={{ scale: 1.1 }}
                     >
                       <Linkedin className="w-5 h-5" />
                     </motion.a>
                     <motion.a 
-                      href="#" 
+                      href={member.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="text-foreground/40 hover:text-foreground transition-colors"
                       whileHover={{ scale: 1.1 }}
                     >
                       <Instagram className="w-5 h-5" />
                     </motion.a>
                     <motion.a 
-                      href="#" 
+                      href={`mailto:${member.email}`}
                       className="text-foreground/40 hover:text-foreground transition-colors"
                       whileHover={{ scale: 1.1 }}
                     >
