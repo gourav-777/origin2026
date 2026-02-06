@@ -142,19 +142,19 @@ const DynamicTeam = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.3, delay: index * 0.05 }}
               >
-                <motion.div
-                  className="p-3 rounded-xl border border-border/50 bg-card/30 backdrop-blur-sm text-center"
+              <motion.div
+                  className="p-4 rounded-xl border border-border/50 bg-card/30 backdrop-blur-sm text-center"
                   whileHover={{ scale: 1.05, borderColor: 'hsl(var(--foreground) / 0.2)' }}
                 >
-                  <div className="w-14 h-14 mx-auto mb-3 rounded-full overflow-hidden border border-border/50">
+                  <div className="w-20 h-20 mx-auto mb-3 rounded-full overflow-hidden border border-border/50">
                     <img 
                       src={member.image}
                       alt={member.name}
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <p className="text-xs font-medium text-foreground/70 truncate">{member.name}</p>
-                  <p className="text-[10px] text-foreground/40 truncate">{member.role}</p>
+                  <p className="text-sm font-medium text-foreground/70 truncate">{member.name}</p>
+                  <p className="text-xs text-foreground/40 truncate">{member.role}</p>
                   
                   {/* Social Links */}
                   <div className="flex justify-center gap-3 mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -165,14 +165,14 @@ const DynamicTeam = () => {
                       className="text-foreground/40 hover:text-foreground transition-colors"
                       whileHover={{ scale: 1.2 }}
                     >
-                      <Linkedin className="w-4 h-4" />
+                      <Linkedin className="w-5 h-5" />
                     </motion.a>
                     <motion.a 
                       href={`mailto:${member.email}`}
                       className="text-foreground/40 hover:text-foreground transition-colors"
                       whileHover={{ scale: 1.2 }}
                     >
-                      <Mail className="w-4 h-4" />
+                      <Mail className="w-5 h-5" />
                     </motion.a>
                     <motion.a 
                       href={member.instagram}
@@ -181,7 +181,7 @@ const DynamicTeam = () => {
                       className="text-foreground/40 hover:text-foreground transition-colors"
                       whileHover={{ scale: 1.2 }}
                     >
-                      <Instagram className="w-4 h-4" />
+                      <Instagram className="w-5 h-5" />
                     </motion.a>
                   </div>
                 </motion.div>
