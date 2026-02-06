@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
-import { Trophy, Gift, Briefcase, GraduationCap } from "lucide-react";
+import { Trophy, Gift, Briefcase, GraduationCap, Globe } from "lucide-react";
 
 const perks = [
+  { title: "Free Domains", description: "Get free custom domains to launch your winning projects online", icon: Globe },
   { title: "Free Goodies", description: "Exclusive swag and merchandise for all participants", icon: Gift },
   { title: "Internship Opportunity", description: "Direct internship opportunities with top companies", icon: Briefcase },
   { title: "Abroad Study Opportunity", description: "Chance to study abroad with partner universities", icon: GraduationCap },
@@ -80,7 +81,7 @@ const DynamicPrizes = () => {
           </h3>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-5xl mx-auto">
           {perks.map((perk, index) => (
             <motion.div
               key={perk.title}
