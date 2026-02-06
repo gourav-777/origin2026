@@ -5,7 +5,7 @@ const teamLeads = [
   {
     name: "Harsh Limkar N",
     role: "Lead Organiser",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop",
+    image: "https://res.cloudinary.com/duoigqhsw/image/upload/v1770398333/harsh.jpg_owdpgy.jpg",
     linkedin: "https://www.linkedin.com/in/harsh-limkar",
     email: "harshlimkar23@gmail.com",
     instagram: "https://www.instagram.com/hxrsh.lmkr?igsh=ZG5mNnZlczhmOHVs",
@@ -13,7 +13,7 @@ const teamLeads = [
   {
     name: "Raihan Hussain",
     role: "Event Director",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop",
+    image: "https://res.cloudinary.com/duoigqhsw/image/upload/v1770398227/raihanhussain.jpg_vjjaeq.jpg",
     linkedin: "https://www.linkedin.com/in/raihan-hussain-036b15282",
     email: "hussainraihan15@gmail.com",
     instagram: "https://www.instagram.com/raihann__08?igsh=d3Z4NjB2bThtNW9v",
@@ -21,7 +21,7 @@ const teamLeads = [
   {
     name: "Gourav Sharma",
     role: "Event Director",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop",
+    image: "https://res.cloudinary.com/duoigqhsw/image/upload/v1770398042/gouravsharma.jpg_t7zrey.jpg",
     linkedin: "https://www.linkedin.com/in/gouravsharmaxyz/",
     email: "gouravsharma000147@gmail.com",
     instagram: "https://www.instagram.com/gouravsharma.xyz/",
