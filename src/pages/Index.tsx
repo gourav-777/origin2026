@@ -7,7 +7,7 @@ import DynamicMarquee from "@/components/DynamicMarquee";
 import DynamicAbout from "@/components/DynamicAbout";
 import DynamicJourney from "@/components/DynamicJourney";
 import DynamicPrizes from "@/components/DynamicPrizes";
-import DynamicFAQ from "@/components/DynamicFAQ";
+
 import DynamicTeam from "@/components/DynamicTeam";
 import DynamicRegister from "@/components/DynamicRegister";
 import DynamicFooter from "@/components/DynamicFooter";
@@ -38,7 +38,7 @@ const Index = () => {
           <DynamicJourney />
           <DynamicPrizes />
           <DynamicTeam />
-          <DynamicFAQ />
+          
           <DynamicRegister />
           <DynamicFooter />
         </div>
