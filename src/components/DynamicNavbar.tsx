@@ -1,7 +1,8 @@
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ScrollText } from "lucide-react";
 import originLogo from "@/assets/origin-logo.png";
+import RulesModal from "@/components/RulesModal";
 
 const navLinks = [
   { href: "#home", label: "HOME" },
@@ -15,6 +16,7 @@ const navLinks = [
 const DynamicNavbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isRulesOpen, setIsRulesOpen] = useState(false);
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -58,15 +60,26 @@ const DynamicNavbar = () => {
               ))}
             </div>
 
-            {/* Register Button */}
-            <motion.a
-              href="#register"
-              className="hidden md:flex items-center gap-2 px-6 py-2.5 rounded-lg font-sans text-xs font-semibold bg-foreground text-background"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              REGISTER
-            </motion.a>
+            {/* Rules & Register Buttons */}
+            <div className="hidden md:flex items-center gap-3">
+              <motion.button
+                onClick={() => setIsRulesOpen(true)}
+                className="flex items-center gap-2 px-5 py-2.5 rounded-lg font-sans text-xs font-semibold border border-border text-foreground/80 hover:text-foreground hover:border-foreground/40 transition-colors"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <ScrollText className="w-3.5 h-3.5" />
+                RULES
+              </motion.button>
+              <motion.a
+                href="#register"
+                className="flex items-center gap-2 px-6 py-2.5 rounded-lg font-sans text-xs font-semibold bg-foreground text-background"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                REGISTER
+              </motion.a>
+            </div>
 
             {/* Mobile Menu Button */}
             <motion.button
@@ -106,21 +119,37 @@ const DynamicNavbar = () => {
               {link.label}
             </motion.a>
           ))}
-          <motion.a
-            href="#register"
-            className="mt-4 px-8 py-3 rounded-lg font-sans font-semibold bg-foreground text-background"
+          <motion.button
+            onClick={() => { setIsRulesOpen(true); setIsMobileMenuOpen(false); }}
+            className="flex items-center justify-center gap-2 px-8 py-3 rounded-lg font-sans font-semibold border border-border text-foreground"
             initial={{ opacity: 0, y: 20 }}
             animate={{ 
               opacity: isMobileMenuOpen ? 1 : 0, 
               y: isMobileMenuOpen ? 0 : 20 
             }}
             transition={{ delay: 0.6 }}
+          >
+            <ScrollText className="w-4 h-4" />
+            RULES
+          </motion.button>
+          <motion.a
+            href="#register"
+            className="mt-2 px-8 py-3 rounded-lg font-sans font-semibold bg-foreground text-background text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ 
+              opacity: isMobileMenuOpen ? 1 : 0, 
+              y: isMobileMenuOpen ? 0 : 20 
+            }}
+            transition={{ delay: 0.7 }}
             onClick={() => setIsMobileMenuOpen(false)}
           >
             REGISTER NOW
           </motion.a>
         </div>
       </motion.div>
+
+      {/* Rules Modal */}
+      <RulesModal isOpen={isRulesOpen} onClose={() => setIsRulesOpen(false)} />
     </>
   );
 };
