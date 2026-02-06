@@ -57,21 +57,17 @@ const supportingCrew = [
     name: "Vinnarasu",
     role: "Operations",
     image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop",
-    linkedin: "https://www.linkedin.com/in/vinnarasu-r-50439b328?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app
-",
+    linkedin: "https://www.linkedin.com/in/vinnarasu-r-50439b328?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     email: "r.vinnarasu2006@gmail.com",
-    instagram: "https://www.instagram.com/vinn___03?igsh=ZnhpeDE0Y2M1bnlk
-",
+    instagram: "https://www.instagram.com/vinn___03?igsh=ZnhpeDE0Y2M1bnlk",
   },
   {
     name: "Aravind Muthiah",
     role: "Content",
     image: "https://res.cloudinary.com/duoigqhsw/image/upload/v1770398075/arvinth_vnc8fz.jpg",
-    linkedin: "https://www.linkedin.com/in/aravind-muthiah-m?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app
-",
+    linkedin: "https://www.linkedin.com/in/aravind-muthiah-m?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     email: "aravindmuthiah23@gmail.com",
-    instagram: "https://www.instagram.com/aravindmuthiah23?igsh=MWttd2VpNnJ4ZmViZg==
-",
+    instagram: "https://www.instagram.com/aravindmuthiah23?igsh=MWttd2VpNnJ4ZmViZg==",
   },
   {
     name: "Neha B",
@@ -79,8 +75,7 @@ const supportingCrew = [
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop",
     linkedin: "https://www.linkedin.com/in/neha-b-3b2306373?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     email: "nehabalathamil@gmail.com",
-    instagram: "https://www.instagram.com/neha.mag_?igsh=dDBhM3lmb2plcGFu
-",
+    instagram: "https://www.instagram.com/neha.mag_?igsh=dDBhM3lmb2plcGFu",
   },
   {
     name: "Pradeep",
