@@ -76,8 +76,8 @@ const DynamicFooter = () => {
               </li>
               <li className="flex items-center gap-3 text-sm text-foreground/50">
                 <Mail className="w-4 h-4 flex-shrink-0" />
-                <a href="mailto:hackathon@simats.edu.in" className="hover:text-foreground transition-colors">
-                  hackathon@simats.edu.in
+                <a href="mailto:Hackathonclub.simats@gmail.com" className="hover:text-foreground transition-colors">
+                  Hackathonclub.simats@gmail.com
                 </a>
               </li>
             </ul>
