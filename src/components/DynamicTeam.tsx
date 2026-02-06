@@ -86,7 +86,7 @@ const DynamicTeam = () => {
                     <img 
                       src={member.image}
                       alt={member.name}
-                      className="w-full h-full object-cover group-hover:grayscale transition-all duration-300"
+                      className="w-full h-full object-cover"
                     />
                   </motion.div>
                   
