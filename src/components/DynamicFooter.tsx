@@ -1,9 +1,14 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
 import { Mail, MapPin, Instagram, Linkedin } from "lucide-react";
 import originLogo from "@/assets/origin-logo.png";
+import RulesModal from "@/components/RulesModal";
 
 const DynamicFooter = () => {
+  const [isRulesOpen, setIsRulesOpen] = useState(false);
+
   return (
+    <>
     <footer className="relative py-16 overflow-hidden border-t border-border bg-background">
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
@@ -48,7 +53,7 @@ const DynamicFooter = () => {
           >
             <h4 className="font-display font-bold text-foreground mb-4">QUICK LINKS</h4>
             <ul className="space-y-2">
-              {["About", "Journey", "Prizes", "FAQ", "Register"].map((link) => (
+              {["About", "Journey", "Prizes", "Register"].map((link) => (
                 <li key={link}>
                   <a 
                     href={`#${link.toLowerCase()}`}
@@ -58,6 +63,14 @@ const DynamicFooter = () => {
                   </a>
                 </li>
               ))}
+              <li>
+                <button 
+                  onClick={() => setIsRulesOpen(true)}
+                  className="text-sm text-foreground/50 hover:text-foreground transition-colors"
+                >
+                  Rules
+                </button>
+              </li>
             </ul>
           </motion.div>
 
@@ -92,6 +105,9 @@ const DynamicFooter = () => {
         </div>
       </div>
     </footer>
+
+    <RulesModal isOpen={isRulesOpen} onClose={() => setIsRulesOpen(false)} />
+    </>
   );
 };
 
