@@ -25,8 +25,8 @@ const teamLeads = [
 ];
 
 const supportingCrew = [
-  { name: "Alex", role: "Volunteer", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop", linkedin: "#", email: "alex@example.com", instagram: "#" },
-  { name: "Priya", role: "Coordinator", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=200&fit=crop", linkedin: "#", email: "priya@example.com", instagram: "#" },
+  { name: "Raihan Hussain", role: "Event Director", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop", linkedin: "https://www.linkedin.com/in/raihan-hussain-036b15282", email: "hussainraihan15@gmail.com", instagram: "https://www.instagram.com/raihann__08?igsh=d3Z4NjB2bThtNW9v" },
+  { name: "Harsh Limkar N", role: "Lead Organiser", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=200&fit=crop", linkedin: "https://www.linkedin.com/in/harsh-limkar", email: "harshlimkar23@gmail.com", instagram: "https://www.instagram.com/hxrsh.lmkr?igsh=ZG5mNnZlczhmOHVs" },
   { name: "Ryan", role: "Operations", image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop", linkedin: "#", email: "ryan@example.com", instagram: "#" },
   { name: "Maya", role: "Content", image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop", linkedin: "#", email: "maya@example.com", instagram: "#" },
   { name: "Arjun", role: "Social Media", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop", linkedin: "#", email: "arjun@example.com", instagram: "#" },
