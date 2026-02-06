@@ -25,14 +25,14 @@ const teamLeads = [
 ];
 
 const supportingCrew = [
-  { name: "Alex", role: "Volunteer", initials: "AX", linkedin: "#", email: "alex@example.com", instagram: "#" },
-  { name: "Priya", role: "Coordinator", initials: "PR", linkedin: "#", email: "priya@example.com", instagram: "#" },
-  { name: "Ryan", role: "Operations", initials: "RY", linkedin: "#", email: "ryan@example.com", instagram: "#" },
-  { name: "Maya", role: "Content", initials: "MA", linkedin: "#", email: "maya@example.com", instagram: "#" },
-  { name: "Arjun", role: "Social Media", initials: "AR", linkedin: "#", email: "arjun@example.com", instagram: "#" },
-  { name: "Sara", role: "Logistics", initials: "SA", linkedin: "#", email: "sara@example.com", instagram: "#" },
-  { name: "Kiran", role: "Support", initials: "KI", linkedin: "#", email: "kiran@example.com", instagram: "#" },
-  { name: "Dev", role: "Assistant", initials: "DV", linkedin: "#", email: "dev@example.com", instagram: "#" },
+  { name: "Alex", role: "Volunteer", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop", linkedin: "#", email: "alex@example.com", instagram: "#" },
+  { name: "Priya", role: "Coordinator", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=200&fit=crop", linkedin: "#", email: "priya@example.com", instagram: "#" },
+  { name: "Ryan", role: "Operations", image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop", linkedin: "#", email: "ryan@example.com", instagram: "#" },
+  { name: "Maya", role: "Content", image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop", linkedin: "#", email: "maya@example.com", instagram: "#" },
+  { name: "Arjun", role: "Social Media", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop", linkedin: "#", email: "arjun@example.com", instagram: "#" },
+  { name: "Sara", role: "Logistics", image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop", linkedin: "#", email: "sara@example.com", instagram: "#" },
+  { name: "Kiran", role: "Support", image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&h=200&fit=crop", linkedin: "#", email: "kiran@example.com", instagram: "#" },
+  { name: "Dev", role: "Assistant", image: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=200&h=200&fit=crop", linkedin: "#", email: "dev@example.com", instagram: "#" },
 ];
 
 const DynamicTeam = () => {
@@ -146,8 +146,12 @@ const DynamicTeam = () => {
                   className="p-3 rounded-xl border border-border/50 bg-card/30 backdrop-blur-sm text-center"
                   whileHover={{ scale: 1.05, borderColor: 'hsl(var(--foreground) / 0.2)' }}
                 >
-                  <div className="w-14 h-14 mx-auto mb-3 rounded-full bg-foreground/5 border border-border/50 flex items-center justify-center">
-                    <span className="text-sm font-display font-bold text-foreground/60">{member.initials}</span>
+                  <div className="w-14 h-14 mx-auto mb-3 rounded-full overflow-hidden border border-border/50">
+                    <img 
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <p className="text-xs font-medium text-foreground/70 truncate">{member.name}</p>
                   <p className="text-[10px] text-foreground/40 truncate">{member.role}</p>
