@@ -75,7 +75,7 @@ const DynamicTeam = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <motion.div
-                className="relative h-72 p-6 rounded-2xl border border-border bg-card/50 backdrop-blur-sm text-center overflow-hidden flex flex-col"
+                className="relative p-6 rounded-2xl border border-border bg-card/50 backdrop-blur-sm text-center overflow-hidden"
                 whileHover={{ scale: 1.02, borderColor: 'hsl(var(--foreground) / 0.2)' }}
               >
                 <div className="relative z-10">
@@ -143,7 +143,7 @@ const DynamicTeam = () => {
                 transition={{ duration: 0.3, delay: index * 0.05 }}
               >
               <motion.div
-                  className="h-52 p-4 rounded-xl border border-border/50 bg-card/30 backdrop-blur-sm text-center flex flex-col"
+                  className="p-4 rounded-xl border border-border/50 bg-card/30 backdrop-blur-sm text-center"
                   whileHover={{ scale: 1.05, borderColor: 'hsl(var(--foreground) / 0.2)' }}
                 >
                   <div className="w-20 h-20 mx-auto mb-3 rounded-full overflow-hidden border border-border/50">
