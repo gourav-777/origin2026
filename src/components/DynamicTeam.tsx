@@ -29,7 +29,7 @@ const teamLeads = [
   {
     name: "Aswath S",
     role: "Secretary",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop",
+    image: "https://res.cloudinary.com/duoigqhsw/image/upload/v1770398243/aswath.jpg_qrdz4l.jpg",
     linkedin: "https://www.linkedin.com/in/aswath-s-a37475336/",
     email: "aswath10102006@gmail.com",
     instagram: "",
