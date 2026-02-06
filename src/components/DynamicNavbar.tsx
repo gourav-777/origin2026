@@ -9,7 +9,7 @@ const navLinks = [
   { href: "#about", label: "ABOUT" },
   { href: "#journey", label: "TIMELINE" },
   { href: "#prizes", label: "PRIZES" },
-  { href: "#faq", label: "FAQ" },
+  
   { href: "#team", label: "TEAM" },
 ];
 
