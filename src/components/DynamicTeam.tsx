@@ -11,14 +11,6 @@ const teamLeads = [
     instagram: "https://www.instagram.com/hxrsh.lmkr?igsh=ZG5mNnZlczhmOHVs",
   },
   {
-    name: "Raihan Hussain",
-    role: "Event Director",
-    image: "https://res.cloudinary.com/duoigqhsw/image/upload/v1770398227/raihanhussain.jpg_vjjaeq.jpg",
-    linkedin: "https://www.linkedin.com/in/raihan-hussain-036b15282",
-    email: "hussainraihan15@gmail.com",
-    instagram: "https://www.instagram.com/raihann__08?igsh=d3Z4NjB2bThtNW9v",
-  },
-  {
     name: "Gourav Sharma",
     role: "Event Director",
     image: "https://res.cloudinary.com/duoigqhsw/image/upload/v1770398042/gouravsharma.jpg_t7zrey.jpg",
@@ -26,6 +18,15 @@ const teamLeads = [
     email: "gouravsharma000147@gmail.com",
     instagram: "https://www.instagram.com/gouravsharma.xyz/",
   },
+  {
+    name: "Raihan Hussain",
+    role: "Event Director",
+    image: "https://res.cloudinary.com/duoigqhsw/image/upload/v1770398227/raihanhussain.jpg_vjjaeq.jpg",
+    linkedin: "https://www.linkedin.com/in/raihan-hussain-036b15282",
+    email: "hussainraihan15@gmail.com",
+    instagram: "https://www.instagram.com/raihann__08?igsh=d3Z4NjB2bThtNW9v",
+  },
+
   {
     name: "Aswath S",
     role: "Secretary",
@@ -57,7 +58,8 @@ const supportingCrew = [
     name: "Vinnarasu",
     role: "Operations",
     image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop",
-    linkedin: "https://www.linkedin.com/in/vinnarasu-r-50439b328?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    linkedin:
+      "https://www.linkedin.com/in/vinnarasu-r-50439b328?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     email: "r.vinnarasu2006@gmail.com",
     instagram: "https://www.instagram.com/vinn___03?igsh=ZnhpeDE0Y2M1bnlk",
   },
@@ -65,7 +67,8 @@ const supportingCrew = [
     name: "Aravind Muthiah",
     role: "Content",
     image: "https://res.cloudinary.com/duoigqhsw/image/upload/v1770398075/arvinth_vnc8fz.jpg",
-    linkedin: "https://www.linkedin.com/in/aravind-muthiah-m?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    linkedin:
+      "https://www.linkedin.com/in/aravind-muthiah-m?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     email: "aravindmuthiah23@gmail.com",
     instagram: "https://www.instagram.com/aravindmuthiah23?igsh=MWttd2VpNnJ4ZmViZg==",
   },
@@ -73,7 +76,8 @@ const supportingCrew = [
     name: "Neha B",
     role: "PR Head",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop",
-    linkedin: "https://www.linkedin.com/in/neha-b-3b2306373?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    linkedin:
+      "https://www.linkedin.com/in/neha-b-3b2306373?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     email: "nehabalathamil@gmail.com",
     instagram: "https://www.instagram.com/neha.mag_?igsh=dDBhM3lmb2plcGFu",
   },
@@ -81,7 +85,8 @@ const supportingCrew = [
     name: "Pradeep",
     role: "Media Head",
     image: "https://res.cloudinary.com/duoigqhsw/image/upload/v1770398216/Pradeep_G.jpg_wvhunz.jpg",
-    linkedin: "https://www.linkedin.com/in/pradp27?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    linkedin:
+      "https://www.linkedin.com/in/pradp27?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     email: "pradeepgovindarajre@gmail.com",
     instagram: "https://www.instagram.com/_pradp27___?igsh=MTF6MjJ2dGF1aG5uNg==",
   },
@@ -89,7 +94,8 @@ const supportingCrew = [
     name: "K Vinay",
     role: "Media Team",
     image: "https://res.cloudinary.com/duoigqhsw/image/upload/v1770398081/vinay_epkpeq.jpg",
-    linkedin: ":https://www.linkedin.com/in/k-vinay-84b32b361?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    linkedin:
+      ":https://www.linkedin.com/in/k-vinay-84b32b361?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     email: "kj5837453@gmail.com",
     instagram: "https://www.instagram.com/vetakaram_vinay_?igsh=emc0bXV0bmYzYm0y",
   },
