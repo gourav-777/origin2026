@@ -8,10 +8,7 @@ const optimizeCloudinaryUrl = (url: string, size: number): string => {
     return url;
   }
   // Insert transformation parameters after /upload/
-  return url.replace(
-    "/upload/",
-    `/upload/w_${size},h_${size},c_fill,g_face,f_auto,q_auto/`
-  );
+  return url.replace("/upload/", `/upload/w_${size},h_${size},c_fill,g_face,f_auto,q_auto/`);
 };
 const teamLeads = [
   {
@@ -106,7 +103,8 @@ const supportingCrew = [
   {
     name: "Nittyendren JS",
     role: "Marketing Head",
-    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop",
+    image:
+      "https://res.cloudinary.com/duoigqhsw/image/upload/v1770440915/WhatsApp_Image_2026-02-07_at_10.37.11_ogeplq.jpg",
     linkedin:
       "https://www.linkedin.com/in/nitthyendren-js-26a84a289?utm_source=share_via&utm_content=profile&utm_medium=member_android",
     email: "jsnitthyendren@gmail.com",
@@ -168,7 +166,12 @@ const DynamicTeam = () => {
                     className="relative w-28 h-28 mx-auto mb-5 rounded-full overflow-hidden border border-border"
                     whileHover={{ scale: 1.05 }}
                   >
-                    <img src={optimizeCloudinaryUrl(member.image, 256)} alt={member.name} className="w-full h-full object-cover" loading="lazy" />
+                    <img
+                      src={optimizeCloudinaryUrl(member.image, 256)}
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
                   </motion.div>
 
                   <h3 className="font-display font-bold text-foreground text-base">{member.name}</h3>
@@ -236,7 +239,12 @@ const DynamicTeam = () => {
                   whileHover={{ scale: 1.05, borderColor: "hsl(var(--foreground) / 0.2)" }}
                 >
                   <div className="w-20 h-20 mx-auto mb-3 rounded-full overflow-hidden border border-border/50">
-                    <img src={optimizeCloudinaryUrl(member.image, 160)} alt={member.name} className="w-full h-full object-cover" loading="lazy" />
+                    <img
+                      src={optimizeCloudinaryUrl(member.image, 160)}
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
                   </div>
                   <p className="text-sm font-medium text-foreground/70 truncate">{member.name}</p>
                   <p className="text-xs text-foreground/40 truncate">{member.role}</p>
