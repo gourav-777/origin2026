@@ -1,6 +1,18 @@
 import { motion } from "framer-motion";
 import { Linkedin, Mail, Instagram, Github } from "lucide-react";
 
+// Helper function to optimize Cloudinary URLs
+const optimizeCloudinaryUrl = (url: string, size: number): string => {
+  // Only transform Cloudinary URLs
+  if (!url.includes("res.cloudinary.com")) {
+    return url;
+  }
+  // Insert transformation parameters after /upload/
+  return url.replace(
+    "/upload/",
+    `/upload/w_${size},h_${size},c_fill,g_face,f_auto,q_auto/`
+  );
+};
 const teamLeads = [
   {
     name: "Harsh Limkar N",
@@ -156,7 +168,7 @@ const DynamicTeam = () => {
                     className="relative w-28 h-28 mx-auto mb-5 rounded-full overflow-hidden border border-border"
                     whileHover={{ scale: 1.05 }}
                   >
-                    <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
+                    <img src={optimizeCloudinaryUrl(member.image, 256)} alt={member.name} className="w-full h-full object-cover" loading="lazy" />
                   </motion.div>
 
                   <h3 className="font-display font-bold text-foreground text-base">{member.name}</h3>
@@ -224,7 +236,7 @@ const DynamicTeam = () => {
                   whileHover={{ scale: 1.05, borderColor: "hsl(var(--foreground) / 0.2)" }}
                 >
                   <div className="w-20 h-20 mx-auto mb-3 rounded-full overflow-hidden border border-border/50">
-                    <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
+                    <img src={optimizeCloudinaryUrl(member.image, 160)} alt={member.name} className="w-full h-full object-cover" loading="lazy" />
                   </div>
                   <p className="text-sm font-medium text-foreground/70 truncate">{member.name}</p>
                   <p className="text-xs text-foreground/40 truncate">{member.role}</p>
