@@ -77,7 +77,7 @@ const supportingCrew = [
   },
   {
     name: "Aravind Muthiah",
-    role: "#",
+    role: "Community Head",
     image: "https://res.cloudinary.com/duoigqhsw/image/upload/v1770398075/arvinth_vnc8fz.jpg",
     linkedin:
       "https://www.linkedin.com/in/aravind-muthiah-m?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
