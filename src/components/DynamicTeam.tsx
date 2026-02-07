@@ -104,8 +104,8 @@ const supportingCrew = [
     role: "Registration Head",
     image: "https://res.cloudinary.com/duoigqhsw/image/upload/v1770398045/sasvanthu_towxyz.jpg",
     linkedin: "https://www.linkedin.com/in/sasvanthu-g",
-    email: "https://www.instagram.com/sasvanthu06/",
-    instagram: "sasvanthu.g.2006@gmail.com",
+    email: "sasvanthu.g.2006@gmail.com",
+    instagram: "https://www.instagram.com/sasvanthu06/",
   },
 ];
 
@@ -178,7 +178,11 @@ const DynamicTeam = () => {
                       className="text-foreground/40 hover:text-foreground transition-colors"
                       whileHover={{ scale: 1.1 }}
                     >
-                      {member.instagram.includes("github.com") ? <Github className="w-5 h-5" /> : <Instagram className="w-5 h-5" />}
+                      {member.instagram.includes("github.com") ? (
+                        <Github className="w-5 h-5" />
+                      ) : (
+                        <Instagram className="w-5 h-5" />
+                      )}
                     </motion.a>
                     <motion.a
                       href={`mailto:${member.email}`}
@@ -249,7 +253,11 @@ const DynamicTeam = () => {
                       className="text-foreground/40 hover:text-foreground transition-colors"
                       whileHover={{ scale: 1.2 }}
                     >
-                      {member.instagram.includes("github.com") ? <Github className="w-5 h-5" /> : <Instagram className="w-5 h-5" />}
+                      {member.instagram.includes("github.com") ? (
+                        <Github className="w-5 h-5" />
+                      ) : (
+                        <Instagram className="w-5 h-5" />
+                      )}
                     </motion.a>
                   </div>
                 </motion.div>
