@@ -69,7 +69,7 @@ const supportingCrew = [
   {
     name: "Vinnarasu",
     role: "Logistics Head",
-    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop",
+    image: "https://res.cloudinary.com/duoigqhsw/image/upload/v1770398081/vinay_epkpeq.jpg",
     linkedin:
       "https://www.linkedin.com/in/vinnarasu-r-50439b328?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     email: "r.vinnarasu2006@gmail.com",
@@ -106,7 +106,7 @@ const supportingCrew = [
   {
     name: "Nittyendren JS",
     role: "Marketing Head",
-    image: "https://res.cloudinary.com/duoigqhsw/image/upload/v1770398081/vinay_epkpeq.jpg",
+    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop",
     linkedin:
       "https://www.linkedin.com/in/nitthyendren-js-26a84a289?utm_source=share_via&utm_content=profile&utm_medium=member_android",
     email: "jsnitthyendren@gmail.com",
