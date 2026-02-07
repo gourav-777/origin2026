@@ -118,6 +118,14 @@ const supportingCrew = [
     email: "sasvanthu.g.2006@gmail.com",
     instagram: "https://www.instagram.com/sasvanthu06/",
   },
+  {
+    name: "Bhuvanesh H",
+    role: "Tech Lead",
+    image: "https://media.licdn.com/dms/image/v2/D5603AQGpesmIuxu_iQ/profile-displayphoto-shrink_800_800/B56Zu9qFCmIQAI-/0/1768413485331?e=1772064000&v=beta&t=EKEDBo7539V93ZDFqdV1UHn8ftgmRR_ccZfM1sHx8ww",
+    linkedin: "https://www.linkedin.com/in/bhuvanesh-h-8783b9382/",
+    email: "bhuvanesh@flarenetcompany.in",
+    instagram: "https://www.instagram.com/bhuvispartiate",
+  },
 ];
 
 const DynamicTeam = () => {
