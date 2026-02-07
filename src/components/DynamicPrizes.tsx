@@ -102,7 +102,7 @@ const DynamicPrizes = () => {
                 <perk.icon className="w-6 h-6 sm:w-8 sm:h-8 text-foreground/80" />
               </motion.div>
               <h4 className="text-sm sm:text-lg font-display font-bold text-foreground mb-2 text-center min-h-[40px] sm:min-h-0 flex items-center">{perk.title}</h4>
-              <p className="text-xs sm:text-sm text-foreground/50 text-left leading-relaxed">{perk.description}</p>
+              <p className="text-xs sm:text-sm text-foreground/50 text-left sm:text-center leading-relaxed">{perk.description}</p>
             </motion.div>
           ))}
         </div>
