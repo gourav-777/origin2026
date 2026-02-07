@@ -33,7 +33,7 @@ const teamLeads = [
     image: "https://res.cloudinary.com/duoigqhsw/image/upload/v1770398243/aswath.jpg_qrdz4l.jpg",
     linkedin: "https://www.linkedin.com/in/aswath-s-a37475336/",
     email: "aswath10102006@gmail.com",
-    instagram: "",
+    instagram: "https://github.com/aswaa006",
   },
 ];
 
@@ -48,7 +48,7 @@ const supportingCrew = [
   },
   {
     name: "Veera Vaishnavi",
-    role: "Lead Organiser",
+    role: "PR Head",
     image: "https://res.cloudinary.com/duoigqhsw/image/upload/v1770398056/VeeraVaishnavi_bo0ms9.jpg",
     linkedin: "https://www.linkedin.com/in/veera-vaishnavi/",
     email: "vaishureddy26096@gmail.com",
@@ -56,7 +56,7 @@ const supportingCrew = [
   },
   {
     name: "Vinnarasu",
-    role: "Operations",
+    role: "Logistics Head",
     image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop",
     linkedin:
       "https://www.linkedin.com/in/vinnarasu-r-50439b328?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
@@ -65,7 +65,7 @@ const supportingCrew = [
   },
   {
     name: "Aravind Muthiah",
-    role: "Content",
+    role: "#",
     image: "https://res.cloudinary.com/duoigqhsw/image/upload/v1770398075/arvinth_vnc8fz.jpg",
     linkedin:
       "https://www.linkedin.com/in/aravind-muthiah-m?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
