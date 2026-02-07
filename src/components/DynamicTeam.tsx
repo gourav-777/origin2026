@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Linkedin, Mail, Instagram } from "lucide-react";
+import { Linkedin, Mail, Instagram, Github } from "lucide-react";
 
 const teamLeads = [
   {
@@ -178,7 +178,7 @@ const DynamicTeam = () => {
                       className="text-foreground/40 hover:text-foreground transition-colors"
                       whileHover={{ scale: 1.1 }}
                     >
-                      <Instagram className="w-5 h-5" />
+                      {member.instagram.includes("github.com") ? <Github className="w-5 h-5" /> : <Instagram className="w-5 h-5" />}
                     </motion.a>
                     <motion.a
                       href={`mailto:${member.email}`}
@@ -249,7 +249,7 @@ const DynamicTeam = () => {
                       className="text-foreground/40 hover:text-foreground transition-colors"
                       whileHover={{ scale: 1.2 }}
                     >
-                      <Instagram className="w-5 h-5" />
+                      {member.instagram.includes("github.com") ? <Github className="w-5 h-5" /> : <Instagram className="w-5 h-5" />}
                     </motion.a>
                   </div>
                 </motion.div>
