@@ -81,11 +81,11 @@ const DynamicPrizes = () => {
           </h3>
         </motion.div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 max-w-5xl mx-auto">
           {perks.map((perk, index) => (
             <motion.div
               key={perk.title}
-              className="p-8 rounded-xl border border-border bg-card/30 backdrop-blur-sm text-center"
+              className="p-5 sm:p-8 rounded-xl border border-border bg-card/30 backdrop-blur-sm flex flex-col items-center"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -96,13 +96,13 @@ const DynamicPrizes = () => {
               }}
             >
               <motion.div
-                className="inline-flex p-4 rounded-xl bg-foreground/10 mb-4"
+                className="inline-flex p-3 sm:p-4 rounded-xl bg-foreground/10 mb-3 sm:mb-4"
                 whileHover={{ scale: 1.05 }}
               >
-                <perk.icon className="w-8 h-8 text-foreground/80" />
+                <perk.icon className="w-6 h-6 sm:w-8 sm:h-8 text-foreground/80" />
               </motion.div>
-              <h4 className="text-lg font-display font-bold text-foreground mb-2">{perk.title}</h4>
-              <p className="text-sm text-foreground/50">{perk.description}</p>
+              <h4 className="text-sm sm:text-lg font-display font-bold text-foreground mb-2 text-center min-h-[40px] sm:min-h-0 flex items-center">{perk.title}</h4>
+              <p className="text-xs sm:text-sm text-foreground/50 text-justify leading-relaxed">{perk.description}</p>
             </motion.div>
           ))}
         </div>
