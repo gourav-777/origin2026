@@ -75,7 +75,8 @@ const supportingCrew = [
   {
     name: "Neha B",
     role: "PR Head",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop",
+    image:
+      "https://res.cloudinary.com/duoigqhsw/image/upload/v1770439472/WhatsApp_Image_2026-02-07_at_09.40.00_mjrmmv.jpg",
     linkedin:
       "https://www.linkedin.com/in/neha-b-3b2306373?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     email: "nehabalathamil@gmail.com",
@@ -91,13 +92,13 @@ const supportingCrew = [
     instagram: "https://www.instagram.com/_pradp27___?igsh=MTF6MjJ2dGF1aG5uNg==",
   },
   {
-    name: "K Vinay",
-    role: "Media Team",
+    name: "Nittyendren JS",
+    role: "Marketing Head",
     image: "https://res.cloudinary.com/duoigqhsw/image/upload/v1770398081/vinay_epkpeq.jpg",
     linkedin:
-      ":https://www.linkedin.com/in/k-vinay-84b32b361?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    email: "kj5837453@gmail.com",
-    instagram: "https://www.instagram.com/vetakaram_vinay_?igsh=emc0bXV0bmYzYm0y",
+      "https://www.linkedin.com/in/nitthyendren-js-26a84a289?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+    email: "jsnitthyendren@gmail.com",
+    instagram: "https://www.instagram.com/_nitthyendren?igsh=ZmE5YjI4Z2JqdTUz",
   },
   {
     name: "Sasvanthu",
