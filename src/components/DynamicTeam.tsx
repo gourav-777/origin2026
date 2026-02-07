@@ -190,7 +190,7 @@ const DynamicTeam = () => {
                     />
                   </motion.div>
 
-                  <h3 className="font-display font-bold text-foreground text-base">{member.name}</h3>
+                  <h3 className="font-display font-bold text-foreground text-base min-h-[48px] flex items-center justify-center text-center line-clamp-2">{member.name}</h3>
                   <p className="text-sm text-foreground/50 mt-1">{member.role}</p>
 
                   <div className="flex justify-center gap-4 mt-5">
