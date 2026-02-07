@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Mail, MapPin, Instagram, Linkedin } from "lucide-react";
+import { Mail, MapPin, Instagram, Linkedin, Phone } from "lucide-react";
 import originLogo from "@/assets/origin-logo.png";
 import RulesModal from "@/components/RulesModal";
 
@@ -86,6 +86,12 @@ const DynamicFooter = () => {
               <li className="flex items-start gap-3 text-sm text-foreground/50">
                 <MapPin className="w-4 h-4 mt-1 flex-shrink-0" />
                 <span>SIMATS Engineering,<br />Chennai, Tamil Nadu</span>
+              </li>
+              <li className="flex items-center gap-3 text-sm text-foreground/50">
+                <Phone className="w-4 h-4 flex-shrink-0" />
+                <a href="tel:+918610873714" className="hover:text-foreground transition-colors">
+                  +91 86108 73714
+                </a>
               </li>
               <li className="flex items-center gap-3 text-sm text-foreground/50">
                 <Mail className="w-4 h-4 flex-shrink-0" />
