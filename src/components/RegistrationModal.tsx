@@ -235,9 +235,14 @@ const RegistrationModal = ({ isOpen, onClose }: RegistrationModalProps) => {
   };
 
   const handleLaunchComplete = () => {
-    // Use location.href instead of window.open to avoid popup blockers
-    // since this is called from setTimeout (not a direct user action)
-    window.location.href = UNSTOP_URL;
+    setIsExiting(true);
+    setTimeout(() => {
+      window.open(UNSTOP_URL, "_blank");
+      setShowLaunchSequence(false);
+      setIsExiting(false);
+      setCurrentStep(0);
+      onClose();
+    }, 500);
   };
 
   const handleClose = () => {
