@@ -551,11 +551,11 @@ const ParallaxCamera = ({ scrollY }: { scrollY: number }) => {
   
   useFrame(({ camera }) => {
     if (!prefersReducedMotion) {
-      // Slow parallax effect based on scroll - camera moves slightly
-      const targetY = -scrollY * 0.003;
-      const targetZ = 12 + scrollY * 0.001;
-      camera.position.y += (targetY - camera.position.y) * 0.05;
-      camera.position.z += (targetZ - camera.position.z) * 0.05;
+      // More dramatic parallax effect based on scroll - camera moves noticeably
+      const targetY = -scrollY * 0.008;
+      const targetZ = 12 + scrollY * 0.003;
+      camera.position.y += (targetY - camera.position.y) * 0.06;
+      camera.position.z += (targetZ - camera.position.z) * 0.06;
     }
   });
   
@@ -572,18 +572,18 @@ const ParallaxScene = ({ scrollY }: { scrollY: number }) => {
   useFrame(() => {
     if (prefersReducedMotion) return;
     
-    // Different parallax speeds for depth layers
+    // Much more dramatic parallax speeds for depth layers
     if (backgroundRef.current) {
-      const targetY = scrollY * 0.001;
-      backgroundRef.current.position.y += (targetY - backgroundRef.current.position.y) * 0.03;
+      const targetY = scrollY * 0.002;
+      backgroundRef.current.position.y += (targetY - backgroundRef.current.position.y) * 0.04;
     }
     if (midgroundRef.current) {
-      const targetY = scrollY * 0.002;
-      midgroundRef.current.position.y += (targetY - midgroundRef.current.position.y) * 0.04;
+      const targetY = scrollY * 0.006;
+      midgroundRef.current.position.y += (targetY - midgroundRef.current.position.y) * 0.05;
     }
     if (foregroundRef.current) {
-      const targetY = scrollY * 0.004;
-      foregroundRef.current.position.y += (targetY - foregroundRef.current.position.y) * 0.05;
+      const targetY = scrollY * 0.012;
+      foregroundRef.current.position.y += (targetY - foregroundRef.current.position.y) * 0.06;
     }
   });
 
