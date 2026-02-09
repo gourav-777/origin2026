@@ -9,38 +9,6 @@ const getReducedMotion = () =>
     ? window.matchMedia('(prefers-reduced-motion: reduce)').matches 
     : false;
 
-// Floating Planet Component - Positioned in corner free space
-const Planet = ({ position, scale, speed }: { position: [number, number, number]; scale: number; speed: number }) => {
-  const meshRef = useRef<THREE.Mesh>(null);
-  const prefersReducedMotion = getReducedMotion();
-  
-  useFrame((state) => {
-    if (meshRef.current && !prefersReducedMotion) {
-      meshRef.current.rotation.y += speed * 0.0005;
-      meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 0.1) * 0.2;
-    }
-  });
-
-  return (
-    <Float speed={prefersReducedMotion ? 0 : 0.3} rotationIntensity={0.1} floatIntensity={0.2}>
-      <Sphere ref={meshRef} args={[scale, 24, 24]} position={position}>
-        <meshStandardMaterial 
-          color="#888888" 
-          transparent 
-          opacity={0.35}
-          roughness={0.7}
-          emissive="#444444"
-          emissiveIntensity={0.1}
-        />
-      </Sphere>
-      {/* Planet ring */}
-      <mesh position={position} rotation={[Math.PI / 3, 0, 0]}>
-        <torusGeometry args={[scale * 1.4, scale * 0.06, 16, 64]} />
-        <meshStandardMaterial color="#777777" transparent opacity={0.25} />
-      </mesh>
-    </Float>
-  );
-};
 
 // Floating Astronaut - Side margins only
 const Astronaut = ({ position }: { position: [number, number, number] }) => {
@@ -470,7 +438,7 @@ const ShootingStars = () => {
 };
 
 
-// Twinkling Star - Individual bright star with pulsing effect
+// Twinkling Star - Individual bright star with pulsing effect (larger and brighter)
 const TwinklingStar = ({ position, baseSize, speed, phase }: { 
   position: [number, number, number]; 
   baseSize: number; 
@@ -482,46 +450,46 @@ const TwinklingStar = ({ position, baseSize, speed, phase }: {
   
   useFrame((state) => {
     if (meshRef.current && !prefersReducedMotion) {
-      // Pulsing brightness effect
+      // Pulsing brightness effect - more dramatic
       const pulse = 0.5 + Math.sin(state.clock.elapsedTime * speed + phase) * 0.5;
-      const scale = baseSize * (0.7 + pulse * 0.6);
+      const scale = baseSize * (0.8 + pulse * 0.8);
       meshRef.current.scale.setScalar(scale);
       
-      // Update material opacity for twinkling
+      // Update material opacity for twinkling - brighter
       const material = meshRef.current.material as THREE.MeshStandardMaterial;
-      material.opacity = 0.4 + pulse * 0.6;
-      material.emissiveIntensity = 0.3 + pulse * 0.7;
+      material.opacity = 0.6 + pulse * 0.4;
+      material.emissiveIntensity = 0.5 + pulse * 1.0;
     }
   });
 
   return (
-    <Sphere ref={meshRef} args={[1, 8, 8]} position={position}>
+    <Sphere ref={meshRef} args={[1, 10, 10]} position={position}>
       <meshStandardMaterial 
         color="#ffffff"
         transparent 
-        opacity={0.7}
+        opacity={0.9}
         emissive="#ffffff"
-        emissiveIntensity={0.5}
+        emissiveIntensity={0.8}
       />
     </Sphere>
   );
 };
 
-// Twinkling Stars Group - Bright stars that pulse
+// Twinkling Stars Group - More bright stars that pulse with larger sizes
 const TwinklingStars = () => {
   const stars = useMemo(() => {
     const items = [];
-    for (let i = 0; i < 25; i++) {
+    for (let i = 0; i < 50; i++) {
       const angle = Math.random() * Math.PI * 2;
-      const radius = 15 + Math.random() * 25;
+      const radius = 12 + Math.random() * 30;
       items.push({
         position: [
           Math.cos(angle) * radius,
-          (Math.random() - 0.5) * 60,
-          -10 - Math.random() * 20
+          (Math.random() - 0.5) * 80,
+          -8 - Math.random() * 25
         ] as [number, number, number],
-        baseSize: 0.04 + Math.random() * 0.06,
-        speed: 1.5 + Math.random() * 2.5,
+        baseSize: 0.06 + Math.random() * 0.1,
+        speed: 1.2 + Math.random() * 3,
         phase: Math.random() * Math.PI * 2,
         id: i
       });
@@ -577,10 +545,105 @@ const StarField = () => {
   );
 };
 
+// Parallax camera controller - responds to scroll position
+const ParallaxCamera = ({ scrollY }: { scrollY: number }) => {
+  const prefersReducedMotion = getReducedMotion();
+  
+  useFrame(({ camera }) => {
+    if (!prefersReducedMotion) {
+      // Slow parallax effect based on scroll - camera moves slightly
+      const targetY = -scrollY * 0.003;
+      const targetZ = 12 + scrollY * 0.001;
+      camera.position.y += (targetY - camera.position.y) * 0.05;
+      camera.position.z += (targetZ - camera.position.z) * 0.05;
+    }
+  });
+  
+  return null;
+};
+
+// Scene content wrapper with parallax layers
+const ParallaxScene = ({ scrollY }: { scrollY: number }) => {
+  const backgroundRef = useRef<THREE.Group>(null);
+  const midgroundRef = useRef<THREE.Group>(null);
+  const foregroundRef = useRef<THREE.Group>(null);
+  const prefersReducedMotion = getReducedMotion();
+  
+  useFrame(() => {
+    if (prefersReducedMotion) return;
+    
+    // Different parallax speeds for depth layers
+    if (backgroundRef.current) {
+      const targetY = scrollY * 0.001;
+      backgroundRef.current.position.y += (targetY - backgroundRef.current.position.y) * 0.03;
+    }
+    if (midgroundRef.current) {
+      const targetY = scrollY * 0.002;
+      midgroundRef.current.position.y += (targetY - midgroundRef.current.position.y) * 0.04;
+    }
+    if (foregroundRef.current) {
+      const targetY = scrollY * 0.004;
+      foregroundRef.current.position.y += (targetY - foregroundRef.current.position.y) * 0.05;
+    }
+  });
+
+  return (
+    <>
+      <ParallaxCamera scrollY={scrollY} />
+      
+      <ambientLight intensity={0.7} />
+      <pointLight position={[15, 15, 10]} intensity={0.5} />
+      <pointLight position={[-15, -10, 5]} intensity={0.3} />
+      
+      {/* Background layer - slowest parallax */}
+      <group ref={backgroundRef}>
+        {/* Nebula clouds - deep background atmospheric glow */}
+        <NebulaCloud position={[-20, 15, -40]} scale={10} color="#888888" speed={0.3} />
+        <NebulaCloud position={[25, -10, -45]} scale={12} color="#777777" speed={0.2} />
+        <NebulaCloud position={[5, 25, -50]} scale={8} color="#999999" speed={0.25} />
+        <NebulaCloud position={[-15, -20, -55]} scale={9} color="#666666" speed={0.15} />
+        
+        {/* Distant spiral galaxy */}
+        <GalaxySpiral position={[18, 20, -35]} scale={4} />
+        <GalaxySpiral position={[-22, -12, -40]} scale={2.5} />
+      </group>
+      
+      {/* Midground layer - medium parallax */}
+      <group ref={midgroundRef}>
+        {/* Cosmic dust particles */}
+        <CosmicDust />
+        
+        {/* Star field */}
+        <StarField />
+        
+        {/* Twinkling bright stars */}
+        <TwinklingStars />
+        
+        {/* Shooting stars */}
+        <ShootingStars />
+      </group>
+      
+      {/* Foreground layer - fastest parallax */}
+      <group ref={foregroundRef}>
+        {/* Astronaut */}
+        <Astronaut position={[-12, 2, -6]} />
+        
+        {/* Rockets */}
+        <Rocket position={[10, -20, -10]} speed={0.1} />
+        <Rocket position={[-11, -25, -12]} speed={0.07} />
+        
+        {/* Space shuttle */}
+        <SpaceShuttle position={[-35, 8, -15]} />
+      </group>
+    </>
+  );
+};
+
 const SpaceElements3D = () => {
-  const [isVisible, setIsVisible] = useState(true); // Default to true for desktop
+  const [isVisible, setIsVisible] = useState(true);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
     setIsMounted(true);
@@ -599,12 +662,19 @@ const SpaceElements3D = () => {
       setPrefersReducedMotion(e.matches);
     };
     
+    // Track scroll position for parallax
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+    
     checkVisibility();
     window.addEventListener('resize', checkVisibility);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     motionQuery.addEventListener('change', handleMotionChange);
     
     return () => {
       window.removeEventListener('resize', checkVisibility);
+      window.removeEventListener('scroll', handleScroll);
       motionQuery.removeEventListener('change', handleMotionChange);
     };
   }, []);
@@ -634,46 +704,7 @@ const SpaceElements3D = () => {
           powerPreference: 'low-power'
         }}
       >
-        <ambientLight intensity={0.6} />
-        <pointLight position={[15, 15, 10]} intensity={0.4} />
-        <pointLight position={[-15, -10, 5]} intensity={0.2} />
-        
-        {/* Nebula clouds - deep background atmospheric glow */}
-        <NebulaCloud position={[-20, 15, -40]} scale={10} color="#888888" speed={0.3} />
-        <NebulaCloud position={[25, -10, -45]} scale={12} color="#777777" speed={0.2} />
-        <NebulaCloud position={[5, 25, -50]} scale={8} color="#999999" speed={0.25} />
-        <NebulaCloud position={[-15, -20, -55]} scale={9} color="#666666" speed={0.15} />
-        
-        {/* Distant spiral galaxy */}
-        <GalaxySpiral position={[18, 20, -35]} scale={4} />
-        <GalaxySpiral position={[-22, -12, -40]} scale={2.5} />
-        
-        {/* Cosmic dust particles */}
-        <CosmicDust />
-        
-        {/* Star field */}
-        <StarField />
-        
-        {/* Twinkling bright stars */}
-        <TwinklingStars />
-        
-        {/* Shooting stars */}
-        <ShootingStars />
-        
-        {/* Planets - far corners */}
-        <Planet position={[-18, 12, -22]} scale={3} speed={0.3} />
-        <Planet position={[20, -15, -28]} scale={4} speed={0.2} />
-        <Planet position={[0, 25, -35]} scale={2} speed={0.4} />
-        
-        {/* Astronaut */}
-        <Astronaut position={[-12, 2, -6]} />
-        
-        {/* Rockets */}
-        <Rocket position={[10, -20, -10]} speed={0.1} />
-        <Rocket position={[-11, -25, -12]} speed={0.07} />
-        
-        {/* Space shuttle */}
-        <SpaceShuttle position={[-35, 8, -15]} />
+        <ParallaxScene scrollY={scrollY} />
       </Canvas>
     </div>
   );
