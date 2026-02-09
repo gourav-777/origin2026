@@ -357,6 +357,99 @@ const CosmicDust = () => {
   );
 };
 
+// Shooting Star - Occasional streak across the background
+const ShootingStar = ({ id }: { id: number }) => {
+  const groupRef = useRef<THREE.Group>(null);
+  const prefersReducedMotion = getReducedMotion();
+  
+  // Each shooting star has different timing offset
+  const offset = useMemo(() => id * 7.3, [id]);
+  const cycleLength = useMemo(() => 12 + id * 4, [id]); // Different cycle lengths
+  
+  // Random starting position for each star
+  const startPos = useMemo(() => ({
+    x: -25 + Math.random() * 20,
+    y: 15 + Math.random() * 15,
+    z: -15 - Math.random() * 10
+  }), []);
+  
+  // Direction vector (diagonal down-right)
+  const direction = useMemo(() => ({
+    x: 0.8 + Math.random() * 0.4,
+    y: -0.5 - Math.random() * 0.3,
+    z: 0.1
+  }), []);
+
+  // Create the line object
+  const lineObject = useMemo(() => {
+    const points = [];
+    const tailLength = 3;
+    for (let i = 0; i <= 10; i++) {
+      const t = i / 10;
+      points.push(new THREE.Vector3(
+        -direction.x * tailLength * t,
+        -direction.y * tailLength * t,
+        -direction.z * tailLength * t
+      ));
+    }
+    const geometry = new THREE.BufferGeometry().setFromPoints(points);
+    const material = new THREE.LineBasicMaterial({ 
+      color: 0xffffff, 
+      transparent: true, 
+      opacity: 0 
+    });
+    return new THREE.Line(geometry, material);
+  }, [direction]);
+
+  useFrame((state) => {
+    if (groupRef.current && !prefersReducedMotion) {
+      const time = state.clock.elapsedTime + offset;
+      const cycleProgress = (time % cycleLength) / cycleLength;
+      
+      // Only visible for a short portion of the cycle (quick streak)
+      const streakStart = 0.7;
+      const streakEnd = 0.85;
+      
+      if (cycleProgress >= streakStart && cycleProgress <= streakEnd) {
+        const streakProgress = (cycleProgress - streakStart) / (streakEnd - streakStart);
+        
+        // Position along the streak path
+        const travel = streakProgress * 50;
+        groupRef.current.position.x = startPos.x + direction.x * travel;
+        groupRef.current.position.y = startPos.y + direction.y * travel;
+        groupRef.current.position.z = startPos.z + direction.z * travel;
+        
+        // Fade in then out
+        const fadeIn = Math.min(streakProgress * 4, 1);
+        const fadeOut = Math.max(1 - (streakProgress - 0.6) * 2.5, 0);
+        const opacity = Math.min(fadeIn, fadeOut) * 0.4;
+        
+        groupRef.current.scale.setScalar(1);
+        (lineObject.material as THREE.LineBasicMaterial).opacity = opacity;
+      } else {
+        groupRef.current.scale.setScalar(0);
+      }
+    }
+  });
+
+  return (
+    <group ref={groupRef}>
+      <primitive object={lineObject} />
+    </group>
+  );
+};
+
+// Multiple shooting stars with staggered timing
+const ShootingStars = () => {
+  return (
+    <group>
+      <ShootingStar id={0} />
+      <ShootingStar id={1} />
+      <ShootingStar id={2} />
+    </group>
+  );
+};
+
 // Distant star field - very subtle
 const StarField = () => {
   const prefersReducedMotion = getReducedMotion();
@@ -461,6 +554,9 @@ const SpaceElements3D = () => {
         
         {/* Distant star field in periphery */}
         <StarField />
+        
+        {/* Shooting stars - occasional streaks */}
+        <ShootingStars />
         
         {/* Planets - far corners, deep background */}
         <Planet position={[-18, 12, -25]} scale={2.5} speed={0.3} />
