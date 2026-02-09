@@ -10,6 +10,7 @@ import DynamicPrizes from "@/components/DynamicPrizes";
 
 import DynamicTeam from "@/components/DynamicTeam";
 import DynamicRegister from "@/components/DynamicRegister";
+import DynamicVenue from "@/components/DynamicVenue";
 import DynamicFooter from "@/components/DynamicFooter";
 import MouseParticles from "@/components/MouseParticles";
 
@@ -40,6 +41,7 @@ const Index = () => {
           <DynamicTeam />
           
           <DynamicRegister />
+          <DynamicVenue />
           <DynamicFooter />
         </div>
       )}
