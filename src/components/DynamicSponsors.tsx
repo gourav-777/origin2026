@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Rocket, Satellite } from "lucide-react";
+import { Rocket, Satellite, Mail } from "lucide-react";
 
 interface Sponsor {
   name: string;
@@ -159,6 +159,29 @@ const DynamicSponsors = () => {
               <SponsorCard key={sponsor.name} sponsor={sponsor} size="small" index={index} />
             ))}
           </div>
+        </motion.div>
+
+        {/* Become a Sponsor CTA */}
+        <motion.div
+          className="mt-20 text-center"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+        >
+          <p className="text-foreground/40 font-sans mb-6">
+            Want to be part of the mission?
+          </p>
+          
+          <motion.a
+            href="mailto:sponsors@origin2026.com"
+            className="group inline-flex items-center gap-3 px-8 py-4 rounded-full border border-foreground/20 bg-foreground/5 backdrop-blur-sm font-display font-bold tracking-wider text-foreground transition-all duration-300 hover:bg-foreground hover:text-background hover:border-foreground"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <Mail className="w-5 h-5" />
+            BECOME A SPONSOR
+          </motion.a>
         </motion.div>
       </div>
     </section>
