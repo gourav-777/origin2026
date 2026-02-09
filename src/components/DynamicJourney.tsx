@@ -407,18 +407,16 @@ const TimelineEvent = ({
   return (
     <motion.div
       className={`relative flex items-start md:items-center gap-4 md:gap-8 mb-12 md:mb-16 ${
-        isEven ? 'md:flex-row' : 'md:flex-row-reverse'
+        isEven ? 'md:flex-row-reverse' : 'md:flex-row'
       }`}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.5, delay: index * 0.03 }}
     >
-      {/* Left Side Content (for even index on desktop) */}
+      {/* Left placeholder for spacing on desktop */}
       <div className="flex-1 hidden md:block">
-        {isEven ? (
-          <EventCard phase={phase} alignRight={true} />
-        ) : null}
+        {!isEven && <EventCard phase={phase} alignRight={true} />}
       </div>
 
       {/* Center Node - Anchored to Spine */}
@@ -441,17 +439,15 @@ const TimelineEvent = ({
         </motion.div>
       </motion.div>
 
-      {/* Right Side Content (for odd index on desktop) / Mobile always here */}
+      {/* Right placeholder / Mobile content */}
       <div className="flex-1">
         {/* Mobile: Always show card here */}
         <div className="md:hidden">
           <EventCard phase={phase} alignRight={false} />
         </div>
-        {/* Desktop: Show only for odd index (right side) */}
+        {/* Desktop: Show only for even index (right side) */}
         <div className="hidden md:block">
-          {!isEven ? (
-            <EventCard phase={phase} alignRight={false} />
-          ) : null}
+          {isEven && <EventCard phase={phase} alignRight={false} />}
         </div>
       </div>
     </motion.div>
