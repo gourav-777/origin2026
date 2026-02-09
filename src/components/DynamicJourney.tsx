@@ -354,12 +354,12 @@ const DynamicJourney = () => {
             );
           })}
 
-          {/* Transition Phase - Selection Gate (Centered, Full Width) */}
+          {/* Transition Phase - Selection Gate (LEFT side to continue alternation) */}
           {transitionPhase && (
             <TimelineEvent 
               key={transitionPhase.id} 
               phase={transitionPhase} 
-              isEven={true}
+              isEven={false}
               index={alternationIndex++}
               isTransitionPhase
             />
