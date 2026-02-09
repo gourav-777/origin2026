@@ -166,6 +166,197 @@ const SpaceShuttle = ({ position }: { position: [number, number, number] }) => {
   );
 };
 
+// Nebula Cloud - Soft glowing cosmic gas clouds
+const NebulaCloud = ({ 
+  position, 
+  scale, 
+  color, 
+  speed 
+}: { 
+  position: [number, number, number]; 
+  scale: number; 
+  color: string;
+  speed: number;
+}) => {
+  const groupRef = useRef<THREE.Group>(null);
+  const prefersReducedMotion = getReducedMotion();
+  
+  useFrame((state) => {
+    if (groupRef.current && !prefersReducedMotion) {
+      // Very slow rotation and pulsing
+      groupRef.current.rotation.z = state.clock.elapsedTime * speed * 0.02;
+      groupRef.current.rotation.x = Math.sin(state.clock.elapsedTime * speed * 0.01) * 0.1;
+      // Subtle breathing effect
+      const pulse = 1 + Math.sin(state.clock.elapsedTime * speed * 0.05) * 0.05;
+      groupRef.current.scale.setScalar(scale * pulse);
+    }
+  });
+
+  return (
+    <group ref={groupRef} position={position} scale={scale}>
+      {/* Core glow */}
+      <Sphere args={[1, 16, 16]}>
+        <meshStandardMaterial 
+          color={color}
+          transparent 
+          opacity={0.04}
+          emissive={color}
+          emissiveIntensity={0.1}
+        />
+      </Sphere>
+      {/* Outer haze layer 1 */}
+      <Sphere args={[1.8, 12, 12]}>
+        <meshStandardMaterial 
+          color={color}
+          transparent 
+          opacity={0.025}
+          emissive={color}
+          emissiveIntensity={0.05}
+        />
+      </Sphere>
+      {/* Outer haze layer 2 */}
+      <Sphere args={[2.8, 10, 10]}>
+        <meshStandardMaterial 
+          color={color}
+          transparent 
+          opacity={0.015}
+          emissive={color}
+          emissiveIntensity={0.02}
+        />
+      </Sphere>
+      {/* Wispy tendrils - offset spheres */}
+      <Sphere args={[0.8, 8, 8]} position={[1.2, 0.5, 0]}>
+        <meshStandardMaterial color={color} transparent opacity={0.02} />
+      </Sphere>
+      <Sphere args={[0.6, 8, 8]} position={[-0.8, -0.7, 0.3]}>
+        <meshStandardMaterial color={color} transparent opacity={0.018} />
+      </Sphere>
+      <Sphere args={[0.7, 8, 8]} position={[0.4, 1.1, -0.2]}>
+        <meshStandardMaterial color={color} transparent opacity={0.015} />
+      </Sphere>
+    </group>
+  );
+};
+
+// Galaxy Spiral - Distant spiral galaxy
+const GalaxySpiral = ({ position, scale }: { position: [number, number, number]; scale: number }) => {
+  const groupRef = useRef<THREE.Group>(null);
+  const prefersReducedMotion = getReducedMotion();
+  
+  const spiralPoints = useMemo(() => {
+    const positions = new Float32Array(300 * 3);
+    for (let i = 0; i < 300; i++) {
+      // Spiral arm distribution
+      const arm = i % 2;
+      const t = (i / 300) * 4;
+      const armOffset = arm * Math.PI;
+      const angle = t * Math.PI + armOffset;
+      const radius = t * 0.8 + Math.random() * 0.3;
+      
+      positions[i * 3] = Math.cos(angle) * radius + (Math.random() - 0.5) * 0.2;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 0.15;
+      positions[i * 3 + 2] = Math.sin(angle) * radius + (Math.random() - 0.5) * 0.2;
+    }
+    return positions;
+  }, []);
+
+  useFrame((state) => {
+    if (groupRef.current && !prefersReducedMotion) {
+      groupRef.current.rotation.y = state.clock.elapsedTime * 0.008;
+    }
+  });
+
+  return (
+    <group ref={groupRef} position={position} scale={scale} rotation={[0.8, 0, 0.3]}>
+      {/* Galaxy core */}
+      <Sphere args={[0.3, 12, 12]}>
+        <meshStandardMaterial 
+          color="#ffffff"
+          transparent 
+          opacity={0.06}
+          emissive="#ffffff"
+          emissiveIntensity={0.15}
+        />
+      </Sphere>
+      {/* Core glow */}
+      <Sphere args={[0.5, 10, 10]}>
+        <meshStandardMaterial 
+          color="#aaaaaa"
+          transparent 
+          opacity={0.03}
+          emissive="#ffffff"
+          emissiveIntensity={0.05}
+        />
+      </Sphere>
+      {/* Spiral arms as points */}
+      <points>
+        <bufferGeometry>
+          <bufferAttribute
+            attach="attributes-position"
+            count={300}
+            array={spiralPoints}
+            itemSize={3}
+          />
+        </bufferGeometry>
+        <pointsMaterial 
+          size={0.04} 
+          color="#cccccc" 
+          transparent 
+          opacity={0.12} 
+          sizeAttenuation 
+        />
+      </points>
+    </group>
+  );
+};
+
+// Cosmic Dust - Subtle floating particles
+const CosmicDust = () => {
+  const prefersReducedMotion = getReducedMotion();
+  
+  const dustPoints = useMemo(() => {
+    const positions = new Float32Array(100 * 3);
+    for (let i = 0; i < 100; i++) {
+      // Distributed across the visible area but avoiding center
+      const angle = Math.random() * Math.PI * 2;
+      const radius = 8 + Math.random() * 20;
+      positions[i * 3] = Math.cos(angle) * radius;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 60;
+      positions[i * 3 + 2] = -5 - Math.random() * 25;
+    }
+    return positions;
+  }, []);
+
+  const dustRef = useRef<THREE.Points>(null);
+  
+  useFrame((state) => {
+    if (dustRef.current && !prefersReducedMotion) {
+      dustRef.current.rotation.y = state.clock.elapsedTime * 0.003;
+      dustRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.01) * 0.05;
+    }
+  });
+
+  return (
+    <points ref={dustRef}>
+      <bufferGeometry>
+        <bufferAttribute
+          attach="attributes-position"
+          count={100}
+          array={dustPoints}
+          itemSize={3}
+        />
+      </bufferGeometry>
+      <pointsMaterial 
+        size={0.08} 
+        color="#888888" 
+        transparent 
+        opacity={0.08} 
+        sizeAttenuation 
+      />
+    </points>
+  );
+};
+
 // Distant star field - very subtle
 const StarField = () => {
   const prefersReducedMotion = getReducedMotion();
@@ -256,6 +447,17 @@ const SpaceElements3D = () => {
       >
         <ambientLight intensity={0.4} />
         <pointLight position={[15, 15, 10]} intensity={0.2} />
+        
+        {/* Nebula clouds - deep background atmospheric glow */}
+        <NebulaCloud position={[-20, 15, -40]} scale={8} color="#666666" speed={0.3} />
+        <NebulaCloud position={[25, -10, -45]} scale={10} color="#555555" speed={0.2} />
+        <NebulaCloud position={[5, 25, -50]} scale={6} color="#777777" speed={0.25} />
+        
+        {/* Distant spiral galaxy */}
+        <GalaxySpiral position={[18, 20, -35]} scale={3} />
+        
+        {/* Cosmic dust particles */}
+        <CosmicDust />
         
         {/* Distant star field in periphery */}
         <StarField />
