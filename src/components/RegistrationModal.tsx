@@ -210,6 +210,9 @@ const STEPS = [
           <p className="text-foreground font-semibold">All systems are verified.</p>
           <p className="text-foreground/80">Crew is onboard.</p>
           <p className="text-foreground/80">Problem statement awaits discovery.</p>
+          <p className="text-foreground/80 mt-3 px-4 py-2 rounded-lg bg-foreground/5 border border-border text-sm">
+            🎉 <span className="font-semibold text-foreground">Round 1 (Open Innovation)</span> participation is <span className="font-bold text-foreground">completely free!</span>
+          </p>
           <p className="text-foreground font-semibold mt-4">Prepare for launch.</p>
         </div>
       </div>
