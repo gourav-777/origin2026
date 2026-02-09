@@ -282,9 +282,10 @@ const SelectionGateDivider = () => {
 
 const DynamicJourney = () => {
   const containerRef = useRef<HTMLElement>(null);
+  const timelineRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
+    target: timelineRef,
+    offset: ["start 80%", "end 20%"]
   });
 
   const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
@@ -332,7 +333,7 @@ const DynamicJourney = () => {
         <PhaseHeaderCards />
 
         {/* Timeline Container */}
-        <div className="relative max-w-4xl mx-auto">
+        <div ref={timelineRef} className="relative max-w-4xl mx-auto">
           {/* Central Spine - Fixed, Centered */}
           <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-border md:-translate-x-1/2">
             <motion.div 
