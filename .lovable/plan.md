@@ -1,55 +1,177 @@
 
 
-# Fix Uneven Card Heights in Team Section
+# Interstellar Dual-Round Timeline Enhancement
 
-## Problem Analysis
+## Overview
 
-The team lead cards have inconsistent heights on mobile view because:
-- Names like "Harsh Limkar N" wrap to 2 lines
-- Names like "Gourav Sharma" or "Aswath S" fit on 1 line  
-- The card height is determined by content, causing visual imbalance
+Transform the existing ORIGIN Hackathon timeline into a continuous interstellar mission journey that seamlessly integrates the **Online Round (Orbital Innovation)** and **Offline Round (Deep Space Mission)** as distinct but connected phases of a single cosmic voyage.
 
-## Solution Approach
+---
 
-Apply a **fixed minimum height** strategy to the name container, ensuring all cards maintain uniform height regardless of name length.
+## Mission Architecture
 
-### Changes to `src/components/DynamicTeam.tsx`
+The enhanced timeline will treat the hackathon as a complete space mission:
 
-#### 1. Fix the Name Element (Line 193)
-
-Add `min-h-[48px]` to ensure the name always reserves space for 2 lines:
-
-```tsx
-// Before
-<h3 className="font-display font-bold text-foreground text-base">{member.name}</h3>
-
-// After
-<h3 className="font-display font-bold text-foreground text-base min-h-[48px] flex items-center justify-center">
-  {member.name}
-</h3>
+```text
+MISSION CONTROL (ORIGIN)
+        │
+        ▼
+┌───────────────────────────────────────┐
+│  PHASE I: ORBITAL INNOVATION          │
+│  ═══════════════════════════════════  │
+│  • Free entry, open to all explorers  │
+│  • Online innovation testing          │
+│  • Participation certificate earned   │
+│  • Pre-launch orbit before landing    │
+└───────────────────┬───────────────────┘
+                    │
+            ┌───────┴───────┐
+            │ SELECTION GATE │
+            └───────┬───────┘
+                    │
+                    ▼
+┌───────────────────────────────────────┐
+│  PHASE II: DEEP SPACE MISSION         │
+│  ═══════════════════════════════════  │
+│  • March 30-31, 2026                  │
+│  • Entry: Rs 150 (includes F&B,       │
+│    goodies, event pass)               │
+│  • Physical mission at launch site    │
+│  • Live evaluations & collaboration   │
+└───────────────────────────────────────┘
 ```
 
-#### 2. Alternative: Line Clamping Approach
+---
 
-If truncation is preferred for very long names:
+## Implementation Strategy
 
-```tsx
-<h3 className="font-display font-bold text-foreground text-base min-h-[48px] line-clamp-2">
-  {member.name}
-</h3>
-```
+### 1. Phase Header Cards
+
+Add two prominent phase indicator cards at the top of the timeline that clearly distinguish the two mission phases:
+
+- **Phase I Card**: "ORBITAL INNOVATION" (Online Round)
+  - Tagline: "Enter the orbit freely"
+  - Icon: Satellite/Globe
+  - Mode: Online
+  - Fee: FREE
+  - Recognition: Participation Certificate
+
+- **Phase II Card**: "DEEP SPACE MISSION" (Offline Round)
+  - Tagline: "Land at the launch facility"
+  - Icon: Rocket
+  - Mode: Offline (March 30-31)
+  - Fee: Rs 150
+  - Includes: Food, Goodies, Event Pass
+
+### 2. Timeline Restructure
+
+Reorganize the phases data to clearly flow from online to offline:
+
+| Sequence | Phase ID | Title | Subtitle | Date | Round |
+|----------|----------|-------|----------|------|-------|
+| 1 | origin | ORIGIN | Mission Announcement | FEB 2026 | Pre-Mission |
+| 2 | orbital-entry | ORBITAL ENTRY | Phase I Opens | FEB 2026 | Online |
+| 3 | orbital-innovation | ORBITAL INNOVATION | Open Innovation Sprint | FEB-MAR 2026 | Online |
+| 4 | selection-gate | SELECTION GATE | Crew Finalization | MAR 28, 2026 | Transition |
+| 5 | landing-prep | LANDING PREP | Pre-Launch Briefing | MAR 29, 2026 | Offline |
+| 6 | ignition | IGNITION | Mission Begins | MAR 30, 09:00 | Offline |
+| 7 | deep-space | DEEP SPACE | 24-Hour Build | MAR 30-31 | Offline |
+| 8 | evolution | EVOLUTION | Mentorship & Refinement | During Event | Offline |
+| 9 | transmission | TRANSMISSION | Final Presentations | MAR 31 | Offline |
+| 10 | arrival | ARRIVAL | Results & Celebration | MAR 31, 2026 | Offline |
+
+### 3. Visual Differentiation
+
+Add visual cues to distinguish round types:
+
+- **Online phases**: Subtle dotted border, satellite icon accent, "ORBITAL" badge
+- **Transition phase**: Special "GATE" styling with a horizontal divider across the timeline
+- **Offline phases**: Solid border with glow effect, rocket icon accent, "DEEP SPACE" badge
+
+### 4. Phase Grouping Dividers
+
+Insert visual section breaks between round types:
+
+- After ORBITAL INNOVATION: A horizontal "Selection Gate" divider showing the transition from online to offline
+- Style: A glowing line with a central node and text "ENTERING DEEP SPACE"
+
+---
+
+## Files to Modify
+
+| File | Changes |
+|------|---------|
+| `src/components/DynamicJourney.tsx` | Complete restructure with new phases, phase header cards, and visual grouping |
 
 ---
 
 ## Technical Details
 
-| Property | Purpose |
-|----------|---------|
-| `min-h-[48px]` | Reserves space for 2 lines of text (~24px per line) |
-| `flex items-center justify-center` | Centers single-line names vertically within the reserved space |
-| `line-clamp-2` | Limits text to 2 lines with ellipsis for overflow (optional) |
+### New Phases Data Structure
 
-## Result
+```typescript
+interface Phase {
+  id: string;
+  icon: LucideIcon;
+  title: string;
+  subtitle: string;
+  description: string;
+  date: string;
+  round: 'online' | 'transition' | 'offline';
+  badge?: string;
+  details?: {
+    fee?: string;
+    mode?: string;
+    includes?: string[];
+    recognition?: string;
+  };
+}
+```
 
-All 4 team lead cards will have identical heights, creating a clean, balanced grid layout on both mobile and desktop views.
+### Phase Header Cards Component
+
+Two cards displayed above the timeline that summarize each round:
+
+- Left card: Online Round details
+- Right card: Offline Round details
+- Responsive: Stack vertically on mobile
+
+### Selection Gate Divider
+
+A full-width visual separator between online and offline phases:
+
+- Animated horizontal line with pulse effect
+- Central icon (Gateway/Portal)
+- Text: "SELECTION GATE" with "35 Internal + 35 Open Teams"
+
+### Timeline Icons
+
+Updated icon set to match the interstellar theme:
+
+| Phase | Icon |
+|-------|------|
+| ORIGIN | Sparkles |
+| ORBITAL ENTRY | Satellite |
+| ORBITAL INNOVATION | Globe |
+| SELECTION GATE | Waypoints/Filter |
+| LANDING PREP | MapPin |
+| IGNITION | Flame |
+| DEEP SPACE | Rocket |
+| EVOLUTION | Brain |
+| TRANSMISSION | Radio |
+| ARRIVAL | Flag |
+
+---
+
+## Expected Outcome
+
+Users will experience a single continuous mission narrative:
+
+1. **Discovery**: The mission is announced (ORIGIN)
+2. **Orbital Phase**: Free entry to test ideas online (ORBITAL ENTRY, ORBITAL INNOVATION)
+3. **Selection**: Teams are chosen for the physical mission (SELECTION GATE)
+4. **Landing Phase**: Preparation and briefing (LANDING PREP)
+5. **Deep Space Mission**: The 24-hour hackathon at the venue (IGNITION through ARRIVAL)
+
+The design maintains the clean monochromatic interstellar aesthetic while clearly communicating the dual-round structure without breaking the mission metaphor.
 
