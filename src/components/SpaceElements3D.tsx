@@ -25,16 +25,18 @@ const Planet = ({ position, scale, speed }: { position: [number, number, number]
     <Float speed={prefersReducedMotion ? 0 : 0.3} rotationIntensity={0.1} floatIntensity={0.2}>
       <Sphere ref={meshRef} args={[scale, 24, 24]} position={position}>
         <meshStandardMaterial 
-          color="#666666" 
+          color="#888888" 
           transparent 
-          opacity={0.08}
-          roughness={0.9}
+          opacity={0.35}
+          roughness={0.7}
+          emissive="#444444"
+          emissiveIntensity={0.1}
         />
       </Sphere>
-      {/* Subtle ring */}
+      {/* Planet ring */}
       <mesh position={position} rotation={[Math.PI / 3, 0, 0]}>
-        <torusGeometry args={[scale * 1.4, scale * 0.03, 12, 64]} />
-        <meshStandardMaterial color="#555555" transparent opacity={0.05} />
+        <torusGeometry args={[scale * 1.4, scale * 0.06, 16, 64]} />
+        <meshStandardMaterial color="#777777" transparent opacity={0.25} />
       </mesh>
     </Float>
   );
@@ -55,22 +57,29 @@ const Astronaut = ({ position }: { position: [number, number, number] }) => {
 
   return (
     <Float speed={prefersReducedMotion ? 0 : 0.2} rotationIntensity={0.05} floatIntensity={0.15}>
-      <group ref={groupRef} position={position} scale={0.8}>
+      <group ref={groupRef} position={position} scale={1.2}>
         {/* Helmet */}
-        <Sphere args={[0.25, 12, 12]} position={[0, 0.35, 0]}>
-          <meshStandardMaterial color="#888888" transparent opacity={0.12} />
+        <Sphere args={[0.25, 16, 16]} position={[0, 0.35, 0]}>
+          <meshStandardMaterial color="#cccccc" transparent opacity={0.45} emissive="#666666" emissiveIntensity={0.1} />
         </Sphere>
         {/* Visor reflection */}
-        <Sphere args={[0.18, 8, 8]} position={[0, 0.38, 0.1]}>
-          <meshStandardMaterial color="#aaaaaa" transparent opacity={0.06} />
+        <Sphere args={[0.18, 12, 12]} position={[0, 0.38, 0.1]}>
+          <meshStandardMaterial color="#ffffff" transparent opacity={0.25} emissive="#888888" emissiveIntensity={0.15} />
         </Sphere>
         {/* Body */}
         <Box args={[0.35, 0.45, 0.22]} position={[0, -0.1, 0]}>
-          <meshStandardMaterial color="#777777" transparent opacity={0.1} />
+          <meshStandardMaterial color="#aaaaaa" transparent opacity={0.4} />
         </Box>
         {/* Backpack */}
         <Box args={[0.25, 0.35, 0.12]} position={[0, -0.05, -0.17]}>
-          <meshStandardMaterial color="#666666" transparent opacity={0.08} />
+          <meshStandardMaterial color="#888888" transparent opacity={0.35} />
+        </Box>
+        {/* Arms */}
+        <Box args={[0.1, 0.3, 0.1]} position={[0.25, -0.05, 0]} rotation={[0, 0, 0.3]}>
+          <meshStandardMaterial color="#999999" transparent opacity={0.35} />
+        </Box>
+        <Box args={[0.1, 0.3, 0.1]} position={[-0.25, -0.05, 0]} rotation={[0, 0, -0.3]}>
+          <meshStandardMaterial color="#999999" transparent opacity={0.35} />
         </Box>
       </group>
     </Float>
@@ -85,48 +94,53 @@ const Rocket = ({ position, speed }: { position: [number, number, number]; speed
   
   useFrame((state) => {
     if (groupRef.current && !prefersReducedMotion) {
-      // Very slow upward drift with smooth reset
       const drift = (state.clock.elapsedTime * speed) % 30;
       groupRef.current.position.y = startY + drift;
       groupRef.current.rotation.z = Math.sin(state.clock.elapsedTime * 0.3) * 0.03;
-      // Fade out at top, fade in at bottom
       const opacity = drift < 5 ? drift / 5 : drift > 25 ? (30 - drift) / 5 : 1;
-      groupRef.current.scale.setScalar(opacity * 0.7);
+      groupRef.current.scale.setScalar(opacity * 1.0);
     }
   });
 
   return (
-    <group ref={groupRef} position={position} scale={0.7}>
+    <group ref={groupRef} position={position} scale={1.0}>
       {/* Rocket nose */}
-      <Cone args={[0.12, 0.5, 6]} position={[0, 0.28, 0]}>
-        <meshStandardMaterial color="#999999" transparent opacity={0.15} />
+      <Cone args={[0.15, 0.6, 8]} position={[0, 0.32, 0]}>
+        <meshStandardMaterial color="#dddddd" transparent opacity={0.5} emissive="#888888" emissiveIntensity={0.1} />
       </Cone>
       {/* Body */}
-      <Box args={[0.18, 0.35, 0.18]} position={[0, -0.08, 0]}>
-        <meshStandardMaterial color="#888888" transparent opacity={0.12} />
+      <Box args={[0.22, 0.45, 0.22]} position={[0, -0.08, 0]}>
+        <meshStandardMaterial color="#bbbbbb" transparent opacity={0.45} />
       </Box>
       {/* Fins */}
-      <Box args={[0.06, 0.15, 0.06]} position={[0.12, -0.22, 0]} rotation={[0, 0, 0.25]}>
-        <meshStandardMaterial color="#777777" transparent opacity={0.1} />
+      <Box args={[0.08, 0.2, 0.08]} position={[0.15, -0.28, 0]} rotation={[0, 0, 0.25]}>
+        <meshStandardMaterial color="#999999" transparent opacity={0.4} />
       </Box>
-      <Box args={[0.06, 0.15, 0.06]} position={[-0.12, -0.22, 0]} rotation={[0, 0, -0.25]}>
-        <meshStandardMaterial color="#777777" transparent opacity={0.1} />
+      <Box args={[0.08, 0.2, 0.08]} position={[-0.15, -0.28, 0]} rotation={[0, 0, -0.25]}>
+        <meshStandardMaterial color="#999999" transparent opacity={0.4} />
       </Box>
-      {/* Soft engine glow */}
-      <Sphere args={[0.08, 6, 6]} position={[0, -0.3, 0]}>
+      <Box args={[0.08, 0.2, 0.08]} position={[0, -0.28, 0.15]} rotation={[0.25, 0, 0]}>
+        <meshStandardMaterial color="#999999" transparent opacity={0.4} />
+      </Box>
+      {/* Engine glow */}
+      <Sphere args={[0.12, 8, 8]} position={[0, -0.38, 0]}>
         <meshStandardMaterial 
           color="#ffffff" 
           transparent 
-          opacity={0.2}
+          opacity={0.6}
           emissive="#ffffff"
-          emissiveIntensity={0.3}
+          emissiveIntensity={0.8}
         />
       </Sphere>
+      {/* Engine trail */}
+      <Cone args={[0.1, 0.8, 8]} position={[0, -0.8, 0]} rotation={[Math.PI, 0, 0]}>
+        <meshStandardMaterial color="#ffffff" transparent opacity={0.2} emissive="#ffffff" emissiveIntensity={0.3} />
+      </Cone>
     </group>
   );
 };
 
-// Space Shuttle - Rare cinematic pass through deep background
+// Space Shuttle - Cinematic pass through deep background
 const SpaceShuttle = ({ position }: { position: [number, number, number] }) => {
   const groupRef = useRef<THREE.Group>(null);
   const startX = position[0];
@@ -134,34 +148,39 @@ const SpaceShuttle = ({ position }: { position: [number, number, number] }) => {
   
   useFrame((state) => {
     if (groupRef.current && !prefersReducedMotion) {
-      // Very slow horizontal pass with long 60-second cycle
-      const cycle = (state.clock.elapsedTime * 0.05) % 60;
+      const cycle = (state.clock.elapsedTime * 0.08) % 60;
       groupRef.current.position.x = startX + cycle - 30;
       groupRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 0.05) * 0.3;
-      // Only visible in middle of pass
-      const visibility = cycle > 20 && cycle < 40 ? 1 : 0;
-      groupRef.current.scale.setScalar(visibility * 0.6);
+      const visibility = cycle > 15 && cycle < 45 ? 1 : 0;
+      groupRef.current.scale.setScalar(visibility * 1.0);
     }
   });
 
   return (
-    <group ref={groupRef} position={position} rotation={[0, 0, -0.08]} scale={0.6}>
+    <group ref={groupRef} position={position} rotation={[0, 0, -0.08]} scale={1.0}>
       {/* Main fuselage */}
-      <Box args={[0.7, 0.12, 0.12]}>
-        <meshStandardMaterial color="#888888" transparent opacity={0.08} />
+      <Box args={[1.0, 0.18, 0.18]}>
+        <meshStandardMaterial color="#cccccc" transparent opacity={0.4} />
       </Box>
       {/* Nose cone */}
-      <Cone args={[0.06, 0.18, 5]} position={[0.44, 0, 0]} rotation={[0, 0, -Math.PI / 2]}>
-        <meshStandardMaterial color="#777777" transparent opacity={0.06} />
+      <Cone args={[0.09, 0.25, 6]} position={[0.62, 0, 0]} rotation={[0, 0, -Math.PI / 2]}>
+        <meshStandardMaterial color="#bbbbbb" transparent opacity={0.35} />
       </Cone>
       {/* Delta wings */}
-      <Box args={[0.25, 0.015, 0.45]} position={[-0.08, 0, 0]}>
-        <meshStandardMaterial color="#666666" transparent opacity={0.06} />
+      <Box args={[0.35, 0.025, 0.7]} position={[-0.1, 0, 0]}>
+        <meshStandardMaterial color="#aaaaaa" transparent opacity={0.35} />
       </Box>
       {/* Vertical stabilizer */}
-      <Box args={[0.12, 0.2, 0.015]} position={[-0.3, 0.1, 0]}>
-        <meshStandardMaterial color="#666666" transparent opacity={0.06} />
+      <Box args={[0.18, 0.35, 0.025]} position={[-0.4, 0.15, 0]}>
+        <meshStandardMaterial color="#aaaaaa" transparent opacity={0.35} />
       </Box>
+      {/* Engine pods */}
+      <Sphere args={[0.06, 6, 6]} position={[-0.5, -0.05, 0.12]}>
+        <meshStandardMaterial color="#ffffff" transparent opacity={0.5} emissive="#ffffff" emissiveIntensity={0.4} />
+      </Sphere>
+      <Sphere args={[0.06, 6, 6]} position={[-0.5, -0.05, -0.12]}>
+        <meshStandardMaterial color="#ffffff" transparent opacity={0.5} emissive="#ffffff" emissiveIntensity={0.4} />
+      </Sphere>
     </group>
   );
 };
@@ -199,9 +218,9 @@ const NebulaCloud = ({
         <meshStandardMaterial 
           color={color}
           transparent 
-          opacity={0.04}
+          opacity={0.2}
           emissive={color}
-          emissiveIntensity={0.1}
+          emissiveIntensity={0.25}
         />
       </Sphere>
       {/* Outer haze layer 1 */}
@@ -209,9 +228,9 @@ const NebulaCloud = ({
         <meshStandardMaterial 
           color={color}
           transparent 
-          opacity={0.025}
+          opacity={0.12}
           emissive={color}
-          emissiveIntensity={0.05}
+          emissiveIntensity={0.15}
         />
       </Sphere>
       {/* Outer haze layer 2 */}
@@ -219,20 +238,20 @@ const NebulaCloud = ({
         <meshStandardMaterial 
           color={color}
           transparent 
-          opacity={0.015}
+          opacity={0.08}
           emissive={color}
-          emissiveIntensity={0.02}
+          emissiveIntensity={0.08}
         />
       </Sphere>
       {/* Wispy tendrils - offset spheres */}
       <Sphere args={[0.8, 8, 8]} position={[1.2, 0.5, 0]}>
-        <meshStandardMaterial color={color} transparent opacity={0.02} />
+        <meshStandardMaterial color={color} transparent opacity={0.1} emissive={color} emissiveIntensity={0.1} />
       </Sphere>
       <Sphere args={[0.6, 8, 8]} position={[-0.8, -0.7, 0.3]}>
-        <meshStandardMaterial color={color} transparent opacity={0.018} />
+        <meshStandardMaterial color={color} transparent opacity={0.08} emissive={color} emissiveIntensity={0.08} />
       </Sphere>
       <Sphere args={[0.7, 8, 8]} position={[0.4, 1.1, -0.2]}>
-        <meshStandardMaterial color={color} transparent opacity={0.015} />
+        <meshStandardMaterial color={color} transparent opacity={0.07} emissive={color} emissiveIntensity={0.07} />
       </Sphere>
     </group>
   );
@@ -273,19 +292,19 @@ const GalaxySpiral = ({ position, scale }: { position: [number, number, number];
         <meshStandardMaterial 
           color="#ffffff"
           transparent 
-          opacity={0.06}
+          opacity={0.3}
           emissive="#ffffff"
-          emissiveIntensity={0.15}
+          emissiveIntensity={0.4}
         />
       </Sphere>
       {/* Core glow */}
       <Sphere args={[0.5, 10, 10]}>
         <meshStandardMaterial 
-          color="#aaaaaa"
+          color="#cccccc"
           transparent 
-          opacity={0.03}
+          opacity={0.15}
           emissive="#ffffff"
-          emissiveIntensity={0.05}
+          emissiveIntensity={0.2}
         />
       </Sphere>
       {/* Spiral arms as points */}
@@ -299,10 +318,10 @@ const GalaxySpiral = ({ position, scale }: { position: [number, number, number];
           />
         </bufferGeometry>
         <pointsMaterial 
-          size={0.04} 
-          color="#cccccc" 
+          size={0.06} 
+          color="#ffffff" 
           transparent 
-          opacity={0.12} 
+          opacity={0.35} 
           sizeAttenuation 
         />
       </points>
@@ -310,19 +329,18 @@ const GalaxySpiral = ({ position, scale }: { position: [number, number, number];
   );
 };
 
-// Cosmic Dust - Subtle floating particles
+// Cosmic Dust - Floating particles
 const CosmicDust = () => {
   const prefersReducedMotion = getReducedMotion();
   
   const dustPoints = useMemo(() => {
-    const positions = new Float32Array(100 * 3);
-    for (let i = 0; i < 100; i++) {
-      // Distributed across the visible area but avoiding center
+    const positions = new Float32Array(200 * 3);
+    for (let i = 0; i < 200; i++) {
       const angle = Math.random() * Math.PI * 2;
-      const radius = 8 + Math.random() * 20;
+      const radius = 8 + Math.random() * 25;
       positions[i * 3] = Math.cos(angle) * radius;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 60;
-      positions[i * 3 + 2] = -5 - Math.random() * 25;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 70;
+      positions[i * 3 + 2] = -5 - Math.random() * 30;
     }
     return positions;
   }, []);
@@ -331,7 +349,7 @@ const CosmicDust = () => {
   
   useFrame((state) => {
     if (dustRef.current && !prefersReducedMotion) {
-      dustRef.current.rotation.y = state.clock.elapsedTime * 0.003;
+      dustRef.current.rotation.y = state.clock.elapsedTime * 0.004;
       dustRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.01) * 0.05;
     }
   });
@@ -341,16 +359,16 @@ const CosmicDust = () => {
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
-          count={100}
+          count={200}
           array={dustPoints}
           itemSize={3}
         />
       </bufferGeometry>
       <pointsMaterial 
-        size={0.08} 
-        color="#888888" 
+        size={0.12} 
+        color="#aaaaaa" 
         transparent 
-        opacity={0.08} 
+        opacity={0.25} 
         sizeAttenuation 
       />
     </points>
@@ -446,23 +464,98 @@ const ShootingStars = () => {
       <ShootingStar id={0} />
       <ShootingStar id={1} />
       <ShootingStar id={2} />
+      <ShootingStar id={3} />
     </group>
   );
 };
 
-// Distant star field - very subtle
+// Asteroid Belt - Slow moving ring of asteroids
+const AsteroidBelt = () => {
+  const groupRef = useRef<THREE.Group>(null);
+  const prefersReducedMotion = getReducedMotion();
+  
+  // Generate asteroid positions in a belt formation
+  const asteroids = useMemo(() => {
+    const items = [];
+    for (let i = 0; i < 60; i++) {
+      const angle = (i / 60) * Math.PI * 2 + Math.random() * 0.3;
+      const radius = 18 + Math.random() * 8;
+      const y = (Math.random() - 0.5) * 3;
+      const size = 0.08 + Math.random() * 0.15;
+      const rotationSpeed = 0.5 + Math.random() * 1;
+      items.push({ angle, radius, y, size, rotationSpeed, id: i });
+    }
+    return items;
+  }, []);
+
+  useFrame((state) => {
+    if (groupRef.current && !prefersReducedMotion) {
+      groupRef.current.rotation.y = state.clock.elapsedTime * 0.008;
+      groupRef.current.rotation.x = 0.3;
+    }
+  });
+
+  return (
+    <group ref={groupRef} position={[0, -5, -20]} rotation={[0.5, 0, 0.2]}>
+      {asteroids.map((asteroid) => (
+        <AsteroidRock key={asteroid.id} {...asteroid} />
+      ))}
+    </group>
+  );
+};
+
+// Individual asteroid with rotation
+const AsteroidRock = ({ angle, radius, y, size, rotationSpeed, id }: {
+  angle: number;
+  radius: number;
+  y: number;
+  size: number;
+  rotationSpeed: number;
+  id: number;
+}) => {
+  const meshRef = useRef<THREE.Mesh>(null);
+  const prefersReducedMotion = getReducedMotion();
+  
+  const x = Math.cos(angle) * radius;
+  const z = Math.sin(angle) * radius;
+
+  useFrame((state) => {
+    if (meshRef.current && !prefersReducedMotion) {
+      meshRef.current.rotation.x = state.clock.elapsedTime * rotationSpeed * 0.3;
+      meshRef.current.rotation.y = state.clock.elapsedTime * rotationSpeed * 0.2;
+    }
+  });
+
+  // Use different shapes for variety
+  const shapeType = id % 3;
+
+  return (
+    <mesh ref={meshRef} position={[x, y, z]}>
+      {shapeType === 0 && <dodecahedronGeometry args={[size, 0]} />}
+      {shapeType === 1 && <icosahedronGeometry args={[size, 0]} />}
+      {shapeType === 2 && <octahedronGeometry args={[size, 0]} />}
+      <meshStandardMaterial 
+        color="#888888" 
+        transparent 
+        opacity={0.4}
+        roughness={0.9}
+      />
+    </mesh>
+  );
+};
+
+// Star field with enhanced visibility
 const StarField = () => {
   const prefersReducedMotion = getReducedMotion();
   
   const points = useMemo(() => {
-    const positions = new Float32Array(150 * 3);
-    for (let i = 0; i < 150; i++) {
-      // Spread stars in peripheral areas only
+    const positions = new Float32Array(300 * 3);
+    for (let i = 0; i < 300; i++) {
       const angle = Math.random() * Math.PI * 2;
-      const radius = 15 + Math.random() * 25;
+      const radius = 12 + Math.random() * 30;
       positions[i * 3] = Math.cos(angle) * radius;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 80;
-      positions[i * 3 + 2] = -10 - Math.random() * 20;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 100;
+      positions[i * 3 + 2] = -8 - Math.random() * 25;
     }
     return positions;
   }, []);
@@ -471,7 +564,7 @@ const StarField = () => {
   
   useFrame((state) => {
     if (pointsRef.current && !prefersReducedMotion) {
-      pointsRef.current.rotation.y = state.clock.elapsedTime * 0.005;
+      pointsRef.current.rotation.y = state.clock.elapsedTime * 0.006;
     }
   });
 
@@ -480,12 +573,12 @@ const StarField = () => {
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
-          count={150}
+          count={300}
           array={points}
           itemSize={3}
         />
       </bufferGeometry>
-      <pointsMaterial size={0.03} color="#ffffff" transparent opacity={0.15} sizeAttenuation />
+      <pointsMaterial size={0.05} color="#ffffff" transparent opacity={0.4} sizeAttenuation />
     </points>
   );
 };
@@ -547,39 +640,46 @@ const SpaceElements3D = () => {
           powerPreference: 'low-power'
         }}
       >
-        <ambientLight intensity={0.4} />
-        <pointLight position={[15, 15, 10]} intensity={0.2} />
+        <ambientLight intensity={0.6} />
+        <pointLight position={[15, 15, 10]} intensity={0.4} />
+        <pointLight position={[-15, -10, 5]} intensity={0.2} />
         
         {/* Nebula clouds - deep background atmospheric glow */}
-        <NebulaCloud position={[-20, 15, -40]} scale={8} color="#666666" speed={0.3} />
-        <NebulaCloud position={[25, -10, -45]} scale={10} color="#555555" speed={0.2} />
-        <NebulaCloud position={[5, 25, -50]} scale={6} color="#777777" speed={0.25} />
+        <NebulaCloud position={[-20, 15, -40]} scale={10} color="#888888" speed={0.3} />
+        <NebulaCloud position={[25, -10, -45]} scale={12} color="#777777" speed={0.2} />
+        <NebulaCloud position={[5, 25, -50]} scale={8} color="#999999" speed={0.25} />
+        <NebulaCloud position={[-15, -20, -55]} scale={9} color="#666666" speed={0.15} />
         
         {/* Distant spiral galaxy */}
-        <GalaxySpiral position={[18, 20, -35]} scale={3} />
+        <GalaxySpiral position={[18, 20, -35]} scale={4} />
+        <GalaxySpiral position={[-22, -12, -40]} scale={2.5} />
+        
+        {/* Asteroid belt - slow rotating ring */}
+        <AsteroidBelt />
         
         {/* Cosmic dust particles */}
         <CosmicDust />
         
-        {/* Distant star field in periphery */}
+        {/* Star field */}
         <StarField />
         
-        {/* Shooting stars - occasional streaks */}
+        {/* Shooting stars */}
         <ShootingStars />
         
-        {/* Planets - far corners, deep background */}
-        <Planet position={[-18, 12, -25]} scale={2.5} speed={0.3} />
-        <Planet position={[20, -15, -30]} scale={3.5} speed={0.2} />
+        {/* Planets - far corners */}
+        <Planet position={[-18, 12, -22]} scale={3} speed={0.3} />
+        <Planet position={[20, -15, -28]} scale={4} speed={0.2} />
+        <Planet position={[0, 25, -35]} scale={2} speed={0.4} />
         
-        {/* Astronaut - far left margin */}
-        <Astronaut position={[-14, 2, -8]} />
+        {/* Astronaut */}
+        <Astronaut position={[-12, 2, -6]} />
         
-        {/* Rockets - far side margins, away from center content */}
-        <Rocket position={[12, -25, -12]} speed={0.08} />
-        <Rocket position={[-13, -30, -15]} speed={0.05} />
+        {/* Rockets */}
+        <Rocket position={[10, -20, -10]} speed={0.1} />
+        <Rocket position={[-11, -25, -12]} speed={0.07} />
         
-        {/* Space shuttle - deep background cinematic pass */}
-        <SpaceShuttle position={[-35, 8, -18]} />
+        {/* Space shuttle */}
+        <SpaceShuttle position={[-35, 8, -15]} />
       </Canvas>
     </div>
   );
