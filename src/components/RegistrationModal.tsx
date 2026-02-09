@@ -5,6 +5,7 @@ import {
   FileText, ChevronRight, CheckCircle, Rocket 
 } from "lucide-react";
 import LaunchSequence from "./LaunchSequence";
+import SlideToLaunch from "./SlideToLaunch";
 
 interface RegistrationModalProps {
   isOpen: boolean;
@@ -355,35 +356,41 @@ const RegistrationModal = ({ isOpen, onClose }: RegistrationModalProps) => {
                     </div>
 
                     {/* Navigation */}
-                    <div className="flex gap-3">
-                      {currentStep > 0 && (
-                        <button
-                          onClick={() => setCurrentStep(prev => prev - 1)}
-                          className="px-4 py-2 text-sm font-semibold text-foreground/60 hover:text-foreground transition-colors"
-                        >
-                          Back
-                        </button>
-                      )}
-                      <motion.button
-                        onClick={handleNext}
-                        className="flex items-center gap-2 px-6 py-2.5 rounded-lg bg-foreground text-background font-semibold text-sm"
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                      >
-                        {isLastStep ? (
-                          <>
-                            <Rocket className="w-4 h-4" />
-                            Launch Mission
-                          </>
-                        ) : (
-                          <>
-                            Continue
-                            <ChevronRight className="w-4 h-4" />
-                          </>
+                    {!isLastStep && (
+                      <div className="flex gap-3">
+                        {currentStep > 0 && (
+                          <button
+                            onClick={() => setCurrentStep(prev => prev - 1)}
+                            className="px-4 py-2 text-sm font-semibold text-foreground/60 hover:text-foreground transition-colors"
+                          >
+                            Back
+                          </button>
                         )}
-                      </motion.button>
-                    </div>
+                        <motion.button
+                          onClick={handleNext}
+                          className="flex items-center gap-2 px-6 py-2.5 rounded-lg bg-foreground text-background font-semibold text-sm"
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                        >
+                          Continue
+                          <ChevronRight className="w-4 h-4" />
+                        </motion.button>
+                      </div>
+                    )}
                   </div>
+
+                  {/* Slide to Launch on last step */}
+                  {isLastStep && (
+                    <div className="px-6 pb-5">
+                      <SlideToLaunch onLaunch={handleNext} />
+                      <button
+                        onClick={() => setCurrentStep(prev => prev - 1)}
+                        className="w-full mt-3 text-center text-sm font-semibold text-foreground/40 hover:text-foreground/60 transition-colors"
+                      >
+                        Go back
+                      </button>
+                    </div>
+                  )}
                 </motion.div>
               </motion.div>
             </>
