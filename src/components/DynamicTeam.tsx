@@ -3,12 +3,10 @@ import { Linkedin, Mail, Instagram, Github } from "lucide-react";
 
 // Helper function to optimize Cloudinary URLs
 const optimizeCloudinaryUrl = (url: string, size: number): string => {
-  // Only transform Cloudinary URLs
   if (!url.includes("res.cloudinary.com")) {
     return url;
   }
-  // Insert transformation parameters after /upload/
-  return url.replace("/upload/", `/upload/w_${size},h_${size},c_fill,g_face,f_auto,q_auto/`);
+  return url.replace("/upload/", `/upload/w_${size},h_${size},c_fill,g_face,f_auto,q_60/`);
 };
 const teamLeads = [
   {
