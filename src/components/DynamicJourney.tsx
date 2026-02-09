@@ -287,8 +287,13 @@ const DynamicJourney = () => {
 
   const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
-  // Find the index where we need to insert the selection gate divider
-  const selectionGateIndex = phases.findIndex(p => p.id === 'selection-gate');
+  // Separate phases by round type for proper rendering
+  const onlinePhases = phases.filter(p => p.round === 'online');
+  const transitionPhase = phases.find(p => p.round === 'transition');
+  const offlinePhases = phases.filter(p => p.round === 'offline');
+
+  // Track alternation index separately for each phase group
+  let alternationIndex = 0;
 
   return (
     <section 
@@ -321,12 +326,12 @@ const DynamicJourney = () => {
           </p>
         </motion.div>
 
-        {/* Phase Header Cards */}
+        {/* Phase Header Cards - Section Block, Full Width, Centered */}
         <PhaseHeaderCards />
 
-        {/* Timeline */}
+        {/* Timeline Container */}
         <div className="relative max-w-4xl mx-auto">
-          {/* Central line - left-aligned on mobile, centered on desktop */}
+          {/* Central Spine - Fixed, Centered */}
           <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-border md:-translate-x-1/2">
             <motion.div 
               className="w-full bg-foreground"
@@ -334,101 +339,172 @@ const DynamicJourney = () => {
             />
           </div>
 
-          {phases.map((phase, index) => {
-            const isOnline = phase.round === 'online';
-            const isTransition = phase.round === 'transition';
-            const isOffline = phase.round === 'offline';
+          {/* PHASE I: Online Events */}
+          {onlinePhases.map((phase) => {
+            const currentIndex = alternationIndex++;
+            const isEven = currentIndex % 2 === 0;
             
-            // Check if this is the first offline phase (after selection gate)
-            const showDividerBefore = phase.id === 'landing-prep';
-
             return (
-              <div key={phase.id}>
-                {/* Selection Gate Divider - shown before first offline phase */}
-                {showDividerBefore && <SelectionGateDivider />}
-                
-                <motion.div
-                  className={`relative flex items-start md:items-center gap-4 md:gap-8 mb-12 md:mb-16 last:mb-0 ${
-                    index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                  }`}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: index * 0.05 }}
-                >
-                  {/* Center icon - left-aligned on mobile */}
-                  <motion.div
-                    className="relative z-10 flex-shrink-0"
-                    whileHover={{ scale: 1.1 }}
-                  >
-                    <motion.div
-                      className={`w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center ${
-                        isTransition 
-                          ? 'bg-foreground/20 border-2 border-foreground' 
-                          : isOffline 
-                            ? 'bg-foreground' 
-                            : 'border-2 border-dashed border-foreground/50 bg-background'
-                      }`}
-                    >
-                      <phase.icon className={`w-5 h-5 md:w-6 md:h-6 ${
-                        isTransition ? 'text-foreground' : isOffline ? 'text-background' : 'text-foreground/70'
-                      }`} />
-                    </motion.div>
-                  </motion.div>
+              <TimelineEvent 
+                key={phase.id} 
+                phase={phase} 
+                isEven={isEven}
+                index={currentIndex}
+              />
+            );
+          })}
 
-                  {/* Content */}
-                  <div className="flex-1 md:flex-1">
-                    <motion.div
-                      className={`p-4 md:p-6 rounded-2xl text-left ${
-                        isTransition 
-                          ? 'border-2 border-foreground/40 bg-foreground/10' 
-                          : isOffline 
-                            ? 'border border-foreground/30 bg-foreground/5' 
-                            : 'border border-dashed border-foreground/20 bg-background/50'
-                      } ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}
-                      whileHover={{ 
-                        scale: 1.02,
-                        borderColor: isTransition ? 'hsl(var(--foreground) / 0.6)' : 'hsl(var(--foreground) / 0.3)'
-                      }}
-                    >
-                      <div className={`flex items-center gap-2 ${index % 2 === 0 ? 'md:justify-end' : ''}`}>
-                        <span className="text-xs font-sans text-foreground/40 tracking-widest">
-                          {phase.date}
-                        </span>
-                        {phase.badge && (
-                          <Badge 
-                            variant="outline" 
-                            className={`text-[10px] tracking-wider ${
-                              isOffline 
-                                ? 'border-foreground/40 text-foreground/70' 
-                                : 'border-foreground/20 text-foreground/50'
-                            }`}
-                          >
-                            {phase.badge}
-                          </Badge>
-                        )}
-                      </div>
-                      <h3 className="text-lg md:text-2xl font-display font-bold mt-1 md:mt-2 text-foreground">
-                        {phase.title}
-                      </h3>
-                      <p className="text-xs md:text-sm font-sans font-medium text-foreground/70 mt-1">
-                        {phase.subtitle}
-                      </p>
-                      <p className="text-xs md:text-sm text-foreground/50 mt-2 md:mt-3 leading-relaxed">
-                        {phase.description}
-                      </p>
-                    </motion.div>
-                  </div>
+          {/* Transition Phase - Selection Gate (Centered, Full Width) */}
+          {transitionPhase && (
+            <TimelineEvent 
+              key={transitionPhase.id} 
+              phase={transitionPhase} 
+              isEven={true}
+              index={alternationIndex++}
+              isTransitionPhase
+            />
+          )}
 
-                  {/* Spacer - hidden on mobile */}
-                  <div className="hidden md:block flex-1" />
-                </motion.div>
-              </div>
+          {/* Selection Gate Divider - Section Block */}
+          <SelectionGateDivider />
+
+          {/* PHASE II: Offline Events */}
+          {offlinePhases.map((phase) => {
+            const currentIndex = alternationIndex++;
+            const isEven = currentIndex % 2 === 0;
+            
+            return (
+              <TimelineEvent 
+                key={phase.id} 
+                phase={phase} 
+                isEven={isEven}
+                index={currentIndex}
+              />
             );
           })}
         </div>
       </div>
     </section>
+  );
+};
+
+// Extracted TimelineEvent Component for cleaner code
+const TimelineEvent = ({ 
+  phase, 
+  isEven, 
+  index,
+  isTransitionPhase = false 
+}: { 
+  phase: Phase; 
+  isEven: boolean; 
+  index: number;
+  isTransitionPhase?: boolean;
+}) => {
+  const isOnline = phase.round === 'online';
+  const isTransition = phase.round === 'transition';
+  const isOffline = phase.round === 'offline';
+
+  return (
+    <motion.div
+      className={`relative flex items-start md:items-center gap-4 md:gap-8 mb-12 md:mb-16 ${
+        isEven ? 'md:flex-row' : 'md:flex-row-reverse'
+      }`}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5, delay: index * 0.03 }}
+    >
+      {/* Content Card - One Side */}
+      <div className="flex-1 hidden md:block">
+        {isEven && (
+          <EventCard phase={phase} alignRight={true} />
+        )}
+      </div>
+
+      {/* Center Node - Anchored to Spine */}
+      <motion.div
+        className="relative z-10 flex-shrink-0"
+        whileHover={{ scale: 1.1 }}
+      >
+        <motion.div
+          className={`w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center ${
+            isTransition 
+              ? 'bg-foreground/20 border-2 border-foreground' 
+              : isOffline 
+                ? 'bg-foreground' 
+                : 'border-2 border-dashed border-foreground/50 bg-background'
+          }`}
+        >
+          <phase.icon className={`w-5 h-5 md:w-6 md:h-6 ${
+            isTransition ? 'text-foreground' : isOffline ? 'text-background' : 'text-foreground/70'
+          }`} />
+        </motion.div>
+      </motion.div>
+
+      {/* Content Card - Other Side */}
+      <div className="flex-1">
+        {/* Mobile: Always show here */}
+        <div className="md:hidden">
+          <EventCard phase={phase} alignRight={false} />
+        </div>
+        {/* Desktop: Only show if odd index */}
+        {!isEven && (
+          <div className="hidden md:block">
+            <EventCard phase={phase} alignRight={false} />
+          </div>
+        )}
+      </div>
+    </motion.div>
+  );
+};
+
+// Extracted EventCard Component
+const EventCard = ({ phase, alignRight }: { phase: Phase; alignRight: boolean }) => {
+  const isOnline = phase.round === 'online';
+  const isTransition = phase.round === 'transition';
+  const isOffline = phase.round === 'offline';
+
+  return (
+    <motion.div
+      className={`p-4 md:p-6 rounded-2xl ${
+        isTransition 
+          ? 'border-2 border-foreground/40 bg-foreground/10' 
+          : isOffline 
+            ? 'border border-foreground/30 bg-foreground/5' 
+            : 'border border-dashed border-foreground/20 bg-background/50'
+      } ${alignRight ? 'text-right' : 'text-left'}`}
+      whileHover={{ 
+        scale: 1.02,
+        borderColor: isTransition ? 'hsl(var(--foreground) / 0.6)' : 'hsl(var(--foreground) / 0.3)'
+      }}
+    >
+      <div className={`flex items-center gap-2 ${alignRight ? 'justify-end' : 'justify-start'}`}>
+        <span className="text-xs font-sans text-foreground/40 tracking-widest">
+          {phase.date}
+        </span>
+        {phase.badge && (
+          <Badge 
+            variant="outline" 
+            className={`text-[10px] tracking-wider ${
+              isOffline 
+                ? 'border-foreground/40 text-foreground/70' 
+                : 'border-foreground/20 text-foreground/50'
+            }`}
+          >
+            {phase.badge}
+          </Badge>
+        )}
+      </div>
+      <h3 className="text-lg md:text-2xl font-display font-bold mt-1 md:mt-2 text-foreground">
+        {phase.title}
+      </h3>
+      <p className="text-xs md:text-sm font-sans font-medium text-foreground/70 mt-1">
+        {phase.subtitle}
+      </p>
+      <p className="text-xs md:text-sm text-foreground/50 mt-2 md:mt-3 leading-relaxed">
+        {phase.description}
+      </p>
+    </motion.div>
   );
 };
 
