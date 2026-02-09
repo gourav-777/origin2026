@@ -1,49 +1,52 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Calendar, MapPin, Clock, Users, Shield, AlertTriangle, FileText } from "lucide-react";
-
 interface RulesModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
-
-const RulesModal = ({ isOpen, onClose }: RulesModalProps) => {
-  return (
-    <AnimatePresence>
-      {isOpen && (
-        <>
+const RulesModal = ({
+  isOpen,
+  onClose
+}: RulesModalProps) => {
+  return <AnimatePresence>
+      {isOpen && <>
           {/* Backdrop */}
-          <motion.div
-            className="fixed inset-0 z-[60] bg-black/80 backdrop-blur-sm"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={onClose}
-          />
+          <motion.div className="fixed inset-0 z-[60] bg-black/80 backdrop-blur-sm" initial={{
+        opacity: 0
+      }} animate={{
+        opacity: 1
+      }} exit={{
+        opacity: 0
+      }} onClick={onClose} />
 
           {/* Modal */}
-          <motion.div
-            className="fixed inset-0 z-[70] flex items-center justify-center p-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <motion.div
-              className="relative w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-2xl bg-card border border-border shadow-2xl"
-              initial={{ scale: 0.9, y: 40 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 40 }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              onClick={(e) => e.stopPropagation()}
-            >
+          <motion.div className="fixed inset-0 z-[70] flex items-center justify-center p-4" initial={{
+        opacity: 0
+      }} animate={{
+        opacity: 1
+      }} exit={{
+        opacity: 0
+      }}>
+            <motion.div className="relative w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-2xl bg-card border border-border shadow-2xl" initial={{
+          scale: 0.9,
+          y: 40
+        }} animate={{
+          scale: 1,
+          y: 0
+        }} exit={{
+          scale: 0.9,
+          y: 40
+        }} transition={{
+          type: "spring",
+          damping: 25,
+          stiffness: 300
+        }} onClick={e => e.stopPropagation()}>
               {/* Header */}
               <div className="sticky top-0 z-10 flex items-center justify-between px-6 py-4 bg-card/95 backdrop-blur-md border-b border-border">
                 <h2 className="text-lg font-display font-bold tracking-wider text-foreground">
                   ORIGIN — RULES & GUIDELINES
                 </h2>
-                <button
-                  onClick={onClose}
-                  className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
-                >
+                <button onClick={onClose} className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent transition-colors">
                   <X className="w-5 h-5" />
                 </button>
               </div>
@@ -106,7 +109,7 @@ const RulesModal = ({ isOpen, onClose }: RulesModalProps) => {
 
                   <div className="pl-4 border-l-2 border-border space-y-2">
                     <p className="font-semibold text-foreground">Open Registration</p>
-                    <p>Students may register through Devfolio or Unstop. During registration, teams must submit:</p>
+                    <p>Students may register through Unstop. During registration, teams must submit:</p>
                     <ul className="list-disc pl-5 space-y-1">
                       <li>A presentation (PPT) explaining the problem understanding and proposed solution</li>
                       <li>GitHub repository link (if a prototype exists)</li>
@@ -190,18 +193,17 @@ const RulesModal = ({ isOpen, onClose }: RulesModalProps) => {
               </div>
             </motion.div>
           </motion.div>
-        </>
-      )}
-    </AnimatePresence>
-  );
+        </>}
+    </AnimatePresence>;
 };
 
 // Simple inline icon alias to avoid import conflict
-const ScrollTextIcon = ({ className }: { className?: string }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+const ScrollTextIcon = ({
+  className
+}: {
+  className?: string;
+}) => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
     <path d="M15 12h-5" /><path d="M15 8h-5" /><path d="M19 17V5a2 2 0 0 0-2-2H4" />
     <path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2" />
-  </svg>
-);
-
+  </svg>;
 export default RulesModal;
