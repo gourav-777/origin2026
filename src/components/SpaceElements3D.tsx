@@ -469,78 +469,72 @@ const ShootingStars = () => {
   );
 };
 
-// Asteroid Belt - Slow moving ring of asteroids
-const AsteroidBelt = () => {
-  const groupRef = useRef<THREE.Group>(null);
-  const prefersReducedMotion = getReducedMotion();
-  
-  // Generate asteroid positions in a belt formation
-  const asteroids = useMemo(() => {
-    const items = [];
-    for (let i = 0; i < 60; i++) {
-      const angle = (i / 60) * Math.PI * 2 + Math.random() * 0.3;
-      const radius = 18 + Math.random() * 8;
-      const y = (Math.random() - 0.5) * 3;
-      const size = 0.08 + Math.random() * 0.15;
-      const rotationSpeed = 0.5 + Math.random() * 1;
-      items.push({ angle, radius, y, size, rotationSpeed, id: i });
-    }
-    return items;
-  }, []);
 
-  useFrame((state) => {
-    if (groupRef.current && !prefersReducedMotion) {
-      groupRef.current.rotation.y = state.clock.elapsedTime * 0.008;
-      groupRef.current.rotation.x = 0.3;
-    }
-  });
-
-  return (
-    <group ref={groupRef} position={[0, -5, -20]} rotation={[0.5, 0, 0.2]}>
-      {asteroids.map((asteroid) => (
-        <AsteroidRock key={asteroid.id} {...asteroid} />
-      ))}
-    </group>
-  );
-};
-
-// Individual asteroid with rotation
-const AsteroidRock = ({ angle, radius, y, size, rotationSpeed, id }: {
-  angle: number;
-  radius: number;
-  y: number;
-  size: number;
-  rotationSpeed: number;
-  id: number;
+// Twinkling Star - Individual bright star with pulsing effect
+const TwinklingStar = ({ position, baseSize, speed, phase }: { 
+  position: [number, number, number]; 
+  baseSize: number; 
+  speed: number;
+  phase: number;
 }) => {
   const meshRef = useRef<THREE.Mesh>(null);
   const prefersReducedMotion = getReducedMotion();
   
-  const x = Math.cos(angle) * radius;
-  const z = Math.sin(angle) * radius;
-
   useFrame((state) => {
     if (meshRef.current && !prefersReducedMotion) {
-      meshRef.current.rotation.x = state.clock.elapsedTime * rotationSpeed * 0.3;
-      meshRef.current.rotation.y = state.clock.elapsedTime * rotationSpeed * 0.2;
+      // Pulsing brightness effect
+      const pulse = 0.5 + Math.sin(state.clock.elapsedTime * speed + phase) * 0.5;
+      const scale = baseSize * (0.7 + pulse * 0.6);
+      meshRef.current.scale.setScalar(scale);
+      
+      // Update material opacity for twinkling
+      const material = meshRef.current.material as THREE.MeshStandardMaterial;
+      material.opacity = 0.4 + pulse * 0.6;
+      material.emissiveIntensity = 0.3 + pulse * 0.7;
     }
   });
 
-  // Use different shapes for variety
-  const shapeType = id % 3;
+  return (
+    <Sphere ref={meshRef} args={[1, 8, 8]} position={position}>
+      <meshStandardMaterial 
+        color="#ffffff"
+        transparent 
+        opacity={0.7}
+        emissive="#ffffff"
+        emissiveIntensity={0.5}
+      />
+    </Sphere>
+  );
+};
+
+// Twinkling Stars Group - Bright stars that pulse
+const TwinklingStars = () => {
+  const stars = useMemo(() => {
+    const items = [];
+    for (let i = 0; i < 25; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const radius = 15 + Math.random() * 25;
+      items.push({
+        position: [
+          Math.cos(angle) * radius,
+          (Math.random() - 0.5) * 60,
+          -10 - Math.random() * 20
+        ] as [number, number, number],
+        baseSize: 0.04 + Math.random() * 0.06,
+        speed: 1.5 + Math.random() * 2.5,
+        phase: Math.random() * Math.PI * 2,
+        id: i
+      });
+    }
+    return items;
+  }, []);
 
   return (
-    <mesh ref={meshRef} position={[x, y, z]}>
-      {shapeType === 0 && <dodecahedronGeometry args={[size, 0]} />}
-      {shapeType === 1 && <icosahedronGeometry args={[size, 0]} />}
-      {shapeType === 2 && <octahedronGeometry args={[size, 0]} />}
-      <meshStandardMaterial 
-        color="#888888" 
-        transparent 
-        opacity={0.4}
-        roughness={0.9}
-      />
-    </mesh>
+    <group>
+      {stars.map((star) => (
+        <TwinklingStar key={star.id} {...star} />
+      ))}
+    </group>
   );
 };
 
@@ -654,14 +648,14 @@ const SpaceElements3D = () => {
         <GalaxySpiral position={[18, 20, -35]} scale={4} />
         <GalaxySpiral position={[-22, -12, -40]} scale={2.5} />
         
-        {/* Asteroid belt - slow rotating ring */}
-        <AsteroidBelt />
-        
         {/* Cosmic dust particles */}
         <CosmicDust />
         
         {/* Star field */}
         <StarField />
+        
+        {/* Twinkling bright stars */}
+        <TwinklingStars />
         
         {/* Shooting stars */}
         <ShootingStars />
