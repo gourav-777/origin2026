@@ -404,19 +404,21 @@ const TimelineEvent = ({
   const isTransition = phase.round === 'transition';
   const isOffline = phase.round === 'offline';
 
+  // isEven = true → card on RIGHT side of spine
+  // isEven = false → card on LEFT side of spine
+  const cardOnRight = isEven;
+
   return (
     <motion.div
-      className={`relative flex items-start md:items-center gap-4 md:gap-8 mb-12 md:mb-16 ${
-        isEven ? 'md:flex-row-reverse' : 'md:flex-row'
-      }`}
+      className="relative flex items-start md:items-center gap-4 md:gap-8 mb-12 md:mb-16"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.5, delay: index * 0.03 }}
     >
-      {/* Left placeholder for spacing on desktop */}
+      {/* LEFT side of spine (desktop only) */}
       <div className="flex-1 hidden md:block">
-        {!isEven && <EventCard phase={phase} alignRight={true} />}
+        {!cardOnRight && <EventCard phase={phase} alignRight={true} />}
       </div>
 
       {/* Center Node - Anchored to Spine */}
@@ -439,15 +441,15 @@ const TimelineEvent = ({
         </motion.div>
       </motion.div>
 
-      {/* Right placeholder / Mobile content */}
+      {/* RIGHT side of spine / Mobile content */}
       <div className="flex-1">
-        {/* Mobile: Always show card here */}
+        {/* Mobile: Always show card here (left-aligned layout) */}
         <div className="md:hidden">
           <EventCard phase={phase} alignRight={false} />
         </div>
-        {/* Desktop: Show only for even index (right side) */}
+        {/* Desktop: Show only when card should be on right */}
         <div className="hidden md:block">
-          {isEven && <EventCard phase={phase} alignRight={false} />}
+          {cardOnRight && <EventCard phase={phase} alignRight={false} />}
         </div>
       </div>
     </motion.div>
