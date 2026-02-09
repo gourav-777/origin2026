@@ -53,7 +53,7 @@ const DynamicFooter = () => {
           >
             <h4 className="font-display font-bold text-foreground mb-4">QUICK LINKS</h4>
             <ul className="space-y-2">
-              {["About", "Journey", "Prizes", "Register"].map((link) => (
+              {["About", "Journey", "Prizes", "Venue", "Register"].map((link) => (
                 <li key={link}>
                   <a 
                     href={`#${link.toLowerCase()}`}
