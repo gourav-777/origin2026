@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { 
   X, Calendar, MapPin, Clock, Users, Shield, AlertTriangle, 
   FileText, ChevronRight, CheckCircle, Rocket 
@@ -220,7 +220,7 @@ const STEPS = [
 const RegistrationModal = ({ isOpen, onClose }: RegistrationModalProps) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [showLaunchSequence, setShowLaunchSequence] = useState(false);
-  const [isExiting, setIsExiting] = useState(false);
+  const preOpenedWindowRef = useRef<Window | null>(null);
 
   const isLastStep = currentStep === STEPS.length - 1;
   const currentStepData = STEPS[currentStep];
@@ -228,6 +228,8 @@ const RegistrationModal = ({ isOpen, onClose }: RegistrationModalProps) => {
 
   const handleNext = () => {
     if (isLastStep) {
+      // Pre-open window immediately on user click (bypasses popup blockers)
+      preOpenedWindowRef.current = window.open("about:blank", "_blank");
       setShowLaunchSequence(true);
     } else {
       setCurrentStep(prev => prev + 1);
@@ -235,9 +237,14 @@ const RegistrationModal = ({ isOpen, onClose }: RegistrationModalProps) => {
   };
 
   const handleLaunchComplete = () => {
-    // Use location.href instead of window.open to avoid popup blockers
-    // since this is called from setTimeout (not a direct user action)
-    window.location.href = UNSTOP_URL;
+    // Navigate the pre-opened window to Unstop
+    if (preOpenedWindowRef.current) {
+      preOpenedWindowRef.current.location.href = UNSTOP_URL;
+    }
+    // Reset modal state and close
+    setShowLaunchSequence(false);
+    setCurrentStep(0);
+    onClose();
   };
 
   const handleClose = () => {
