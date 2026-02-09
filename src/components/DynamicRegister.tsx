@@ -1,7 +1,11 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
 import { Rocket, CheckCircle, Users, Calendar } from "lucide-react";
+import RegistrationModal from "./RegistrationModal";
 
 const DynamicRegister = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <section id="register" className="relative py-32 overflow-hidden bg-card/30">
       <div className="container mx-auto px-4 relative z-10">
@@ -52,24 +56,28 @@ const DynamicRegister = () => {
             ))}
           </div>
 
-          {/* CTA Button */}
-          <motion.a
-            href="https://unstop.com/o/rQSeLnc?lb=q2EvrVJC&utm_medium=Share&utm_source=simatclu32597&utm_campaign=Online_coding_challenge"
-            target="_blank"
-            rel="noopener noreferrer"
+          {/* CTA Button - Opens modal instead of direct link */}
+          <motion.button
+            onClick={() => setIsModalOpen(true)}
             className="group relative inline-flex items-center justify-center gap-3 px-12 py-5 font-sans text-lg font-bold overflow-hidden rounded-xl bg-foreground text-background"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
             <Rocket className="w-6 h-6" />
             <span>REGISTER NOW</span>
-          </motion.a>
+          </motion.button>
 
           <p className="text-sm text-foreground/40 mt-6">
             Registration closes on <span className="text-foreground font-semibold">March 15, 2026</span>
           </p>
         </motion.div>
       </div>
+
+      {/* Registration Modal with Launch Sequence */}
+      <RegistrationModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+      />
     </section>
   );
 };
