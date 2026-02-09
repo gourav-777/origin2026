@@ -137,8 +137,8 @@ const PhaseHeaderCards = () => {
             <Satellite className="w-5 h-5 text-foreground/70" />
           </div>
           <div className="flex-1">
-            <h3 className="text-xl font-display font-bold text-foreground">ORBITAL INNOVATION</h3>
-            <p className="text-sm text-foreground/50 mt-1">Enter the orbit freely</p>
+            <h3 className="text-xl font-display font-bold text-foreground">OPEN INNOVATION</h3>
+            <p className="text-sm text-foreground/50 mt-1">Open innovation — your ideas, your problem</p>
           </div>
         </div>
         
@@ -186,7 +186,7 @@ const PhaseHeaderCards = () => {
           </div>
           <div className="flex-1">
             <h3 className="text-xl font-display font-bold text-foreground">DEEP SPACE MISSION</h3>
-            <p className="text-sm text-foreground/50 mt-1">Land at the launch facility</p>
+            <p className="text-sm text-foreground/50 mt-1">Problem statements provided by us</p>
           </div>
         </div>
         
