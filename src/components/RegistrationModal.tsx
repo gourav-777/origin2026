@@ -11,7 +11,7 @@ interface RegistrationModalProps {
   onClose: () => void;
 }
 
-const UNSTOP_URL = "https://unstop.com/o/rQSeLnc?lb=q2EvrVJC&utm_medium=Share&utm_source=simatclu32597&utm_campaign=Online_coding_challenge";
+const UNSTOP_URL = "https://unstop.com/p/origin-2026-simats-engineering-1634517";
 
 const STEPS = [
   {
