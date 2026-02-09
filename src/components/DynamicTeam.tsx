@@ -124,14 +124,6 @@ const supportingCrew = [
     email: "bhuvanesh@flarenetcompany.in",
     instagram: "https://www.instagram.com/bhuvispartiate",
   },
-  {
-    name: "Vinay K",
-    role: "Media Team",
-    image: "https://ui-avatars.com/api/?name=Vinay+K&background=1a1a2e&color=fff&size=256",
-    linkedin: "https://www.linkedin.com/in/k-vinay-84b32b361?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    email: "kj5837453@gmail.com",
-    instagram: "https://www.instagram.com/vetakaram_vinay_?igsh=emc0bXV0bmYzYm0y",
-  },
 ];
 
 const DynamicTeam = () => {
