@@ -241,17 +241,17 @@ const PhaseHeaderCards = () => {
 const SelectionGateDivider = () => {
   return (
     <motion.div
-      className="relative py-8 my-4"
+      className="relative py-8 my-4 z-20"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
     >
       {/* Horizontal line */}
-      <div className="absolute left-0 right-0 top-1/2 h-px bg-gradient-to-r from-transparent via-foreground/50 to-transparent" />
+      <div className="absolute left-0 right-0 top-1/2 h-px bg-gradient-to-r from-transparent via-foreground/50 to-transparent z-0" />
       
       {/* Center node */}
-      <div className="relative flex justify-center">
+      <div className="relative flex justify-center z-10">
         <motion.div
           className="px-6 py-3 bg-background border border-foreground/30 rounded-full flex items-center gap-3"
           animate={{ 
@@ -271,8 +271,8 @@ const SelectionGateDivider = () => {
       </div>
       
       {/* Subtitle with background fill */}
-      <div className="flex justify-center mt-4">
-        <p className="px-4 py-1.5 rounded-full bg-foreground/10 border border-foreground/20 text-center text-xs text-foreground/60 tracking-widest">
+      <div className="relative flex justify-center mt-4 z-10">
+        <p className="px-4 py-1.5 rounded-full bg-background border border-foreground/20 text-center text-xs text-foreground/60 tracking-widest">
           35 INTERNAL + 35 OPEN TEAMS SELECTED
         </p>
       </div>
