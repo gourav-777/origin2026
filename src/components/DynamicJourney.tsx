@@ -270,10 +270,12 @@ const SelectionGateDivider = () => {
         </motion.div>
       </div>
       
-      {/* Subtitle */}
-      <p className="text-center text-xs text-foreground/40 mt-4 tracking-widest">
-        35 INTERNAL + 35 OPEN TEAMS SELECTED
-      </p>
+      {/* Subtitle with background fill */}
+      <div className="flex justify-center mt-4">
+        <p className="px-4 py-1.5 rounded-full bg-foreground/10 border border-foreground/20 text-center text-xs text-foreground/60 tracking-widest">
+          35 INTERNAL + 35 OPEN TEAMS SELECTED
+        </p>
+      </div>
     </motion.div>
   );
 };
