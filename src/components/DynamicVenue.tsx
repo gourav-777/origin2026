@@ -63,7 +63,7 @@ const DynamicVenue = () => {
               </div>
               
               <motion.a
-                href="https://www.google.com/maps/dir//Saveetha+Engineering+College,+Thandalam,+Chennai,+Tamil+Nadu"
+                href="https://www.google.com/maps/dir//13.026047,80.016503"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full border border-border/50 bg-foreground/5 hover:bg-foreground/10 transition-colors text-sm text-foreground/70 hover:text-foreground"
@@ -82,7 +82,7 @@ const DynamicVenue = () => {
               <div className="absolute inset-0 pointer-events-none z-10 bg-gradient-to-r from-card/10 via-transparent to-card/10" />
               
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.0175089850356!2d79.97089!3d13.0855!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5289b2d5bd6eef%3A0x3d7c66eb60e78d2c!2sSaveetha%20Engineering%20College!5e0!3m2!1sen!2sin!4v1706520000000!5m2!1sen!2sin"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.5!2d80.016503!3d13.026047!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDAxJzMzLjgiTiA4MMKwMDAnNTkuNCJF!5e0!3m2!1sen!2sin!4v1706520000000!5m2!1sen!2sin"
                 width="100%"
                 height="100%"
                 style={{ 
@@ -100,7 +100,7 @@ const DynamicVenue = () => {
             {/* Bottom info bar - mobile directions */}
             <div className="sm:hidden px-4 py-3 border-t border-border/30 bg-card/50">
               <motion.a
-                href="https://www.google.com/maps/dir//Saveetha+Engineering+College,+Thandalam,+Chennai,+Tamil+Nadu"
+                href="https://www.google.com/maps/dir//13.026047,80.016503"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 w-full py-2.5 rounded-lg border border-border/50 bg-foreground/5 hover:bg-foreground/10 transition-colors text-sm text-foreground/70"
