@@ -3,7 +3,7 @@ import { MapPin, Navigation } from "lucide-react";
 
 const DynamicVenue = () => {
   return (
-    <section className="relative py-20 md:py-32 overflow-hidden">
+    <section id="venue" className="relative py-20 md:py-32 overflow-hidden">
       {/* Subtle ambient gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-card/30" />
       

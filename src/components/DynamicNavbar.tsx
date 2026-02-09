@@ -9,8 +9,8 @@ const navLinks = [
   { href: "#about", label: "ABOUT" },
   { href: "#journey", label: "TIMELINE" },
   { href: "#prizes", label: "PRIZES" },
-  
   { href: "#team", label: "TEAM" },
+  { href: "#venue", label: "VENUE" },
 ];
 
 const DynamicNavbar = () => {
