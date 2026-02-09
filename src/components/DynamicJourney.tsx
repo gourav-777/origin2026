@@ -414,11 +414,11 @@ const TimelineEvent = ({
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.5, delay: index * 0.03 }}
     >
-      {/* Content Card - One Side */}
+      {/* Left Side Content (for even index on desktop) */}
       <div className="flex-1 hidden md:block">
-        {isEven && (
+        {isEven ? (
           <EventCard phase={phase} alignRight={true} />
-        )}
+        ) : null}
       </div>
 
       {/* Center Node - Anchored to Spine */}
@@ -441,18 +441,18 @@ const TimelineEvent = ({
         </motion.div>
       </motion.div>
 
-      {/* Content Card - Other Side */}
+      {/* Right Side Content (for odd index on desktop) / Mobile always here */}
       <div className="flex-1">
-        {/* Mobile: Always show here */}
+        {/* Mobile: Always show card here */}
         <div className="md:hidden">
           <EventCard phase={phase} alignRight={false} />
         </div>
-        {/* Desktop: Only show if odd index */}
-        {!isEven && (
-          <div className="hidden md:block">
+        {/* Desktop: Show only for odd index (right side) */}
+        <div className="hidden md:block">
+          {!isEven ? (
             <EventCard phase={phase} alignRight={false} />
-          </div>
-        )}
+          ) : null}
+        </div>
       </div>
     </motion.div>
   );
