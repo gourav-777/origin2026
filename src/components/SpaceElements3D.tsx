@@ -491,13 +491,17 @@ const StarField = () => {
 };
 
 const SpaceElements3D = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true); // Default to true for desktop
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
+    
     // Check screen size - hide on mobile/tablet (< 1024px)
     const checkVisibility = () => {
-      setIsVisible(window.innerWidth >= 1024);
+      const width = window.innerWidth;
+      setIsVisible(width >= 1024);
     };
     
     // Check reduced motion preference
@@ -518,20 +522,25 @@ const SpaceElements3D = () => {
     };
   }, []);
 
-  // Don't render on small screens or if reduced motion is preferred
-  if (!isVisible || prefersReducedMotion) {
+  // Don't render until mounted (SSR safety) or on small screens / reduced motion
+  if (!isMounted || !isVisible || prefersReducedMotion) {
     return null;
   }
 
   return (
     <div 
       className="fixed inset-0 pointer-events-none"
-      style={{ zIndex: 0 }}
+      style={{ 
+        zIndex: 0,
+        width: '100vw',
+        height: '100vh',
+      }}
       aria-hidden="true"
     >
       <Canvas
         camera={{ position: [0, 0, 12], fov: 55 }}
         dpr={[1, 1.5]}
+        style={{ width: '100%', height: '100%' }}
         gl={{ 
           antialias: false,
           alpha: true,
