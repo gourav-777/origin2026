@@ -236,12 +236,9 @@ const RegistrationModal = ({ isOpen, onClose }: RegistrationModalProps) => {
 
   const handleLaunchComplete = () => {
     setIsExiting(true);
+    // Same-tab redirect with zero async gap - safe from popup blockers
     setTimeout(() => {
-      window.open(UNSTOP_URL, "_blank");
-      setShowLaunchSequence(false);
-      setIsExiting(false);
-      setCurrentStep(0);
-      onClose();
+      window.location.href = UNSTOP_URL;
     }, 500);
   };
 
