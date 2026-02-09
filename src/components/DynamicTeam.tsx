@@ -30,7 +30,7 @@ const teamLeads = [
   {
     name: "Raihan Hussain",
     role: "Event Director",
-    image: "https://res.cloudinary.com/duoigqhsw/image/upload/v1770398227/raihanhussain.jpg_vjjaeq.jpg",
+    image: "/images/raihan.jpg",
     linkedin: "https://www.linkedin.com/in/raihan-hussain-036b15282",
     email: "hussainraihan15@gmail.com",
     instagram: "https://www.instagram.com/raihann__08?igsh=d3Z4NjB2bThtNW9v",
