@@ -230,7 +230,7 @@ const DynamicTeam = () => {
         >
           <p className="text-xs font-sans text-foreground/40 tracking-[0.2em] mb-6">SUPPORTING CREW</p>
 
-          <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 max-w-4xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto [&>*]:w-[calc(50%-0.5rem)] [&>*]:sm:w-[calc(20%-0.8rem)]">
             {supportingCrew.map((member, index) => (
               <motion.div
                 key={member.name}
