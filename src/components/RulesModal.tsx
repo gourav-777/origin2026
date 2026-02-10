@@ -44,7 +44,7 @@ const RulesModal = ({
               {/* Header */}
               <div className="sticky top-0 z-10 flex items-center justify-between px-6 py-4 bg-card/95 backdrop-blur-md border-b border-border">
                 <h2 className="text-lg font-display font-bold tracking-wider text-foreground">
-                  ORIGIN — RULES & GUIDELINES
+                  ROUND 1 — RULES & PROCEDURE
                 </h2>
                 <button onClick={onClose} className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent transition-colors">
                   <X className="w-5 h-5" />
@@ -53,141 +53,70 @@ const RulesModal = ({
 
               {/* Content */}
               <div className="px-6 py-6 space-y-8 text-foreground/80 text-sm leading-relaxed">
-                {/* Event Info */}
+                {/* Round 1 Overview */}
                 <div className="space-y-2">
                   <h3 className="text-base font-display font-semibold text-foreground flex items-center gap-2">
-                    <Calendar className="w-4 h-4 text-foreground/60" /> Event Overview
+                    <FileText className="w-4 h-4 text-foreground/60" /> Round 1 — Orbital Innovation (Online)
                   </h3>
-                  <p className="font-semibold text-foreground">ORIGIN – 24 Hour National Hackathon</p>
-                  <p className="flex items-center gap-2"><Calendar className="w-3.5 h-3.5" /> Date: March 30 – 31</p>
-                  <p className="flex items-center gap-2"><MapPin className="w-3.5 h-3.5" /> Venue: SIMATS Engineering, Chennai</p>
+                  <p>Round 1 is a completely <span className="font-semibold text-foreground">free-of-cost</span> online round open to all participants. This phase evaluates your problem-solving approach and innovation potential before the grand finale.</p>
                 </div>
 
-                {/* Timeline */}
+                {/* How to Participate */}
                 <div className="space-y-3">
                   <h3 className="text-base font-display font-semibold text-foreground flex items-center gap-2">
-                    <Clock className="w-4 h-4 text-foreground/60" /> Event Timeline
+                    <Users className="w-4 h-4 text-foreground/60" /> How to Participate
                   </h3>
-                  <div className="space-y-4">
-                    <div>
-                      <p className="font-semibold text-foreground mb-1">March 30</p>
-                      <ul className="space-y-1 list-none">
-                        <li>9:00 AM – Registration and Verification</li>
-                        <li>10:30 AM – 11:00 AM – Opening Ceremony and Hackathon Kickoff</li>
-                        <li>1:00 PM – 2:00 PM – Lunch Break</li>
-                        <li>3:00 PM – Round 1 Evaluation</li>
-                        <li>5:00 PM – Snacks Break</li>
-                        <li>8:00 PM – 9:00 PM – Dinner</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <p className="font-semibold text-foreground mb-1">March 31</p>
-                      <ul className="space-y-1 list-none">
-                        <li>12:00 AM – Round 2 Evaluation</li>
-                        <li>1:00 AM – Tea and Energy Snacks</li>
-                        <li>2:00 AM – Engagement Activity</li>
-                        <li>7:00 AM – 8:00 AM – Breakfast</li>
-                        <li>11:00 AM – Hackathon Ends (Final Code Freeze)</li>
-                        <li>12:00 PM – Final Evaluation</li>
-                        <li>1:00 PM – Award Ceremony and Closing</li>
-                      </ul>
-                    </div>
-                  </div>
+                  <ol className="list-decimal pl-5 space-y-2">
+                    <li>Form a team of <span className="font-semibold text-foreground">3 to 4 members</span>.</li>
+                    <li>Register your team on the <span className="font-semibold text-foreground">Unstop</span> platform.</li>
+                    <li>All team members must complete individual registration.</li>
+                    <li>Participants must be currently enrolled students in a recognized educational institution.</li>
+                  </ol>
                 </div>
 
-                {/* Registration */}
+                {/* Submission Requirements */}
                 <div className="space-y-3">
                   <h3 className="text-base font-display font-semibold text-foreground flex items-center gap-2">
-                    <FileText className="w-4 h-4 text-foreground/60" /> Registration and Selection Process
+                    <AlertTriangle className="w-4 h-4 text-foreground/60" /> Submission Requirements
                   </h3>
-                  <p>ORIGIN follows a dual selection model consisting of Internal College Hackathons and Open Registration.</p>
+                  <p>During registration, each team must submit the following:</p>
+                  <ul className="list-disc pl-5 space-y-2">
+                    <li><span className="font-semibold text-foreground">Presentation (PPT)</span> — Explain your understanding of the problem and your proposed solution.</li>
+                    <li><span className="font-semibold text-foreground">GitHub Repository Link</span> — If a prototype or working code exists, share the repository.</li>
+                    <li><span className="font-semibold text-foreground">Demo Video</span> — A working demonstration with original voice explanation by team members.</li>
+                  </ul>
+                </div>
 
+                {/* Selection Process */}
+                <div className="space-y-3">
+                  <h3 className="text-base font-display font-semibold text-foreground flex items-center gap-2">
+                    <Clock className="w-4 h-4 text-foreground/60" /> Selection Process
+                  </h3>
+                  <p>ORIGIN follows a dual selection model:</p>
                   <div className="pl-4 border-l-2 border-border space-y-2">
                     <p className="font-semibold text-foreground">Internal College Hackathons</p>
-                    <p>Partner colleges will conduct internal hackathons. Selected teams from each institution will qualify for the ORIGIN Grand Finale. A total of 35 teams will be shortlisted through this model.</p>
+                    <p>Partner colleges conduct internal hackathons. Selected teams qualify for the Grand Finale. <span className="font-semibold text-foreground">35 teams</span> will be shortlisted through this track.</p>
                   </div>
-
                   <div className="pl-4 border-l-2 border-border space-y-2">
-                    <p className="font-semibold text-foreground">Open Registration</p>
-                    <p>Students may register through Unstop. During registration, teams must submit:</p>
-                    <ul className="list-disc pl-5 space-y-1">
-                      <li>A presentation (PPT) explaining the problem understanding and proposed solution</li>
-                      <li>GitHub repository link (if a prototype exists)</li>
-                      <li>A working demo video with original voice explanation by team members</li>
-                    </ul>
-                    <p>Based on evaluation, 35 teams will be shortlisted from open registrations.</p>
+                    <p className="font-semibold text-foreground">Open Registration (Unstop)</p>
+                    <p>Based on submission evaluation, <span className="font-semibold text-foreground">35 teams</span> will be shortlisted from open registrations.</p>
                   </div>
-
                   <div className="pl-4 border-l-2 border-foreground/30 space-y-1">
-                    <p className="font-semibold text-foreground">Total Finalist Teams: 70</p>
-                    <p>35 Teams – Internal Hackathons</p>
-                    <p>35 Teams – Open Registration</p>
+                    <p className="font-semibold text-foreground">Total Teams advancing to Round 2: 70</p>
                   </div>
                 </div>
 
-                {/* Problem Statement */}
+                {/* Important Notes */}
                 <div className="space-y-3">
                   <h3 className="text-base font-display font-semibold text-foreground flex items-center gap-2">
-                    <AlertTriangle className="w-4 h-4 text-foreground/60" /> Problem Statement Guidelines
+                    <Shield className="w-4 h-4 text-foreground/60" /> Important Notes
                   </h3>
-                  <ul className="list-disc pl-5 space-y-1">
-                    <li>Problem statements will be provided by partner companies.</li>
-                    <li>Each problem statement will have a separate cash prize decided by the respective company.</li>
-                    <li>Teams may select only one problem statement.</li>
-                    <li>Problem statements will be announced on March 28 at 8:00 AM.</li>
-                    <li>The problem selection portal will open on March 28 at 6:00 PM.</li>
-                    <li>Selection will be on a first come, first serve basis.</li>
-                    <li>Login credentials will be shared with shortlisted teams.</li>
-                    <li>Once a problem statement is selected, it cannot be changed.</li>
-                    <li>The decision of the organizers is final and binding.</li>
-                  </ul>
-                </div>
-
-                {/* Team Guidelines */}
-                <div className="space-y-3">
-                  <h3 className="text-base font-display font-semibold text-foreground flex items-center gap-2">
-                    <Users className="w-4 h-4 text-foreground/60" /> Team Guidelines
-                  </h3>
-                  <ul className="list-disc pl-5 space-y-1">
-                    <li>Each team must consist of 3 to 4 members.</li>
-                    <li>All members must complete individual registration.</li>
-                    <li>Participants must be currently enrolled students in a recognized educational institution.</li>
-                    <li>Valid student ID proof is mandatory during verification.</li>
-                  </ul>
-                </div>
-
-                {/* Hackathon Rules */}
-                <div className="space-y-3">
-                  <h3 className="text-base font-display font-semibold text-foreground flex items-center gap-2">
-                    <ScrollTextIcon className="w-4 h-4 text-foreground/60" /> Hackathon Rules
-                  </h3>
-                  <ul className="list-disc pl-5 space-y-1">
-                    <li>Development must begin only after the official hackathon start.</li>
-                    <li>Teams must work only on the selected problem statement.</li>
-                    <li>Each team can choose only one problem statement.</li>
-                    <li>All deliverables must be submitted before the final code freeze at 11:00 AM on March 31.</li>
-                    <li>Final submission must include: GitHub Repository, Final Presentation, Working Demonstration.</li>
-                    <li>Internet usage is permitted.</li>
+                  <ul className="list-disc pl-5 space-y-2">
+                    <li>Round 1 is <span className="font-semibold text-foreground">completely free</span> — no registration fee required.</li>
+                    <li>All participants who complete Round 1 will receive a <span className="font-semibold text-foreground">participation certificate</span>.</li>
                     <li>Any form of plagiarism will lead to immediate disqualification.</li>
-                    <li>Judges' decisions will be final and binding.</li>
-                    <li>The organizers reserve the right to modify rules if required for smooth execution of the event.</li>
-                  </ul>
-                </div>
-
-                {/* Code of Conduct */}
-                <div className="space-y-3">
-                  <h3 className="text-base font-display font-semibold text-foreground flex items-center gap-2">
-                    <Shield className="w-4 h-4 text-foreground/60" /> Code of Conduct
-                  </h3>
-                  <p>By registering for ORIGIN, participants agree to comply with the following:</p>
-                  <ul className="list-disc pl-5 space-y-1">
-                    <li>Treat all participants, organizers, sponsors, and volunteers with respect.</li>
-                    <li>Do not engage in harassment, discrimination, or inappropriate behavior.</li>
-                    <li>Follow all venue rules and safety regulations.</li>
-                    <li>Respect intellectual property rights.</li>
-                    <li>Do not disrupt other teams or event activities.</li>
-                    <li>Do not consume alcohol or illegal substances during the event.</li>
-                    <li>Violation of the code of conduct may result in immediate disqualification and removal from the event without refund.</li>
+                    <li>Valid student ID proof is mandatory during verification.</li>
+                    <li>The decision of the organizers is final and binding.</li>
                   </ul>
                 </div>
               </div>
