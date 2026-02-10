@@ -29,33 +29,6 @@ const STEPS = [
     ),
   },
   {
-    id: "timeline",
-    title: "Event Timeline",
-    icon: Clock,
-    content: (
-      <div className="space-y-4">
-        <div>
-          <p className="font-semibold text-foreground mb-2">March 30</p>
-          <ul className="space-y-1 text-sm text-foreground/80">
-            <li>9:00 AM – Registration & Verification</li>
-            <li>10:30 AM – Opening Ceremony & Kickoff</li>
-            <li>3:00 PM – Round 1 Evaluation</li>
-            <li>8:00 PM – Dinner</li>
-          </ul>
-        </div>
-        <div>
-          <p className="font-semibold text-foreground mb-2">March 31</p>
-          <ul className="space-y-1 text-sm text-foreground/80">
-            <li>12:00 AM – Round 2 Evaluation</li>
-            <li>11:00 AM – Final Code Freeze</li>
-            <li>12:00 PM – Final Evaluation</li>
-            <li>1:00 PM – Award Ceremony</li>
-          </ul>
-        </div>
-      </div>
-    ),
-  },
-  {
     id: "registration",
     title: "Selection Process",
     icon: FileText,
@@ -73,37 +46,6 @@ const STEPS = [
           </div>
         </div>
         <p className="text-center font-semibold text-foreground">Total: 70 Finalist Teams</p>
-      </div>
-    ),
-  },
-  {
-    id: "problem",
-    title: "Problem Statements",
-    icon: AlertTriangle,
-    content: (
-      <div className="space-y-3">
-        <ul className="space-y-2 text-sm text-foreground/80">
-          <li className="flex items-start gap-2">
-            <CheckCircle className="w-4 h-4 text-foreground/60 mt-0.5 shrink-0" />
-            Problem statements provided by partner companies
-          </li>
-          <li className="flex items-start gap-2">
-            <CheckCircle className="w-4 h-4 text-foreground/60 mt-0.5 shrink-0" />
-            Announced on March 28 at 8:00 AM
-          </li>
-          <li className="flex items-start gap-2">
-            <CheckCircle className="w-4 h-4 text-foreground/60 mt-0.5 shrink-0" />
-            Selection portal opens March 28 at 6:00 PM
-          </li>
-          <li className="flex items-start gap-2">
-            <CheckCircle className="w-4 h-4 text-foreground/60 mt-0.5 shrink-0" />
-            First come, first serve basis
-          </li>
-          <li className="flex items-start gap-2">
-            <CheckCircle className="w-4 h-4 text-foreground/60 mt-0.5 shrink-0" />
-            Once selected, cannot be changed
-          </li>
-        </ul>
       </div>
     ),
   },
@@ -131,66 +73,6 @@ const STEPS = [
             Valid student ID required
           </li>
         </ul>
-      </div>
-    ),
-  },
-  {
-    id: "rules",
-    title: "Hackathon Rules",
-    icon: FileText,
-    content: (
-      <div className="space-y-3">
-        <ul className="space-y-2 text-sm text-foreground/80">
-          <li className="flex items-start gap-2">
-            <CheckCircle className="w-4 h-4 text-foreground/60 mt-0.5 shrink-0" />
-            Development starts only after official kickoff
-          </li>
-          <li className="flex items-start gap-2">
-            <CheckCircle className="w-4 h-4 text-foreground/60 mt-0.5 shrink-0" />
-            One problem statement per team
-          </li>
-          <li className="flex items-start gap-2">
-            <CheckCircle className="w-4 h-4 text-foreground/60 mt-0.5 shrink-0" />
-            Submit before 11:00 AM code freeze
-          </li>
-          <li className="flex items-start gap-2">
-            <CheckCircle className="w-4 h-4 text-foreground/60 mt-0.5 shrink-0" />
-            No plagiarism (immediate disqualification)
-          </li>
-          <li className="flex items-start gap-2">
-            <CheckCircle className="w-4 h-4 text-foreground/60 mt-0.5 shrink-0" />
-            Judges' decisions are final
-          </li>
-        </ul>
-      </div>
-    ),
-  },
-  {
-    id: "conduct",
-    title: "Code of Conduct",
-    icon: Shield,
-    content: (
-      <div className="space-y-3">
-        <p className="text-foreground/80 text-sm">By registering, you agree to:</p>
-        <ul className="space-y-2 text-sm text-foreground/80">
-          <li className="flex items-start gap-2">
-            <CheckCircle className="w-4 h-4 text-foreground/60 mt-0.5 shrink-0" />
-            Treat everyone with respect
-          </li>
-          <li className="flex items-start gap-2">
-            <CheckCircle className="w-4 h-4 text-foreground/60 mt-0.5 shrink-0" />
-            No harassment or discrimination
-          </li>
-          <li className="flex items-start gap-2">
-            <CheckCircle className="w-4 h-4 text-foreground/60 mt-0.5 shrink-0" />
-            Follow venue safety rules
-          </li>
-          <li className="flex items-start gap-2">
-            <CheckCircle className="w-4 h-4 text-foreground/60 mt-0.5 shrink-0" />
-            No alcohol or illegal substances
-          </li>
-        </ul>
-        <p className="text-xs text-foreground/50 mt-2">Violations may result in disqualification.</p>
       </div>
     ),
   },
