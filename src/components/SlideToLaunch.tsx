@@ -33,6 +33,11 @@ const SlideToLaunch = ({ onLaunch }: SlideToLaunchProps) => {
     const el = wrapperRef.current;
     if (!el) return;
 
+    // Device vibration (mobile)
+    if (navigator.vibrate) {
+      navigator.vibrate([30, 50, 60]);
+    }
+
     // Screen shake
     el.style.transition = "none";
     const shakes = [
