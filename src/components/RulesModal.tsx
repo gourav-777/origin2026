@@ -20,14 +20,14 @@ const RulesModal = ({
       }} onClick={onClose} />
 
           {/* Modal */}
-          <motion.div className="fixed inset-0 z-[70] flex items-center justify-center p-4" initial={{
+          <motion.div className="fixed inset-0 z-[70] flex items-end sm:items-center justify-center p-0 sm:p-4" initial={{
         opacity: 0
       }} animate={{
         opacity: 1
       }} exit={{
         opacity: 0
       }}>
-            <motion.div className="relative w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-2xl bg-card border border-border shadow-2xl" initial={{
+            <motion.div className="relative w-full sm:max-w-3xl max-h-[90vh] overflow-y-auto rounded-t-2xl sm:rounded-2xl bg-card border border-border shadow-2xl" initial={{
           scale: 0.9,
           y: 40
         }} animate={{

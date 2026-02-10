@@ -197,13 +197,13 @@ const RegistrationModal = ({ isOpen, onClose }: RegistrationModalProps) => {
 
               {/* Modal */}
               <motion.div
-                className="fixed inset-0 z-[70] flex items-center justify-center p-4"
+                className="fixed inset-0 z-[70] flex items-end sm:items-center justify-center p-0 sm:p-4"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
               >
                 <motion.div
-                  className="relative w-full max-w-lg overflow-hidden rounded-2xl bg-card border border-border shadow-2xl"
+                  className="relative w-full sm:max-w-lg max-h-[90vh] sm:max-h-none overflow-y-auto sm:overflow-hidden rounded-t-2xl sm:rounded-2xl bg-card border border-border shadow-2xl"
                   initial={{ scale: 0.9, y: 40 }}
                   animate={{ scale: 1, y: 0 }}
                   exit={{ scale: 0.9, y: 40 }}
@@ -211,7 +211,7 @@ const RegistrationModal = ({ isOpen, onClose }: RegistrationModalProps) => {
                   onClick={e => e.stopPropagation()}
                 >
                   {/* Header */}
-                  <div className="flex items-center justify-between px-6 py-4 border-b border-border">
+                  <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-border">
                     <div className="flex items-center gap-3">
                       <div className="p-2 rounded-lg bg-foreground/10">
                         <StepIcon className="w-5 h-5 text-foreground" />
@@ -244,7 +244,7 @@ const RegistrationModal = ({ isOpen, onClose }: RegistrationModalProps) => {
                   </div>
 
                   {/* Content */}
-                  <div className="px-6 py-6 min-h-[280px]">
+                  <div className="px-4 sm:px-6 py-4 sm:py-6 min-h-[200px] sm:min-h-[280px] overflow-y-auto">
                     <AnimatePresence mode="wait">
                       <motion.div
                         key={currentStep}
@@ -259,7 +259,7 @@ const RegistrationModal = ({ isOpen, onClose }: RegistrationModalProps) => {
                   </div>
 
                   {/* Footer */}
-                  <div className="flex items-center justify-between px-6 py-4 border-t border-border bg-card/50">
+                  <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-t border-border bg-card/50">
                     {/* Step indicators */}
                     <div className="flex gap-1.5">
                       {STEPS.map((_, index) => (
@@ -300,7 +300,7 @@ const RegistrationModal = ({ isOpen, onClose }: RegistrationModalProps) => {
 
                   {/* Slide to Launch on last step */}
                   {isLastStep && (
-                    <div className="px-6 pb-5">
+                    <div className="px-4 sm:px-6 pb-4 sm:pb-5">
                       <SlideToLaunch onLaunch={handleNext} />
                       <button
                         onClick={() => setCurrentStep(prev => prev - 1)}
