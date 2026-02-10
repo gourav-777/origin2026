@@ -77,6 +77,43 @@ const STEPS = [
     ),
   },
   {
+    id: "round1",
+    title: "Round 1 — Open Innovation",
+    icon: FileText,
+    content: (
+      <div className="space-y-4">
+        <div className="p-4 rounded-xl bg-foreground/5 border border-border text-center">
+          <p className="text-xs text-foreground/50 tracking-widest mb-2">ROUND 1</p>
+          <p className="text-lg font-display font-bold text-foreground">Open Innovation</p>
+          <p className="text-sm text-foreground/60 mt-1">Conducted through Unstop</p>
+        </div>
+        <div className="p-3 rounded-lg bg-foreground/5 border border-border">
+          <p className="font-semibold text-foreground flex items-center gap-2">
+            🎉 Completely FREE to register!
+          </p>
+          <p className="text-sm text-foreground/60 mt-1">No registration fee for Round 1 participation.</p>
+        </div>
+        <div className="space-y-2">
+          <p className="font-semibold text-foreground text-sm">Submission Requirements:</p>
+          <ul className="space-y-2 text-sm text-foreground/80">
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-foreground/60 mt-0.5 shrink-0" />
+              Use the official PPT template provided by us for your submission
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-foreground/60 mt-0.5 shrink-0" />
+              GitHub repository link (if prototype exists)
+            </li>
+            <li className="flex items-start gap-2">
+              <CheckCircle className="w-4 h-4 text-foreground/60 mt-0.5 shrink-0" />
+              Working demo video with original voice explanation
+            </li>
+          </ul>
+        </div>
+      </div>
+    ),
+  },
+  {
     id: "launch",
     title: "Mission Ready",
     icon: Rocket,
