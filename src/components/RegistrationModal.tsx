@@ -34,16 +34,10 @@ const STEPS = [
     icon: FileText,
     content: (
       <div className="space-y-4">
-        <p className="text-foreground/80">ORIGIN follows a dual selection model:</p>
-        <div className="space-y-3">
-          <div className="p-3 rounded-lg bg-foreground/5 border border-border">
-            <p className="font-semibold text-foreground">Internal Hackathons</p>
-            <p className="text-sm text-foreground/60">35 teams from partner college hackathons</p>
-          </div>
-          <div className="p-3 rounded-lg bg-foreground/5 border border-border">
-            <p className="font-semibold text-foreground">Open Registration</p>
-            <p className="text-sm text-foreground/60">35 teams via Unstop (PPT + Demo required)</p>
-          </div>
+        <p className="text-foreground/80">All teams are selected through Unstop:</p>
+        <div className="p-3 rounded-lg bg-foreground/5 border border-border">
+          <p className="font-semibold text-foreground">Unstop Round 1 Evaluation</p>
+          <p className="text-sm text-foreground/60">70 teams shortlisted based on PPT, GitHub repo & demo video submissions</p>
         </div>
         <p className="text-center font-semibold text-foreground">Total: 70 Finalist Teams</p>
       </div>

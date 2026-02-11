@@ -92,14 +92,10 @@ const RulesModal = ({
                   <h3 className="text-base font-display font-semibold text-foreground flex items-center gap-2">
                     <Clock className="w-4 h-4 text-foreground/60" /> Selection Process
                   </h3>
-                  <p>ORIGIN follows a dual selection model:</p>
+                  <p>All selections are made exclusively through Unstop:</p>
                   <div className="pl-4 border-l-2 border-border space-y-2">
-                    <p className="font-semibold text-foreground">Internal College Hackathons</p>
-                    <p>Partner colleges conduct internal hackathons. Selected teams qualify for the Grand Finale. <span className="font-semibold text-foreground">35 teams</span> will be shortlisted through this track.</p>
-                  </div>
-                  <div className="pl-4 border-l-2 border-border space-y-2">
-                    <p className="font-semibold text-foreground">Open Registration (Unstop)</p>
-                    <p>Based on submission evaluation, <span className="font-semibold text-foreground">35 teams</span> will be shortlisted from open registrations.</p>
+                    <p className="font-semibold text-foreground">Unstop Round 1 Evaluation</p>
+                    <p><span className="font-semibold text-foreground">70 teams</span> will be shortlisted from Unstop Round 1 submissions based on PPT, GitHub repository, and demo video evaluation.</p>
                   </div>
                   <div className="pl-4 border-l-2 border-foreground/30 space-y-1">
                     <p className="font-semibold text-foreground">Total Teams advancing to Round 2: 70</p>
