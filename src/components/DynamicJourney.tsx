@@ -52,7 +52,7 @@ const phases: Phase[] = [{
   icon: Waypoints,
   title: "SELECTION GATE",
   subtitle: "Crew Finalization",
-  description: "35 Internal + 35 Open teams selected for the deep space mission",
+  description: "70 teams selected from Round 1 via Unstop for the deep space mission",
   date: "MAR 28, 2026",
   round: "transition"
 }, {
@@ -248,7 +248,7 @@ const SelectionGateDivider = () => {
       {/* Subtitle with background fill */}
       <div className="relative flex justify-center mt-4 z-10">
         <p className="px-4 py-1.5 rounded-full bg-background border border-foreground/20 text-center text-xs text-foreground/60 tracking-widest">
-          35 INTERNAL + 35 OPEN TEAMS SELECTED
+          70 TEAMS SELECTED VIA UNSTOP
         </p>
       </div>
     </motion.div>;
