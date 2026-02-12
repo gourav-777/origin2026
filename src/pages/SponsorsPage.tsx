@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Mail, Users, Globe, Trophy, Zap, Target, Building2, Lightbulb, Rocket } from "lucide-react";
+import { ArrowRight, Mail, Users, Globe, Trophy, Zap, Target, Building2, Lightbulb, Rocket, Crown, Award, Shield, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import originLogo from "@/assets/origin-logo.png";
 
@@ -46,6 +46,75 @@ const sponsorBenefits = [
   "Social media coverage & post-event highlight features",
   "Logo placement on the ORIGIN website & promotional content",
   "Judging panel representation for your problem statement track",
+];
+
+interface TierFeature {
+  text: string;
+  included: boolean;
+}
+
+interface SponsorTier {
+  name: string;
+  icon: typeof Crown;
+  price: string;
+  tagline: string;
+  featured?: boolean;
+  features: TierFeature[];
+}
+
+const sponsorTiers: SponsorTier[] = [
+  {
+    name: "SILVER",
+    icon: Shield,
+    price: "₹15,000",
+    tagline: "Supporting Partner",
+    features: [
+      { text: "Logo on website & event banners", included: true },
+      { text: "Social media shoutouts (2 posts)", included: true },
+      { text: "Certificate of Partnership", included: true },
+      { text: "Distribute branded merchandise at venue", included: true },
+      { text: "Custom problem statement track", included: false },
+      { text: "Judging panel seat", included: false },
+      { text: "Keynote / workshop slot", included: false },
+      { text: "Exclusive talent access & recruitment booth", included: false },
+      { text: "Title naming rights", included: false },
+    ],
+  },
+  {
+    name: "GOLD",
+    icon: Award,
+    price: "₹35,000",
+    tagline: "Associate Partner",
+    featured: true,
+    features: [
+      { text: "Logo on website & event banners", included: true },
+      { text: "Social media campaign (5+ posts & stories)", included: true },
+      { text: "Certificate of Partnership", included: true },
+      { text: "Distribute branded merchandise at venue", included: true },
+      { text: "Custom problem statement track", included: true },
+      { text: "Judging panel seat", included: true },
+      { text: "Keynote / workshop slot (15 min)", included: true },
+      { text: "Exclusive talent access & recruitment booth", included: false },
+      { text: "Title naming rights", included: false },
+    ],
+  },
+  {
+    name: "PLATINUM",
+    icon: Crown,
+    price: "₹75,000",
+    tagline: "Title Partner",
+    features: [
+      { text: "Logo on website & event banners", included: true },
+      { text: "Full social media campaign with dedicated content", included: true },
+      { text: "Certificate of Partnership", included: true },
+      { text: "Distribute branded merchandise at venue", included: true },
+      { text: "Custom problem statement track (priority)", included: true },
+      { text: "Judging panel seat (Chief Judge)", included: true },
+      { text: "Keynote / workshop slot (30 min)", included: true },
+      { text: "Exclusive talent access & recruitment booth", included: true },
+      { text: "Title naming rights — 'ORIGIN powered by [You]'", included: true },
+    ],
+  },
 ];
 
 const SponsorsPage = () => {
@@ -270,6 +339,101 @@ const SponsorsPage = () => {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Sponsorship Tiers */}
+      <section className="py-24 md:py-32 border-t border-border/20 bg-card/10">
+        <div className="container mx-auto px-4">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card/50 mb-6">
+              <Trophy className="w-4 h-4 text-foreground/60" />
+              <span className="text-xs tracking-[0.2em] text-foreground/60 font-sans">PARTNERSHIP TIERS</span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-display font-bold mb-4">
+              CHOOSE YOUR <span className="text-foreground/40">TIER</span>
+            </h2>
+            <p className="text-foreground/50 max-w-lg mx-auto font-sans">
+              Flexible packages designed for maximum impact at every level. Custom packages also available.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto items-stretch">
+            {sponsorTiers.map((tier, i) => (
+              <motion.div
+                key={tier.name}
+                className={`relative rounded-2xl border p-8 flex flex-col transition-all duration-300 ${
+                  tier.featured
+                    ? "border-foreground/30 bg-card/40 scale-[1.02] md:scale-105 shadow-2xl shadow-foreground/5"
+                    : "border-border/20 bg-card/20 hover:border-border/40"
+                }`}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.15 }}
+              >
+                {tier.featured && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-foreground text-background text-[10px] font-display font-bold tracking-[0.2em]">
+                    MOST POPULAR
+                  </div>
+                )}
+
+                <div className="text-center mb-8">
+                  <tier.icon className={`w-8 h-8 mx-auto mb-4 ${tier.featured ? "text-foreground" : "text-foreground/40"}`} />
+                  <h3 className="text-sm font-sans tracking-[0.2em] text-foreground/50 mb-2">{tier.name}</h3>
+                  <p className="text-3xl md:text-4xl font-display font-bold text-foreground">{tier.price}</p>
+                  <p className="text-xs text-foreground/40 mt-1 font-sans">{tier.tagline}</p>
+                </div>
+
+                <div className="space-y-3 flex-1">
+                  {tier.features.map((feature, fi) => (
+                    <div key={fi} className="flex items-start gap-3">
+                      <div className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
+                        feature.included ? "bg-foreground/10" : "bg-foreground/5"
+                      }`}>
+                        {feature.included ? (
+                          <Check className="w-3 h-3 text-foreground/70" />
+                        ) : (
+                          <div className="w-2 h-[1.5px] bg-foreground/20 rounded-full" />
+                        )}
+                      </div>
+                      <span className={`text-sm font-sans ${feature.included ? "text-foreground/70" : "text-foreground/25"}`}>
+                        {feature.text}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                <motion.a
+                  href={`mailto:Hackathonclub.simats@gmail.com?subject=${tier.name} Partnership — ORIGIN 2K26`}
+                  className={`mt-8 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full font-display font-bold tracking-wider text-sm transition-all ${
+                    tier.featured
+                      ? "bg-foreground text-background hover:bg-foreground/90"
+                      : "border border-border/30 text-foreground/70 hover:bg-foreground/5 hover:border-foreground/40"
+                  }`}
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <Mail className="w-4 h-4" />
+                  GET IN TOUCH
+                </motion.a>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.p
+            className="text-center text-foreground/30 text-sm font-sans mt-10"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
+            Need a custom package? <a href="mailto:Hackathonclub.simats@gmail.com?subject=Custom Partnership — ORIGIN 2K26" className="underline text-foreground/50 hover:text-foreground/70 transition-colors">Let's talk →</a>
+          </motion.p>
         </div>
       </section>
 
