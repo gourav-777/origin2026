@@ -124,6 +124,14 @@ const supportingCrew = [
     email: "bhuvanesh@flarenetcompany.in",
     instagram: "https://www.instagram.com/bhuvispartiate",
   },
+  {
+    name: "Monika Ethiraj",
+    role: "Marketing Head",
+    image: "https://res.cloudinary.com/duoigqhsw/image/upload/v1771005873/file_0000000001947208b2a20ff20790c80a_1_kbhsz1.png",
+    linkedin: "",
+    email: "",
+    instagram: "",
+  },
 ];
 
 const DynamicTeam = () => {
