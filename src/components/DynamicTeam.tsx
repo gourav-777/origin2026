@@ -128,9 +128,9 @@ const supportingCrew = [
     name: "Monika Ethiraj",
     role: "Marketing Head",
     image: "https://res.cloudinary.com/duoigqhsw/image/upload/v1771005873/file_0000000001947208b2a20ff20790c80a_1_kbhsz1.png",
-    linkedin: "",
-    email: "",
-    instagram: "",
+    linkedin: "https://www.linkedin.com/in/monika-e-a905a03ab?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+    email: "monikaethiraj10@gmail.com",
+    instagram: "https://www.instagram.com/monika_ethiraj",
   },
 ];
 
