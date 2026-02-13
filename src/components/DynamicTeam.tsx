@@ -54,32 +54,6 @@ const supportingCrew = [
     instagram: "https://github.com/ksrisayee12/",
   },
   {
-    name: "Veera Vaishnavi",
-    role: "PR Head",
-    image: "https://res.cloudinary.com/duoigqhsw/image/upload/v1770398056/VeeraVaishnavi_bo0ms9.jpg",
-    linkedin: "https://www.linkedin.com/in/veera-vaishnavi/",
-    email: "vaishureddy26096@gmail.com",
-    instagram: "https://www.instagram.com/__vaishu.26_?utm_source=qr&igsh=cnoxNnZkcnZ6Mmcy",
-  },
-  {
-    name: "Vinnarasu",
-    role: "Logistics Head",
-    image: "https://res.cloudinary.com/duoigqhsw/image/upload/v1770398081/vinay_epkpeq.jpg",
-    linkedin:
-      "https://www.linkedin.com/in/vinnarasu-r-50439b328?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    email: "r.vinnarasu2006@gmail.com",
-    instagram: "https://www.instagram.com/vinn___03?igsh=ZnhpeDE0Y2M1bnlk",
-  },
-  {
-    name: "Aravind Muthiah",
-    role: "Community Head",
-    image: "https://res.cloudinary.com/duoigqhsw/image/upload/v1770398075/arvinth_vnc8fz.jpg",
-    linkedin:
-      "https://www.linkedin.com/in/aravind-muthiah-m?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    email: "aravindmuthiah23@gmail.com",
-    instagram: "https://www.instagram.com/aravindmuthiah23?igsh=MWttd2VpNnJ4ZmViZg==",
-  },
-  {
     name: "Neha B",
     role: "PR Head",
     image:
