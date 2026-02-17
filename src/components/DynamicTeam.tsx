@@ -99,6 +99,14 @@ const supportingCrew = [
     instagram: "https://www.instagram.com/bhuvispartiate",
   },
   {
+    name: "Vinnarasu R",
+    role: "Core Member",
+    image: "https://res.cloudinary.com/duoigqhsw/image/upload/v1770398333/harsh.jpg_owdpgy.jpg",
+    linkedin: "https://www.linkedin.com/in/vinnarasu-r-50439b328?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    email: "r.vinnarasu2006@gmail.com",
+    instagram: "https://www.instagram.com/vinn___03?igsh=ZnhpeDE0Y2M1bnlk",
+  },
+  {
     name: "Monika Ethiraj",
     role: "Marketing Head",
     image: "https://res.cloudinary.com/duoigqhsw/image/upload/v1771005873/file_0000000001947208b2a20ff20790c80a_1_kbhsz1.png",
