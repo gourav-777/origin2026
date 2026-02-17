@@ -100,8 +100,8 @@ const supportingCrew = [
   },
   {
     name: "Vinnarasu R",
-    role: "Core Member",
-    image: "https://res.cloudinary.com/duoigqhsw/image/upload/v1770398333/harsh.jpg_owdpgy.jpg",
+    role: "Logistic Head",
+    image: "https://res.cloudinary.com/duoigqhsw/image/upload/v1770398081/vinay_epkpeq.jpg",
     linkedin: "https://www.linkedin.com/in/vinnarasu-r-50439b328?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     email: "r.vinnarasu2006@gmail.com",
     instagram: "https://www.instagram.com/vinn___03?igsh=ZnhpeDE0Y2M1bnlk",
