@@ -1,6 +1,7 @@
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import { Rocket } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface SlideToLaunchProps {
   onLaunch: () => void;
@@ -12,6 +13,7 @@ const SlideToLaunch = ({ onLaunch }: SlideToLaunchProps) => {
   const [trackWidth, setTrackWidth] = useState(0);
   const [launched, setLaunched] = useState(false);
   const x = useMotionValue(0);
+  const isMobile = useIsMobile();
 
   const threshold = trackWidth - 56;
   const progress = useTransform(x, [0, threshold || 1], [0, 1]);
@@ -79,6 +81,14 @@ const SlideToLaunch = ({ onLaunch }: SlideToLaunchProps) => {
     }
   };
 
+  const handleClick = () => {
+    if (isMobile || launched) return;
+    animate(x, threshold, { duration: 0.6, ease: "easeInOut" });
+    setLaunched(true);
+    triggerHapticFeedback();
+    setTimeout(onLaunch, 700);
+  };
+
   return (
     <div ref={wrapperRef} className="w-full relative">
       <style>{`
@@ -106,7 +116,7 @@ const SlideToLaunch = ({ onLaunch }: SlideToLaunchProps) => {
           style={{ opacity: textOpacity }}
         >
           <span className="text-sm font-semibold text-foreground/50 tracking-wider">
-            SLIDE TO LAUNCH
+            {isMobile ? "SLIDE TO LAUNCH" : "CLICK TO LAUNCH"}
           </span>
         </motion.div>
 
@@ -121,13 +131,14 @@ const SlideToLaunch = ({ onLaunch }: SlideToLaunchProps) => {
 
         {/* Draggable Rocket Thumb */}
         <motion.div
-          className="absolute top-1 left-1 bottom-1 w-12 rounded-full bg-foreground text-background flex items-center justify-center cursor-grab active:cursor-grabbing z-10"
-          drag="x"
+          className={`absolute top-1 left-1 bottom-1 w-12 rounded-full bg-foreground text-background flex items-center justify-center z-10 ${isMobile ? 'cursor-grab active:cursor-grabbing' : 'cursor-pointer'}`}
+          drag={isMobile ? "x" : false}
           dragConstraints={{ left: 0, right: Math.max(trackWidth - 56, 0) }}
           dragElastic={0}
           dragMomentum={false}
           style={{ x }}
-          onDragEnd={handleDragEnd}
+          onDragEnd={isMobile ? handleDragEnd : undefined}
+          onClick={handleClick}
           whileTap={{ scale: 1.05 }}
         >
           <motion.div
